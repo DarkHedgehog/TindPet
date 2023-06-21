@@ -99,11 +99,10 @@
 		758D96462A42E495005A12E1 /* TindPet */ = {
 			isa = PBXGroup;
 			children = (
-				758D96472A42E495005A12E1 /* AppDelegate.swift */,
-				758D96492A42E495005A12E1 /* SceneDelegate.swift */,
-				758D964B2A42E495005A12E1 /* ViewController.swift */,
+				758D96772A42F204005A12E1 /* App */,
+				758D967C2A42F23D005A12E1 /* Core */,
+				758D967D2A42F246005A12E1 /* Resources */,
 				758D964D2A42E495005A12E1 /* Main.storyboard */,
-				758D96502A42E496005A12E1 /* Assets.xcassets */,
 				758D96522A42E496005A12E1 /* LaunchScreen.storyboard */,
 				758D96552A42E496005A12E1 /* Info.plist */,
 			);
@@ -125,6 +124,63 @@
 				758D966A2A42E496005A12E1 /* TindPetUITestsLaunchTests.swift */,
 			);
 			path = TindPetUITests;
+			sourceTree = "<group>";
+		};
+		758D96772A42F204005A12E1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				758D96472A42E495005A12E1 /* AppDelegate.swift */,
+				758D96492A42E495005A12E1 /* SceneDelegate.swift */,
+				758D964B2A42E495005A12E1 /* ViewController.swift */,
+				758D96792A42F215005A12E1 /* Entity */,
+				758D96782A42F20F005A12E1 /* BusinessLogic */,
+				758D967A2A42F222005A12E1 /* Assembly */,
+				758D967B2A42F22A005A12E1 /* Flows */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		758D96782A42F20F005A12E1 /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BusinessLogic;
+			sourceTree = "<group>";
+		};
+		758D96792A42F215005A12E1 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		758D967A2A42F222005A12E1 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		758D967B2A42F22A005A12E1 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		758D967C2A42F23D005A12E1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		758D967D2A42F246005A12E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				758D96502A42E496005A12E1 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
