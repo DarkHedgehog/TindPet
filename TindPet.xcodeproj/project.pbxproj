@@ -8,14 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96472A42E495005A12E1 /* AppDelegate.swift */; };
-		758D964A2A42E495005A12E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96492A42E495005A12E1 /* SceneDelegate.swift */; };
 		758D964C2A42E495005A12E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D964B2A42E495005A12E1 /* ViewController.swift */; };
-		758D964F2A42E495005A12E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758D964D2A42E495005A12E1 /* Main.storyboard */; };
 		758D96512A42E496005A12E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 758D96502A42E496005A12E1 /* Assets.xcassets */; };
 		758D96542A42E496005A12E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758D96522A42E496005A12E1 /* LaunchScreen.storyboard */; };
 		758D965F2A42E496005A12E1 /* TindPetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D965E2A42E496005A12E1 /* TindPetTests.swift */; };
 		758D96692A42E496005A12E1 /* TindPetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96682A42E496005A12E1 /* TindPetUITests.swift */; };
 		758D966B2A42E496005A12E1 /* TindPetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D966A2A42E496005A12E1 /* TindPetUITestsLaunchTests.swift */; };
+		758D967F2A437148005A12E1 /* AppStartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D967E2A437148005A12E1 /* AppStartManager.swift */; };
+		758D96822A437358005A12E1 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96812A437358005A12E1 /* RegistrationViewController.swift */; };
+		758D96842A43760D005A12E1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96832A43760D005A12E1 /* RegistrationView.swift */; };
+		758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96872A438562005A12E1 /* SwipesViewController.swift */; };
+		758D96892A43858B005A12E1 /* SwipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96862A438562005A12E1 /* SwipesView.swift */; };
+		758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968B2A4385F2005A12E1 /* MatchesViewController.swift */; };
+		758D968E2A438650005A12E1 /* MatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968C2A4385F2005A12E1 /* MatchesView.swift */; };
+		758D96912A43868A005A12E1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96902A43868A005A12E1 /* ProfileView.swift */; };
+		758D96932A43869B005A12E1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96922A43869B005A12E1 /* ProfileViewController.swift */; };
+		758D96972A438B21005A12E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758D96952A4389EC005A12E1 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,9 +46,7 @@
 /* Begin PBXFileReference section */
 		758D96442A42E495005A12E1 /* TindPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TindPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D96472A42E495005A12E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		758D96492A42E495005A12E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		758D964B2A42E495005A12E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		758D964E2A42E495005A12E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		758D96502A42E496005A12E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		758D96532A42E496005A12E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		758D96552A42E496005A12E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +55,16 @@
 		758D96642A42E496005A12E1 /* TindPetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TindPetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D96682A42E496005A12E1 /* TindPetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TindPetUITests.swift; sourceTree = "<group>"; };
 		758D966A2A42E496005A12E1 /* TindPetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TindPetUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		758D967E2A437148005A12E1 /* AppStartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartManager.swift; sourceTree = "<group>"; };
+		758D96812A437358005A12E1 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		758D96832A43760D005A12E1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		758D96862A438562005A12E1 /* SwipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesView.swift; sourceTree = "<group>"; };
+		758D96872A438562005A12E1 /* SwipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewController.swift; sourceTree = "<group>"; };
+		758D968B2A4385F2005A12E1 /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
+		758D968C2A4385F2005A12E1 /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
+		758D96902A43868A005A12E1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		758D96922A43869B005A12E1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		758D96952A4389EC005A12E1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +118,8 @@
 				758D96772A42F204005A12E1 /* App */,
 				758D967C2A42F23D005A12E1 /* Core */,
 				758D967D2A42F246005A12E1 /* Resources */,
-				758D964D2A42E495005A12E1 /* Main.storyboard */,
 				758D96522A42E496005A12E1 /* LaunchScreen.storyboard */,
+				758D96952A4389EC005A12E1 /* Main.storyboard */,
 				758D96552A42E496005A12E1 /* Info.plist */,
 			);
 			path = TindPet;
@@ -129,8 +145,8 @@
 		758D96772A42F204005A12E1 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				758D967E2A437148005A12E1 /* AppStartManager.swift */,
 				758D96472A42E495005A12E1 /* AppDelegate.swift */,
-				758D96492A42E495005A12E1 /* SceneDelegate.swift */,
 				758D964B2A42E495005A12E1 /* ViewController.swift */,
 				758D96792A42F215005A12E1 /* Entity */,
 				758D96782A42F20F005A12E1 /* BusinessLogic */,
@@ -164,6 +180,10 @@
 		758D967B2A42F22A005A12E1 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				758D968F2A438674005A12E1 /* Profile */,
+				758D968A2A4385E0005A12E1 /* Matches */,
+				758D96852A438547005A12E1 /* Swipes */,
+				758D96802A437337005A12E1 /* Registration */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -183,6 +203,42 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		758D96802A437337005A12E1 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				758D96812A437358005A12E1 /* RegistrationViewController.swift */,
+				758D96832A43760D005A12E1 /* RegistrationView.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		758D96852A438547005A12E1 /* Swipes */ = {
+			isa = PBXGroup;
+			children = (
+				758D96872A438562005A12E1 /* SwipesViewController.swift */,
+				758D96862A438562005A12E1 /* SwipesView.swift */,
+			);
+			path = Swipes;
+			sourceTree = "<group>";
+		};
+		758D968A2A4385E0005A12E1 /* Matches */ = {
+			isa = PBXGroup;
+			children = (
+				758D968B2A4385F2005A12E1 /* MatchesViewController.swift */,
+				758D968C2A4385F2005A12E1 /* MatchesView.swift */,
+			);
+			path = Matches;
+			sourceTree = "<group>";
+		};
+		758D968F2A438674005A12E1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				758D96922A43869B005A12E1 /* ProfileViewController.swift */,
+				758D96902A43868A005A12E1 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -193,6 +249,7 @@
 				758D96402A42E495005A12E1 /* Sources */,
 				758D96412A42E495005A12E1 /* Frameworks */,
 				758D96422A42E495005A12E1 /* Resources */,
+				758D96942A438766005A12E1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -289,7 +346,7 @@
 			files = (
 				758D96542A42E496005A12E1 /* LaunchScreen.storyboard in Resources */,
 				758D96512A42E496005A12E1 /* Assets.xcassets in Resources */,
-				758D964F2A42E495005A12E1 /* Main.storyboard in Resources */,
+				758D96972A438B21005A12E1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +366,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		758D96942A438766005A12E1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexit 0\nPATH=/opt/homebrew/bin:$PATH\nif [ -f ./LintConfig/swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		758D96402A42E495005A12E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -316,7 +394,15 @@
 			files = (
 				758D964C2A42E495005A12E1 /* ViewController.swift in Sources */,
 				758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */,
-				758D964A2A42E495005A12E1 /* SceneDelegate.swift in Sources */,
+				758D96912A43868A005A12E1 /* ProfileView.swift in Sources */,
+				758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */,
+				758D967F2A437148005A12E1 /* AppStartManager.swift in Sources */,
+				758D968E2A438650005A12E1 /* MatchesView.swift in Sources */,
+				758D96932A43869B005A12E1 /* ProfileViewController.swift in Sources */,
+				758D96842A43760D005A12E1 /* RegistrationView.swift in Sources */,
+				758D96892A43858B005A12E1 /* SwipesView.swift in Sources */,
+				758D96822A437358005A12E1 /* RegistrationViewController.swift in Sources */,
+				758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
