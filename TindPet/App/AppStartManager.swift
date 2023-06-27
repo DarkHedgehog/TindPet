@@ -76,7 +76,7 @@ final class AppStartManager {
     }
 
     private func configureProfileController() -> UIViewController {
-        let controller = ProfileViewController()
+        let controller = ProfileViewBuilder.build()
         let navVC = UINavigationController()
 
         navVC.navigationBar.barTintColor = UIColor.blue

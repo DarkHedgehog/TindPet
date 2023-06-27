@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755F7BA92A4B565600D38DFC /* ProfileViewBuilder.swift */; };
+		755F7BAC2A4B572000D38DFC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755F7BAB2A4B572000D38DFC /* ProfileViewController.swift */; };
+		755F7BAE2A4B5B6A00D38DFC /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755F7BAD2A4B5B6A00D38DFC /* ProfilePresenter.swift */; };
 		758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96472A42E495005A12E1 /* AppDelegate.swift */; };
 		758D964C2A42E495005A12E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D964B2A42E495005A12E1 /* ViewController.swift */; };
 		758D96512A42E496005A12E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 758D96502A42E496005A12E1 /* Assets.xcassets */; };
@@ -21,8 +24,6 @@
 		758D96892A43858B005A12E1 /* SwipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96862A438562005A12E1 /* SwipesView.swift */; };
 		758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968B2A4385F2005A12E1 /* MatchesViewController.swift */; };
 		758D968E2A438650005A12E1 /* MatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968C2A4385F2005A12E1 /* MatchesView.swift */; };
-		758D96912A43868A005A12E1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96902A43868A005A12E1 /* ProfileView.swift */; };
-		758D96932A43869B005A12E1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96922A43869B005A12E1 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		755F7BA92A4B565600D38DFC /* ProfileViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewBuilder.swift; sourceTree = "<group>"; };
+		755F7BAB2A4B572000D38DFC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		755F7BAD2A4B5B6A00D38DFC /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		758D96442A42E495005A12E1 /* TindPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TindPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D96472A42E495005A12E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		758D964B2A42E495005A12E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,8 +65,6 @@
 		758D96872A438562005A12E1 /* SwipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewController.swift; sourceTree = "<group>"; };
 		758D968B2A4385F2005A12E1 /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		758D968C2A4385F2005A12E1 /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
-		758D96902A43868A005A12E1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		758D96922A43869B005A12E1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		755F7BA62A4B556700D38DFC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				755F7BAB2A4B572000D38DFC /* ProfileViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		755F7BA72A4B556C00D38DFC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				755F7BAD2A4B5B6A00D38DFC /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		755F7BA82A4B557200D38DFC /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				755F7BA92A4B565600D38DFC /* ProfileViewBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		758D963B2A42E495005A12E1 = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +171,7 @@
 				758D967E2A437148005A12E1 /* AppStartManager.swift */,
 				758D96472A42E495005A12E1 /* AppDelegate.swift */,
 				758D964B2A42E495005A12E1 /* ViewController.swift */,
-				758D96792A42F215005A12E1 /* Entity */,
+				758D96792A42F215005A12E1 /* Models */,
 				758D96782A42F20F005A12E1 /* BusinessLogic */,
 				758D967A2A42F222005A12E1 /* Assembly */,
 				758D967B2A42F22A005A12E1 /* Flows */,
@@ -160,11 +186,11 @@
 			path = BusinessLogic;
 			sourceTree = "<group>";
 		};
-		758D96792A42F215005A12E1 /* Entity */ = {
+		758D96792A42F215005A12E1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Entity;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		758D967A2A42F222005A12E1 /* Assembly */ = {
@@ -230,8 +256,9 @@
 		758D968F2A438674005A12E1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				758D96922A43869B005A12E1 /* ProfileViewController.swift */,
-				758D96902A43868A005A12E1 /* ProfileView.swift */,
+				755F7BA82A4B557200D38DFC /* Builder */,
+				755F7BA72A4B556C00D38DFC /* Presenter */,
+				755F7BA62A4B556700D38DFC /* View */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -379,7 +406,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexit 0\nPATH=/opt/homebrew/bin:$PATH\nif [ -f ./LintConfig/swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ./LintConfig/swiftlint.yml\n  fi\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#exit 0\nPATH=/opt/homebrew/bin:$PATH\nif [ -f ./LintConfig/swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ./LintConfig/swiftlint.yml\n  fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -389,12 +416,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				758D964C2A42E495005A12E1 /* ViewController.swift in Sources */,
+				755F7BAC2A4B572000D38DFC /* ProfileViewController.swift in Sources */,
+				755F7BAE2A4B5B6A00D38DFC /* ProfilePresenter.swift in Sources */,
 				758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */,
-				758D96912A43868A005A12E1 /* ProfileView.swift in Sources */,
+				755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */,
 				758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */,
 				758D967F2A437148005A12E1 /* AppStartManager.swift in Sources */,
 				758D968E2A438650005A12E1 /* MatchesView.swift in Sources */,
-				758D96932A43869B005A12E1 /* ProfileViewController.swift in Sources */,
 				758D96842A43760D005A12E1 /* RegistrationView.swift in Sources */,
 				758D96892A43858B005A12E1 /* SwipesView.swift in Sources */,
 				758D96822A437358005A12E1 /* RegistrationViewController.swift in Sources */,
