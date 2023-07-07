@@ -8,16 +8,11 @@
 import Foundation
 
 protocol RegistrationViewProtocol {
-    
 }
 
 class RegistrationPresenter {
-    
     var view: RegistrationViewProtocol?
-    
 }
 
 extension RegistrationPresenter: RegistrationPresenterProtocol {
-    
-    
 }

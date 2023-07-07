@@ -8,21 +8,16 @@
 import UIKit
 
 protocol LoginViewProtocol {
-    
 }
 
 class LoginPresenter {
-    
     var view: LoginViewProtocol?
-    
 }
 
 extension LoginPresenter: LoginPresenterProtocol {
     func loginAction(login: String, password: String) {
-        
     }
-    
+
     func registationButtonAction() {
-        
     }
 }
