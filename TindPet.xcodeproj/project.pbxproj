@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		484693382A56DFD700CD016C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693372A56DFD700CD016C /* LoginViewController.swift */; };
+		4846933A2A56E00100CD016C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693392A56E00100CD016C /* LoginView.swift */; };
+		4846933F2A56EE7A00CD016C /* LoginViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4846933E2A56EE7A00CD016C /* LoginViewBuilder.swift */; };
+		484693412A56EE9800CD016C /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693402A56EE9800CD016C /* LoginPresenter.swift */; };
+		484693462A56FB1200CD016C /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693452A56FB1200CD016C /* RegistrationPresenter.swift */; };
+		484693482A56FB3100CD016C /* RegistrationViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693472A56FB3100CD016C /* RegistrationViewBuilder.swift */; };
+		48BBD8602A52F1790053738A /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BBD85F2A52F1790053738A /* GradientView.swift */; };
+		48BBD8632A52F28C0053738A /* Extention+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BBD8622A52F28C0053738A /* Extention+UIColor.swift */; };
 		755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755F7BA92A4B565600D38DFC /* ProfileViewBuilder.swift */; };
 		755F7BAC2A4B572000D38DFC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755F7BAB2A4B572000D38DFC /* ProfileViewController.swift */; };
 		755F7BAE2A4B5B6A00D38DFC /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755F7BAD2A4B5B6A00D38DFC /* ProfilePresenter.swift */; };
@@ -44,6 +52,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		484693372A56DFD700CD016C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		484693392A56E00100CD016C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4846933E2A56EE7A00CD016C /* LoginViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewBuilder.swift; sourceTree = "<group>"; };
+		484693402A56EE9800CD016C /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		484693452A56FB1200CD016C /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		484693472A56FB3100CD016C /* RegistrationViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewBuilder.swift; sourceTree = "<group>"; };
+		48BBD85F2A52F1790053738A /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		48BBD8622A52F28C0053738A /* Extention+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+UIColor.swift"; sourceTree = "<group>"; };
 		755F7BA92A4B565600D38DFC /* ProfileViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewBuilder.swift; sourceTree = "<group>"; };
 		755F7BAB2A4B572000D38DFC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		755F7BAD2A4B5B6A00D38DFC /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
@@ -92,6 +108,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		484693362A56DF7F00CD016C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4846933D2A56EE5B00CD016C /* Builder */,
+				4846933C2A56EE4D00CD016C /* Presenter */,
+				4846933B2A56EE3700CD016C /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		4846933B2A56EE3700CD016C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				484693372A56DFD700CD016C /* LoginViewController.swift */,
+				484693392A56E00100CD016C /* LoginView.swift */,
+				48BBD85F2A52F1790053738A /* GradientView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4846933C2A56EE4D00CD016C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				484693402A56EE9800CD016C /* LoginPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4846933D2A56EE5B00CD016C /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				4846933E2A56EE7A00CD016C /* LoginViewBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		484693422A56F88500CD016C /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				484693472A56FB3100CD016C /* RegistrationViewBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		484693432A56F89100CD016C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				484693452A56FB1200CD016C /* RegistrationPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		484693442A56F89900CD016C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				758D96812A437358005A12E1 /* RegistrationViewController.swift */,
+				758D96832A43760D005A12E1 /* RegistrationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48BBD8612A52F2760053738A /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				48BBD8622A52F28C0053738A /* Extention+UIColor.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
 		755F7BA62A4B556700D38DFC /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +274,7 @@
 		758D96792A42F215005A12E1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				48BBD8612A52F2760053738A /* Extention */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,6 +293,7 @@
 				758D968A2A4385E0005A12E1 /* Matches */,
 				758D96852A438547005A12E1 /* Swipes */,
 				758D96802A437337005A12E1 /* Registration */,
+				484693362A56DF7F00CD016C /* Login */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -229,8 +316,9 @@
 		758D96802A437337005A12E1 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				758D96812A437358005A12E1 /* RegistrationViewController.swift */,
-				758D96832A43760D005A12E1 /* RegistrationView.swift */,
+				484693422A56F88500CD016C /* Builder */,
+				484693432A56F89100CD016C /* Presenter */,
+				484693442A56F89900CD016C /* View */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -416,16 +504,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				758D964C2A42E495005A12E1 /* ViewController.swift in Sources */,
+				484693482A56FB3100CD016C /* RegistrationViewBuilder.swift in Sources */,
+				4846933F2A56EE7A00CD016C /* LoginViewBuilder.swift in Sources */,
 				755F7BAC2A4B572000D38DFC /* ProfileViewController.swift in Sources */,
 				755F7BAE2A4B5B6A00D38DFC /* ProfilePresenter.swift in Sources */,
+				484693382A56DFD700CD016C /* LoginViewController.swift in Sources */,
 				758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */,
 				755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */,
 				758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */,
 				758D967F2A437148005A12E1 /* AppStartManager.swift in Sources */,
 				758D968E2A438650005A12E1 /* MatchesView.swift in Sources */,
+				48BBD8632A52F28C0053738A /* Extention+UIColor.swift in Sources */,
 				758D96842A43760D005A12E1 /* RegistrationView.swift in Sources */,
 				758D96892A43858B005A12E1 /* SwipesView.swift in Sources */,
+				48BBD8602A52F1790053738A /* GradientView.swift in Sources */,
 				758D96822A437358005A12E1 /* RegistrationViewController.swift in Sources */,
+				484693462A56FB1200CD016C /* RegistrationPresenter.swift in Sources */,
+				484693412A56EE9800CD016C /* LoginPresenter.swift in Sources */,
+				4846933A2A56E00100CD016C /* LoginView.swift in Sources */,
 				758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

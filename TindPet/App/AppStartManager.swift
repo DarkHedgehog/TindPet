@@ -32,7 +32,9 @@ final class AppStartManager {
             ],
             animated: false)
 
-        window?.rootViewController = tabsVC
+        let logVC = LoginViewBuilder.build()
+        let navVC = UINavigationController(rootViewController: logVC)
+        window?.rootViewController = navVC //tabsVC
         window?.makeKeyAndVisible()
     }
 
