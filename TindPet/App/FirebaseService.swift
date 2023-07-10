@@ -3,11 +3,10 @@
 //  TindPet
 //
 //  Created by Asya Checkanar on 08.07.2023.
-// Исправить: здесь импортирован uikit для сообщений об ошибке
+//
 
 import Foundation
 import Firebase
-//import UIKit
 
 class FirebaseService {
     //функция зарегистрироваться
