@@ -11,12 +11,14 @@ import UIKit
 
 final class AppStartManager {
     var window: UIWindow?
+    var userDefaults = UserDefaults.standard
 
     init(window: UIWindow?) {
         self.window = window
     }
 
     func start() {
+        let isLoggedIn = userDefaults.object(forKey: "isLoggedIn") as? Bool ?? false
         let registrationVC = configureRegistrationController()
         let swipesVC = configureSwipesController()
         let matchesVC = configureMatchesController()
@@ -34,6 +36,13 @@ final class AppStartManager {
 
         let logVC = LoginViewBuilder.build()
         let navVC = UINavigationController(rootViewController: logVC)
+//        if isLoggedIn {
+//            //открываем основное приложение
+//            window?.rootViewController = tabsVC
+//        } else {
+//            //открываем экран аутентификации
+//            window?.rootViewController = navVC
+//        }
         window?.rootViewController = navVC //tabsVC
         window?.makeKeyAndVisible()
     }

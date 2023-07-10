@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol loginViewDelegate: AnyObject {
+protocol LoginViewDelegate: AnyObject {
     func loginButtonAction()
     func registrationButtonaction()
 }
 
 class LoginView: UIView {
-    weak var delegate: loginViewDelegate?
+    weak var delegate: LoginViewDelegate?
 
     // MARK: - SubViews
     lazy var gradientView: UIView = {
@@ -80,6 +80,7 @@ class LoginView: UIView {
         textF.clearButtonMode = .whileEditing
         textF.keyboardType = .emailAddress
         textF.textContentType = .emailAddress
+        textF.autocapitalizationType = .none
         textF.font = UIFont.boldSystemFont(ofSize: 16)
         return textF
     }()
