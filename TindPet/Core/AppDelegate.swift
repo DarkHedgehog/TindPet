@@ -15,11 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         FirebaseApp.configure()
+<<<<<<< HEAD:TindPet/Core/AppDelegate.swift
         let navigatinVC = UINavigationController.init()
         appCoordinator = AppCoordinator(navigetinController: navigatinVC)
         appCoordinator?.start()
         window?.rootViewController = navigatinVC
         window?.makeKeyAndVisible()
+=======
+        self.appStartManager = AppStartManager(window: self.window)
+        self.appStartManager?.start()
+>>>>>>> e2d5403 (adding firebase service, functionality, alert extension):TindPet/App/AppDelegate.swift
         return true
     }
 }

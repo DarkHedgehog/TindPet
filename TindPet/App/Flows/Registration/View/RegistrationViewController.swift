@@ -24,6 +24,11 @@ final class RegistrationViewController: UIViewController {
     private var regView: RegistrationView {
         return self.view as! RegistrationView
     }
+<<<<<<< HEAD
+=======
+    let service = FirebaseService()
+
+>>>>>>> e2d5403 (adding firebase service, functionality, alert extension)
     // MARK: - LifeCycle
     override func loadView() {
         super.loadView()
@@ -96,6 +101,7 @@ final class RegistrationViewController: UIViewController {
 
 extension RegistrationViewController: RegistrationViewDelegate {
     func regButtonAction() {
+<<<<<<< HEAD
         presenter?.registrationButtonAction(
             name: regView.nameTextField.text,
             surname: regView.surnameTextField.text,
@@ -103,6 +109,28 @@ extension RegistrationViewController: RegistrationViewDelegate {
             password: regView.passwordTextField.text,
             state: regView.segmentControl.selectedSegmentIndex
         )
+=======
+        //проверить, что данные есть
+        guard let name = regView.nameTextField.text, !name.isEmpty,
+              let surname = regView.surnameTextField.text, !surname.isEmpty,
+              let email = regView.emailTextField.text, !email.isEmpty,
+              let password = regView.passwordTextField.text, !password.isEmpty else {
+            showAlert(title: "Ошибка", message: "Введите данные")
+            return
+        }
+//        регистрация -> alert  что человеку нужно подтвердить регистрацию по почте и перезапустить приложение
+        service.registerNewUser(name: regView.nameTextField.text!,
+                                surname: regView.surnameTextField.text!,
+                                email: regView.emailTextField.text!,
+                                password: regView.passwordTextField.text!) { isRegistered in
+              if isRegistered {
+                  self.showAlert(title: "Подтвердите регистрацию", message: "На Вашу почту было выслано сообщение с подтверждением регистрации")
+                  self.navigationController?.popViewController(animated: true)
+                  
+                }
+            }
+
+>>>>>>> e2d5403 (adding firebase service, functionality, alert extension)
     }
     func loginButtonAction() {
         presenter?.loginButttonAction()

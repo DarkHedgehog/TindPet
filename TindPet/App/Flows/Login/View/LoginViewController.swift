@@ -18,6 +18,11 @@ class LoginViewController: UIViewController {
         return self.view as! LoginView
     }
     private var tapGest: UITapGestureRecognizer?
+<<<<<<< HEAD
+=======
+    let service = FirebaseService()
+
+>>>>>>> e2d5403 (adding firebase service, functionality, alert extension)
     // MARK: - LifeCycle
     override func loadView() {
         super.loadView()
@@ -75,7 +80,25 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: LoginViewDelegate {
     func loginButtonAction() {
+<<<<<<< HEAD
         presenter?.loginAction(login: loginView.loginTextField.text, password: loginView.passwordTextField.text)
+=======
+//        presenter?.loginAction(
+//            login: loginView.loginTextField.text ?? "",
+//            password: loginView.passwordTextField.text ?? "")
+        guard let email = loginView.loginTextField.text, !email.isEmpty,
+              let password = loginView.passwordTextField.text, !password.isEmpty else {
+            showAlert(title: "Ошибка", message: "Введите данные")
+            return
+        }
+        service.signIn(email: loginView.loginTextField.text!, password: loginView.passwordTextField.text!) { isLoggedIn in
+            if isLoggedIn {
+                //        здесь переход на основное приложение
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                print("sign in success")
+            }
+        }
+>>>>>>> e2d5403 (adding firebase service, functionality, alert extension)
     }
     func registrationButtonaction() {
         presenter?.registationButtonAction()

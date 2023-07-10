@@ -7,6 +7,7 @@
 
 import UIKit
 
+<<<<<<< HEAD:TindPet/Core/AppCoordinator.swift
 protocol AppCoordinatorProtocol {
     func start()
     func goToLoginVC(didTapLogout: Bool)
@@ -14,6 +15,11 @@ protocol AppCoordinatorProtocol {
     func goToMainScene()
     func goToBack()
 }
+=======
+final class AppStartManager {
+    var window: UIWindow?
+    var userDefaults = UserDefaults.standard
+>>>>>>> e2d5403 (adding firebase service, functionality, alert extension):TindPet/App/AppStartManager.swift
 
 final class AppCoordinator: AppCoordinatorProtocol {
     var navigatinController: UINavigationController
@@ -21,6 +27,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
         self.navigatinController = navigetinController
     }
     func start() {
+<<<<<<< HEAD:TindPet/Core/AppCoordinator.swift
         if UserDefaults.standard.bool(forKey: Key.isLogin) {
             goToMainScene()
         } else {
@@ -43,14 +50,41 @@ final class AppCoordinator: AppCoordinatorProtocol {
         navigatinController.pushViewController(regVC, animated: true)
     }
     func goToMainScene() {
+=======
+        let isLoggedIn = userDefaults.object(forKey: "isLoggedIn") as? Bool ?? false
+        let registrationVC = configureRegistrationController()
+>>>>>>> e2d5403 (adding firebase service, functionality, alert extension):TindPet/App/AppStartManager.swift
         let swipesVC = configureSwipesController()
         let matchesVC = configureMatchesController()
         let profileVC = configureProfileController()
         let tabsVC = UITabBarController()
+<<<<<<< HEAD:TindPet/Core/AppCoordinator.swift
         tabsVC.tabBar.barTintColor = .systemGray5
         tabsVC.setViewControllers([swipesVC, matchesVC, profileVC], animated: false)
         navigatinController.pushViewController(tabsVC, animated: true)
         navigatinController.navigationBar.isHidden = true
+=======
+        tabsVC.setViewControllers(
+            [
+                registrationVC,
+                swipesVC,
+                matchesVC,
+                profileVC
+            ],
+            animated: false)
+
+        let logVC = LoginViewBuilder.build()
+        let navVC = UINavigationController(rootViewController: logVC)
+//        if isLoggedIn {
+//            //открываем основное приложение
+//            window?.rootViewController = tabsVC
+//        } else {
+//            //открываем экран аутентификации
+//            window?.rootViewController = navVC
+//        }
+        window?.rootViewController = navVC //tabsVC
+        window?.makeKeyAndVisible()
+>>>>>>> e2d5403 (adding firebase service, functionality, alert extension):TindPet/App/AppStartManager.swift
     }
     func goToBack() {
         navigatinController.popViewController(animated: true)

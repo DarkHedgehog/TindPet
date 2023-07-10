@@ -14,6 +14,10 @@ protocol LoginViewDelegate: AnyObject {
 
 class LoginView: UIView {
     weak var delegate: LoginViewDelegate?
+<<<<<<< HEAD
+=======
+
+>>>>>>> e2d5403 (adding firebase service, functionality, alert extension)
     // MARK: - SubViews
     lazy var gradientView: UIView = {
         let view = GradientView()
