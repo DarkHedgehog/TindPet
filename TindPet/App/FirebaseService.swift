@@ -10,7 +10,7 @@ import Firebase
 
 class FirebaseService {
     //функция зарегистрироваться
-    func registerNewUser(name: String, surname: String, email: String, password: String, completion: @escaping (Bool)-> Void) {
+    func registerNewUser(name: String, surname: String, email: String, password: String, completion: @escaping (Bool) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] res, err in
             guard let strongSelf = self else {
                 return
@@ -22,13 +22,14 @@ class FirebaseService {
                     completion(true)
                 }
             } else {
-                let err = err as? NSError
-                switch err!.code {
-                case AuthErrorCode.emailAlreadyInUse.rawValue:
-                    //вставить alert
-                    completion(false)
-                default:
-                    completion(true)
+                if let err = err as? NSError {
+                    switch err.code {
+                    case AuthErrorCode.emailAlreadyInUse.rawValue:
+                        //вставить alert
+                        completion(false)
+                    default:
+                        completion(true)
+                    }
                 }
             }
         }
@@ -47,11 +48,8 @@ class FirebaseService {
         Firestore.firestore().collection("users").document(uid).setData(userData)
     }
     //функция войти
-    func signIn(email: String, password: String, completion: @escaping (Bool)->()) {
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] res, err in
-            guard let strongSelf = self else {
-                return
-            }
+    func signIn(email: String, password: String, completion: @escaping (Bool) -> Void ) {
+        Auth.auth().signIn(withEmail: email, password: password) { res, err in
             if err == nil {
                 if let res = res {
                     if res.user.isEmailVerified {
@@ -62,13 +60,14 @@ class FirebaseService {
                     }
                 }
             } else {
-                let err = err as? NSError
-                switch err!.code {
-                case AuthErrorCode.wrongPassword.rawValue:
-                    //вставить alert
-                    completion(false)
-                default:
-                    completion(true)
+                if let err = err as? NSError {
+                    switch err.code {
+                    case AuthErrorCode.wrongPassword.rawValue:
+                        //вставить alert
+                        completion(false)
+                    default:
+                        completion(true)
+                    }
                 }
             }
         }
@@ -82,14 +81,14 @@ class FirebaseService {
     }
     func getCurrentUserInfo(completion: @escaping ([String: Any]) -> Void) {
         let uid = getCurrentUserID()
-        var userInfo = [String: Any]()
+        var userInfo: [String: Any] = [:]
         Firestore.firestore().collection("users").document(uid).getDocument { snapshot, error in
             if error == nil {
-                if let dic = snapshot?.data() {
-                    let email = dic["email"] as! String
-                    let name = dic["name"] as! String
-                    let surname = dic["surname"] as! String
-                    let isOwner = dic["isOwner"] as! Bool
+                if let dic = snapshot?.data(),
+                   let email = dic["email"] as? String,
+                   let name = dic["name"] as? String,
+                   let surname = dic["surname"] as? String,
+                   let isOwner = dic["isOwner"] as? Bool {
                     userInfo["email"] = email
                     userInfo["name"] = name
                     userInfo["surname"] = surname
@@ -97,13 +96,15 @@ class FirebaseService {
                 }
                 completion(userInfo)
             } else {
-                let error = error as? NSError
-                //прописать работу с ошибками
+                if let error = error as? NSError {
+                    // TODO: прописать работу с ошибками
+                    print(error)
+                }
             }
         }
     }
 //    func updateCurrentUserData() {
-//        Firestore.firestore().collection("users").document(getCurrentUserID()).updateData(<#T##fields: [AnyHashable : Any]##[AnyHashable : Any]#>)
+//        Firestore.firestore().collection("users").document(getCurrentUserID()).updateData()
 //    }
     //создать окно с предупреждением об ошибке
 //    func showAlert(title: String, message: String) {

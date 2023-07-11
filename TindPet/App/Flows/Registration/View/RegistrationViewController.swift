@@ -101,24 +101,26 @@ extension RegistrationViewController: RegistrationViewDelegate {
     func regButtonAction() {
         //проверить, что данные есть
         guard let name = regView.nameTextField.text, !name.isEmpty,
-              let surname = regView.surnameTextField.text, !surname.isEmpty,
-              let email = regView.emailTextField.text, !email.isEmpty,
-              let password = regView.passwordTextField.text, !password.isEmpty else {
+            let surname = regView.surnameTextField.text, !surname.isEmpty,
+            let email = regView.emailTextField.text, !email.isEmpty,
+            let password = regView.passwordTextField.text, !password.isEmpty else {
             showAlert(title: "Ошибка", message: "Введите данные")
             return
         }
 //        регистрация -> alert  что человеку нужно подтвердить регистрацию по почте и перезапустить приложение
-        service.registerNewUser(name: regView.nameTextField.text!,
-                                surname: regView.surnameTextField.text!,
-                                email: regView.emailTextField.text!,
-                                password: regView.passwordTextField.text!) { isRegistered in
-              if isRegistered {
-                  self.showAlert(title: "Подтвердите регистрацию", message: "На Вашу почту было выслано сообщение с подтверждением регистрации")
-                  self.navigationController?.popViewController(animated: true)
-                  
-                }
+        service.registerNewUser(
+            name: name,
+            surname: surname,
+            email: email,
+            password: password) { isRegistered in
+            if isRegistered {
+                self.showAlert(
+                    title: "Подтвердите регистрацию",
+                    message: "На Вашу почту было выслано сообщение с подтверждением регистрации"
+                )
+                self.navigationController?.popViewController(animated: true)
             }
-
+        }
     }
 
     func loginButtonAction() {

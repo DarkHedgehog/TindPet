@@ -93,9 +93,10 @@ extension LoginViewController: LoginViewDelegate {
             showAlert(title: "Ошибка", message: "Введите данные")
             return
         }
-        service.signIn(email: loginView.loginTextField.text!, password: loginView.passwordTextField.text!) { isLoggedIn in
+        
+        service.signIn(email: email, password: password) { isLoggedIn in
             if isLoggedIn {
-                //        здесь переход на основное приложение
+                // здесь переход на основное приложение
                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
                 print("sign in success")
             }
