@@ -97,6 +97,7 @@ final class RegistrationView: UIView {
         textF.backgroundColor = .white
         textF.clearButtonMode = .whileEditing
         textF.keyboardType = .emailAddress
+        textF.autocapitalizationType = .none
         textF.font = UIFont.boldSystemFont(ofSize: 16)
         return textF
     }()
