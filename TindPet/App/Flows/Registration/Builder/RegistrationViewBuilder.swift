@@ -10,7 +10,8 @@ import UIKit
 enum RegistrationViewBuilder {
     static func build() -> UIViewController {
         let presenter = RegistrationPresenter()
-        let view = RegistrationViewController()
+        let networkService = FirebaseService()
+        let view = RegistrationViewController(networkService: networkService)
         presenter.view = view
         view.presenter = presenter
         return view

@@ -8,7 +8,15 @@
 import Foundation
 import Firebase
 
-class FirebaseService {
+protocol TindPetNetworkServiceProtocol {
+    func registerNewUser(name: String, surname: String, email: String, password: String, completion: @escaping (Bool) -> Void)
+    func saveUserData(uid: String, email: String, password: String, name: String, surname: String)
+    func signIn(email: String, password: String, completion: @escaping (Bool) -> Void)
+    func getCurrentUserID() -> String
+    func getCurrentUserInfo(completion: @escaping ([String: Any]) -> Void)
+}
+
+class FirebaseService: TindPetNetworkServiceProtocol {
     //функция зарегистрироваться
     func registerNewUser(name: String, surname: String, email: String, password: String, completion: @escaping (Bool) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] res, err in
@@ -25,7 +33,7 @@ class FirebaseService {
                 if let err = err as? NSError {
                     switch err.code {
                     case AuthErrorCode.emailAlreadyInUse.rawValue:
-                        //вставить alert
+                        //вставить
                         completion(false)
                     default:
                         completion(true)
@@ -48,7 +56,7 @@ class FirebaseService {
         Firestore.firestore().collection("users").document(uid).setData(userData)
     }
     //функция войти
-    func signIn(email: String, password: String, completion: @escaping (Bool) -> Void ) {
+    func signIn(email: String, password: String, completion: @escaping (Bool) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { res, err in
             if err == nil {
                 if let res = res {

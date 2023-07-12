@@ -36,19 +36,19 @@ final class AppStartManager {
 
         let logVC = LoginViewBuilder.build()
         let navVC = UINavigationController(rootViewController: logVC)
-//        if isLoggedIn {
-//            //открываем основное приложение
-//            window?.rootViewController = tabsVC
-//        } else {
-//            //открываем экран аутентификации
-//            window?.rootViewController = navVC
-//        }
-        window?.rootViewController = navVC //tabsVC
+        if isLoggedIn {
+            //открываем основное приложение
+            window?.rootViewController = tabsVC
+        } else {
+            //открываем экран аутентификации
+            window?.rootViewController = navVC
+        }
+//        window?.rootViewController = navVC //tabsVC
         window?.makeKeyAndVisible()
     }
 
     private func configureRegistrationController() -> UIViewController {
-        let controller = RegistrationViewController()
+        let controller = RegistrationViewBuilder.build()
         let navVC = UINavigationController()
 
         navVC.navigationBar.barTintColor = UIColor.blue

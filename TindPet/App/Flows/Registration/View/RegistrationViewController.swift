@@ -16,8 +16,16 @@ final class RegistrationViewController: UIViewController {
     private var regView: RegistrationView {
         return self.view as! RegistrationView
     }
-    let service = FirebaseService()
-
+    let networkService: TindPetNetworkServiceProtocol
+    
+    init(networkService: TindPetNetworkServiceProtocol) {
+        self.networkService = networkService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     // MARK: - LifeCycle
     override func loadView() {
         super.loadView()
@@ -108,7 +116,7 @@ extension RegistrationViewController: RegistrationViewDelegate {
             return
         }
 //        регистрация -> alert  что человеку нужно подтвердить регистрацию по почте и перезапустить приложение
-        service.registerNewUser(
+        networkService.registerNewUser(
             name: name,
             surname: surname,
             email: email,
