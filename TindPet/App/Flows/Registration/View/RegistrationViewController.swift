@@ -38,6 +38,7 @@ final class RegistrationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeObserver()
+        endEditing()
     }
 
     // MARK: - Functions
