@@ -23,6 +23,7 @@ final class RegistrationView: UIView {
         static let logoWhiteButtomWidthHeight: CGFloat = 136.0
         static let bottonWidth: CGFloat = 34
         static let textFieldHeight: CGFloat = 28
+        static let segmentControlHeight: CGFloat = 28
     }
 
     // MARK: - SubViews
@@ -113,6 +114,27 @@ final class RegistrationView: UIView {
         textF.isSecureTextEntry = true
         return textF
     }()
+    lazy var questionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .systemGray
+        label.font = .systemFont(ofSize: 18)
+        label.textAlignment = .left
+        label.text = "Ищете или отдаете?"
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    lazy var segmentControl: UISegmentedControl = {
+        let segment = UISegmentedControl(items: ["Ищу", "Отдаю"])
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24),
+                          NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        segment.setTitleTextAttributes(attributes, for: .normal)
+        segment.selectedSegmentTintColor = .brendGreen
+        segment.selectedSegmentIndex = 0
+        segment.translatesAutoresizingMaskIntoConstraints = false
+        return segment
+    }()
 
     lazy var registrationButton: UIButton = {
         let button = UIButton(type: .system)
@@ -199,6 +221,9 @@ final class RegistrationView: UIView {
         contentView.addSubview(passwordButtomView)
         contentView.addSubview(passwordLabel)
         contentView.addSubview(passwordTextField)
+        
+        contentView.addSubview(questionLabel)
+        contentView.addSubview(segmentControl)
 
         contentView.addSubview(registrationButton)
         contentView.addSubview(loginButton)
@@ -290,10 +315,20 @@ final class RegistrationView: UIView {
             passwordTextField.leftAnchor.constraint(equalTo: passwordButtomView.leftAnchor, constant: 16),
             passwordTextField.rightAnchor.constraint(equalTo: passwordButtomView.rightAnchor, constant: -16),
             passwordTextField.heightAnchor.constraint(equalToConstant: UIConstants.textFieldHeight),
+            
+            questionLabel.topAnchor.constraint(equalTo: passwordButtomView.bottomAnchor, constant: 26),
+            questionLabel.leftAnchor.constraint(equalTo: passwordButtomView.leftAnchor),
+            questionLabel.rightAnchor.constraint(equalTo: passwordButtomView.rightAnchor),
+            questionLabel.heightAnchor.constraint(equalToConstant: UIConstants.segmentControlHeight),
 
-            registrationButton.topAnchor.constraint(equalTo: passwordButtomView.bottomAnchor, constant: 26),
-            registrationButton.leftAnchor.constraint(equalTo: passwordButtomView.leftAnchor),
-            registrationButton.rightAnchor.constraint(equalTo: passwordButtomView.rightAnchor),
+            segmentControl.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 8),
+            segmentControl.leftAnchor.constraint(equalTo: questionLabel.leftAnchor),
+            segmentControl.rightAnchor.constraint(equalTo: questionLabel.rightAnchor),
+            segmentControl.heightAnchor.constraint(equalToConstant: UIConstants.segmentControlHeight),
+
+            registrationButton.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 26),
+            registrationButton.leftAnchor.constraint(equalTo: segmentControl.leftAnchor),
+            registrationButton.rightAnchor.constraint(equalTo: segmentControl.rightAnchor),
             registrationButton.heightAnchor.constraint(equalToConstant: 50),
 
             loginButton.topAnchor.constraint(equalTo: registrationButton.bottomAnchor, constant: 20),
