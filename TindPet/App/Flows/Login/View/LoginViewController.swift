@@ -37,6 +37,8 @@ class LoginViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeObserver()
+        endEditing()
+        loginView.endEditTextFild()
     }
 
     // MARK: - Functions
