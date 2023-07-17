@@ -31,18 +31,14 @@ extension RegistrationPresenter: RegistrationServiceDelegate {
     func didRegisterWith(uid: String) {
         //hide loader
     }
-    
     func didReceiveEmailAlreadyInUseError() {
-        <#code#>
+        print("Email already in use")
     }
-    
     func didReceiveUnknownError() {
-        <#code#>
+        print("Uknown error")
     }
-    
     func didNotReceiveResult() {
-        <#code#>
+        print("did not receive result")
     }
-    
 
 }

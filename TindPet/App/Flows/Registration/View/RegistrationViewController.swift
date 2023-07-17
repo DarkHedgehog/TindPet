@@ -16,12 +16,13 @@ final class RegistrationViewController: UIViewController {
     private var regView: RegistrationView {
         return self.view as! RegistrationView
     }
-    let networkService: TindPetNetworkServiceProtocol
-    
-    init(networkService: TindPetNetworkServiceProtocol) {
-        self.networkService = networkService
+//    let networkService: TindPetNetworkServiceProtocol
+    let registrationService: RegistrationServiceProtocol
+    init(registrationService: RegistrationServiceProtocol) {
+        self.registrationService = registrationService
         super.init(nibName: nil, bundle: nil)
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -115,20 +116,18 @@ extension RegistrationViewController: RegistrationViewDelegate {
             showAlert(title: "Ошибка", message: "Введите данные")
             return
         }
+        let credentials = Credentials(name: name, surname: surname, email: email, password: password)
 //        регистрация -> alert  что человеку нужно подтвердить регистрацию по почте и перезапустить приложение
-        networkService.registerNewUser(
-            name: name,
-            surname: surname,
-            email: email,
-            password: password) { isRegistered in
-            if isRegistered {
-                self.showAlert(
-                    title: "Подтвердите регистрацию",
-                    message: "На Вашу почту было выслано сообщение с подтверждением регистрации"
-                )
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
+        registrationService.registerNewUser(credentials: credentials)
+//        { isRegistered in
+//            if isRegistered {
+//                self.showAlert(
+//                    title: "Подтвердите регистрацию",
+//                    message: "На Вашу почту было выслано сообщение с подтверждением регистрации"
+//                )
+//                self.navigationController?.popViewController(animated: true)
+//            }
+//        }
     }
 
     func loginButtonAction() {
@@ -137,4 +136,5 @@ extension RegistrationViewController: RegistrationViewDelegate {
 }
 
 extension RegistrationViewController: RegistrationViewProtocol {
+    
 }

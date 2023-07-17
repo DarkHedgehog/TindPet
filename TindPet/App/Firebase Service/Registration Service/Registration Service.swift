@@ -40,16 +40,13 @@ class RegistrationService: RegistrationServiceProtocol {
             strongSelf.didReceiveResult(result: result, credentials: credentials)
         }
     }
-    
-    //MARK: - Private methods
-    
+    // MARK: - Private methods
     private func didReceiveResult(result: AuthDataResult, credentials: Credentials) {
         result.user.sendEmailVerification()
         let uid = result.user.uid
         saveUserData(uid: uid, credentials: credentials)
         delegate?.didRegisterWith(uid: uid)
     }
-    
     private func processError(errorID: Int) {
         switch errorID {
         case AuthErrorCode.emailAlreadyInUse.rawValue:
@@ -58,7 +55,6 @@ class RegistrationService: RegistrationServiceProtocol {
             delegate?.didReceiveUnknownError()
         }
     }
-        
     private func saveUserData(uid: String, credentials: Credentials) {
         let userData: [String: Any] = [
             "email": credentials.email,

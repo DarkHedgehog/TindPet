@@ -19,6 +19,7 @@ final class AppStartManager {
 
     func start() {
         let isLoggedIn = userDefaults.object(forKey: "isLoggedIn") as? Bool ?? false
+        let uid = userDefaults.object(forKey: "uid") as? String ?? ""
         let registrationVC = configureRegistrationController()
         let swipesVC = configureSwipesController()
         let matchesVC = configureMatchesController()
