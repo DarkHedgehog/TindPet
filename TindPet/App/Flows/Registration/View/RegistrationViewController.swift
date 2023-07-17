@@ -16,14 +16,11 @@ final class RegistrationViewController: UIViewController {
     private var regView: RegistrationView {
         return self.view as! RegistrationView
     }
-//    let networkService: TindPetNetworkServiceProtocol
     let registrationService: RegistrationServiceProtocol
     init(registrationService: RegistrationServiceProtocol) {
         self.registrationService = registrationService
         super.init(nibName: nil, bundle: nil)
     }
-    
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

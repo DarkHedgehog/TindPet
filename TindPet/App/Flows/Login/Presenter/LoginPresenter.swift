@@ -11,7 +11,12 @@ protocol LoginViewProtocol {
 }
 
 class LoginPresenter {
+    var loginService: LoginServiceProtocol
     var view: LoginViewProtocol?
+    init(loginService: LoginServiceProtocol, view: LoginViewProtocol? = nil) {
+        self.loginService = loginService
+        self.view = view
+    }
 }
 
 extension LoginPresenter: LoginPresenterProtocol {
@@ -20,4 +25,28 @@ extension LoginPresenter: LoginPresenterProtocol {
 
     func registationButtonAction() {
     }
+}
+
+extension LoginPresenter: LoginServiceDelegate {
+    func didSignInWith(uid: String) {
+        //hide loader
+    }
+    
+    func didReceiveUnverifiedEmail() {
+        print("Unverified email")
+    }
+    
+    func didReceiveWrongPasswordError() {
+        print("Wrong password")
+    }
+    
+    func didReceiveUnknownError() {
+        print("Unknown error")
+    }
+    
+    func didNotReceiveResult() {
+        <#code#>
+    }
+    
+    
 }
