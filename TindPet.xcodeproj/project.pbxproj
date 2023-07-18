@@ -19,7 +19,6 @@
 		755F7BAC2A4B572000D38DFC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755F7BAB2A4B572000D38DFC /* ProfileViewController.swift */; };
 		755F7BAE2A4B5B6A00D38DFC /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755F7BAD2A4B5B6A00D38DFC /* ProfilePresenter.swift */; };
 		758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96472A42E495005A12E1 /* AppDelegate.swift */; };
-		758D964C2A42E495005A12E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D964B2A42E495005A12E1 /* ViewController.swift */; };
 		758D96512A42E496005A12E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 758D96502A42E496005A12E1 /* Assets.xcassets */; };
 		758D96542A42E496005A12E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758D96522A42E496005A12E1 /* LaunchScreen.storyboard */; };
 		758D965F2A42E496005A12E1 /* TindPetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D965E2A42E496005A12E1 /* TindPetTests.swift */; };
@@ -74,7 +73,6 @@
 		755F7BAD2A4B5B6A00D38DFC /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		758D96442A42E495005A12E1 /* TindPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TindPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D96472A42E495005A12E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		758D964B2A42E495005A12E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		758D96502A42E496005A12E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		758D96532A42E496005A12E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		758D96552A42E496005A12E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,6 +124,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		481116DC2A66888200FFEE1C /* FirebaseService */ = {
+			isa = PBXGroup;
+			children = (
+				D75832C22A59EF7900E434FD /* FirebaseService.swift */,
+			);
+			path = FirebaseService;
+			sourceTree = "<group>";
+		};
 		484693362A56DF7F00CD016C /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +196,7 @@
 		48BBD8612A52F2760053738A /* Extention */ = {
 			isa = PBXGroup;
 			children = (
+				D752B8122A5CA833005820D0 /* UIViewController Extension.swift */,
 				48BBD8622A52F28C0053738A /* Extention+UIColor.swift */,
 			);
 			path = Extention;
@@ -272,11 +279,6 @@
 		758D96772A42F204005A12E1 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				D75832C22A59EF7900E434FD /* FirebaseService.swift */,
-				758D967E2A437148005A12E1 /* AppStartManager.swift */,
-				758D96472A42E495005A12E1 /* AppDelegate.swift */,
-				758D964B2A42E495005A12E1 /* ViewController.swift */,
-				D752B8122A5CA833005820D0 /* UIViewController Extension.swift */,
 				758D96792A42F215005A12E1 /* Models */,
 				758D96782A42F20F005A12E1 /* BusinessLogic */,
 				758D967A2A42F222005A12E1 /* Assembly */,
@@ -295,6 +297,7 @@
 		758D96792A42F215005A12E1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				481116DC2A66888200FFEE1C /* FirebaseService */,
 				48BBD8612A52F2760053738A /* Extention */,
 			);
 			path = Models;
@@ -322,6 +325,8 @@
 		758D967C2A42F23D005A12E1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				758D967E2A437148005A12E1 /* AppStartManager.swift */,
+				758D96472A42E495005A12E1 /* AppDelegate.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -536,7 +541,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				758D964C2A42E495005A12E1 /* ViewController.swift in Sources */,
 				484693482A56FB3100CD016C /* RegistrationViewBuilder.swift in Sources */,
 				4846933F2A56EE7A00CD016C /* LoginViewBuilder.swift in Sources */,
 				755F7BAC2A4B572000D38DFC /* ProfileViewController.swift in Sources */,
