@@ -19,6 +19,7 @@ protocol LoginServiceDelegate {
     func didReceiveWrongPasswordError()
     func didReceiveUnknownError()
     func didNotReceiveResult()
+    func didSignOut()
 }
 
 class LoginService: LoginServiceProtocol {
@@ -86,6 +87,13 @@ class LoginService: LoginServiceProtocol {
         }
     }
     func signOut() {
-        
+        do {
+            try auth.signOut()
+        }
+        catch {
+            if let error = error as? NSError {
+                processError(errorID: error.code)
+            }
+        }
     }
 }

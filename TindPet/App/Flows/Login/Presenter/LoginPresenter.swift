@@ -43,4 +43,7 @@ extension LoginPresenter: LoginServiceDelegate {
     func didNotReceiveResult() {
         print("did not receive result")
     }
+    func didSignOut() {
+        print("successfully signed out")
+    }
 }

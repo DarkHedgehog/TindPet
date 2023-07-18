@@ -107,6 +107,7 @@ final class RegistrationViewController: UIViewController {
 extension RegistrationViewController: RegistrationViewDelegate {
     func regButtonAction() {
         //проверить, что данные есть
+        regView.segmentControl.selectedSegmentIndex
         guard let name = regView.nameTextField.text, !name.isEmpty,
             let surname = regView.surnameTextField.text, !surname.isEmpty,
             let email = regView.emailTextField.text, !email.isEmpty,
@@ -117,15 +118,9 @@ extension RegistrationViewController: RegistrationViewDelegate {
         let credentials = Credentials(name: name, surname: surname, email: email, password: password)
 //        регистрация -> alert  что человеку нужно подтвердить регистрацию по почте и перезапустить приложение
         registrationService.registerNewUser(credentials: credentials)
-//        { isRegistered in
-//            if isRegistered {
-//                self.showAlert(
-//                    title: "Подтвердите регистрацию",
-//                    message: "На Вашу почту было выслано сообщение с подтверждением регистрации"
-//                )
-//                self.navigationController?.popViewController(animated: true)
-//            }
-//        }
+        showAlert(title: "Подтвердите регистрацию",
+                           message: "На Вашу почту было выслано сообщение с подтверждением регистрации")
+        navigationController?.popViewController(animated: true)
     }
 
     func loginButtonAction() {
