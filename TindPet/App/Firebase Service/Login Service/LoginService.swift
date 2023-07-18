@@ -50,6 +50,7 @@ class LoginService: LoginServiceProtocol {
         let uid = result.user.uid
         delegate?.didSignInWith(uid: uid)
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        UserDefaults.standard.set(uid, forKey: "uid")
     }
     private func processError(errorID: Int) {
         switch errorID {
@@ -59,12 +60,11 @@ class LoginService: LoginServiceProtocol {
             delegate?.didReceiveUnknownError()
         }
     }
-    func getCurrentUserInfo(completion: @escaping ([String: Any]) -> Void) {
+    func getCurrentUserInfo(completion: @escaping (UserInfo) -> Void) {
         guard let uid = auth.currentUser?.uid else {
             print("not logged in")
             return
         }
-        var userInfo: [String: Any] = [:]
         firestore.collection("users").document(uid).getDocument { [weak self] snapshot, error in
             guard let strongSelf = self else {
                 return
@@ -73,17 +73,19 @@ class LoginService: LoginServiceProtocol {
                 strongSelf.processError(errorID: error.code)
                 return
             }
-                if let dic = snapshot?.data(),
-                   let email = dic["email"] as? String,
-                   let name = dic["name"] as? String,
-                   let surname = dic["surname"] as? String,
-                   let isOwner = dic["isOwner"] as? Bool {
-                    userInfo["email"] = email
-                    userInfo["name"] = name
-                    userInfo["surname"] = surname
-                    userInfo["isOwner"] = isOwner
-                }
-                completion(userInfo)
+            //struct user struct pet
+            guard let dic = snapshot?.data(),
+               let email = dic[Constants.email] as? String,
+               let name = dic[Constants.name] as? String,
+               let surname = dic[Constants.surname] as? String,
+               let isOwner = dic["isOwner"] as? Bool else {
+                return
+            }
+        
+            completion(UserInfo(email: email,
+                                name: name,
+                                surname: surname,
+                                isOwner: isOwner))//заменить на функции в делегате
         }
     }
     func signOut() {

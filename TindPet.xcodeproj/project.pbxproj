@@ -41,6 +41,8 @@
 		D75832BF2A59AB7800E434FD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D75832BE2A59AB7800E434FD /* FirebaseStorage */; };
 		D75832C12A59ACCA00E434FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */; };
 		D75832C32A59EF7900E434FD /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75832C22A59EF7900E434FD /* FirebaseService.swift */; };
+		D7589A932A6700A300145760 /* Constance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7589A922A6700A300145760 /* Constance.swift */; };
+		D7589A952A6701DE00145760 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7589A942A6701DE00145760 /* UserInfo.swift */; };
 		D771E2A62A65E83A00FDBD77 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D771E2A52A65E83A00FDBD77 /* LoginService.swift */; };
 		D7C379C32A5DCABF00A57C2D /* Registration Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C379C22A5DCABF00A57C2D /* Registration Service.swift */; };
 		D7C379C52A5DD57D00A57C2D /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C379C42A5DD57D00A57C2D /* Credentials.swift */; };
@@ -96,6 +98,8 @@
 		D752B8122A5CA833005820D0 /* UIViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Extension.swift"; sourceTree = "<group>"; };
 		D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D75832C22A59EF7900E434FD /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		D7589A922A6700A300145760 /* Constance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constance.swift; sourceTree = "<group>"; };
+		D7589A942A6701DE00145760 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D771E2A52A65E83A00FDBD77 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		D7C379C22A5DCABF00A57C2D /* Registration Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration Service.swift"; sourceTree = "<group>"; };
 		D7C379C42A5DD57D00A57C2D /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
@@ -382,6 +386,8 @@
 			isa = PBXGroup;
 			children = (
 				D771E2A52A65E83A00FDBD77 /* LoginService.swift */,
+				D7589A922A6700A300145760 /* Constance.swift */,
+				D7589A942A6701DE00145760 /* UserInfo.swift */,
 			);
 			path = "Login Service";
 			sourceTree = "<group>";
@@ -581,6 +587,7 @@
 				755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */,
 				758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */,
 				758D967F2A437148005A12E1 /* AppStartManager.swift in Sources */,
+				D7589A932A6700A300145760 /* Constance.swift in Sources */,
 				758D968E2A438650005A12E1 /* MatchesView.swift in Sources */,
 				48BBD8632A52F28C0053738A /* Extention+UIColor.swift in Sources */,
 				758D96842A43760D005A12E1 /* RegistrationView.swift in Sources */,
@@ -593,6 +600,7 @@
 				4846933A2A56E00100CD016C /* LoginView.swift in Sources */,
 				D771E2A62A65E83A00FDBD77 /* LoginService.swift in Sources */,
 				D752B8132A5CA833005820D0 /* UIViewController Extension.swift in Sources */,
+				D7589A952A6701DE00145760 /* UserInfo.swift in Sources */,
 				758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

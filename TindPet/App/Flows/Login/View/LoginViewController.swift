@@ -102,15 +102,7 @@ extension LoginViewController: LoginViewDelegate {
             showAlert(title: "Ошибка", message: "Введите данные")
             return
         }
-        
         loginService.signIn(email: email, password: password)
-        service.signIn(email: email, password: password) { isLoggedIn in
-            if isLoggedIn {
-                // здесь переход на основное приложение
-                UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                print("sign in success")
-            }
-        }
     }
 
     func registrationButtonaction() {

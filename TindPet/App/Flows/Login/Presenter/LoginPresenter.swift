@@ -8,6 +8,7 @@
 import UIKit
 
 protocol LoginViewProtocol {
+    func showAlert(title: String, message: String)
 }
 
 class LoginPresenter {
@@ -32,6 +33,7 @@ extension LoginPresenter: LoginServiceDelegate {
         //hide loader
     }
     func didReceiveUnverifiedEmail() {
+        view?.showAlert(title: "Unverified email", message: "Unverified email")
         print("Unverified email")
     }
     func didReceiveWrongPasswordError() {
