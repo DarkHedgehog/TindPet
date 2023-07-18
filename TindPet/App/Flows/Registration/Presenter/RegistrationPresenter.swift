@@ -40,5 +40,4 @@ extension RegistrationPresenter: RegistrationServiceDelegate {
     func didNotReceiveResult() {
         print("did not receive result")
     }
-
 }

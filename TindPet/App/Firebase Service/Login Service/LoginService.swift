@@ -58,8 +58,34 @@ class LoginService: LoginServiceProtocol {
             delegate?.didReceiveUnknownError()
         }
     }
-    
-    
-    
-    
+    func getCurrentUserInfo(completion: @escaping ([String: Any]) -> Void) {
+        guard let uid = auth.currentUser?.uid else {
+            print("not logged in")
+            return
+        }
+        var userInfo: [String: Any] = [:]
+        firestore.collection("users").document(uid).getDocument { [weak self] snapshot, error in
+            guard let strongSelf = self else {
+                return
+            }
+            if let error = error as? NSError {
+                strongSelf.processError(errorID: error.code)
+                return
+            }
+                if let dic = snapshot?.data(),
+                   let email = dic["email"] as? String,
+                   let name = dic["name"] as? String,
+                   let surname = dic["surname"] as? String,
+                   let isOwner = dic["isOwner"] as? Bool {
+                    userInfo["email"] = email
+                    userInfo["name"] = name
+                    userInfo["surname"] = surname
+                    userInfo["isOwner"] = isOwner
+                }
+                completion(userInfo)
+        }
+    }
+    func signOut() {
+        
+    }
 }

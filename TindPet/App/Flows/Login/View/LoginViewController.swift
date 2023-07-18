@@ -18,7 +18,14 @@ class LoginViewController: UIViewController {
     private var loginView: LoginView {
         return self.view as! LoginView
     }
-
+    let loginService: LoginServiceProtocol
+    init(loginService: LoginServiceProtocol) {
+        self.loginService = loginService
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     private var tapGest: UITapGestureRecognizer?
     let service = FirebaseService()
 
@@ -96,6 +103,7 @@ extension LoginViewController: LoginViewDelegate {
             return
         }
         
+        loginService.signIn(email: email, password: password)
         service.signIn(email: email, password: password) { isLoggedIn in
             if isLoggedIn {
                 // здесь переход на основное приложение

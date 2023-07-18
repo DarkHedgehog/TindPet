@@ -31,22 +31,16 @@ extension LoginPresenter: LoginServiceDelegate {
     func didSignInWith(uid: String) {
         //hide loader
     }
-    
     func didReceiveUnverifiedEmail() {
         print("Unverified email")
     }
-    
     func didReceiveWrongPasswordError() {
         print("Wrong password")
     }
-    
     func didReceiveUnknownError() {
         print("Unknown error")
     }
-    
     func didNotReceiveResult() {
-        <#code#>
+        print("did not receive result")
     }
-    
-    
 }

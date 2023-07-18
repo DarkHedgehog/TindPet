@@ -134,5 +134,4 @@ extension RegistrationViewController: RegistrationViewDelegate {
 }
 
 extension RegistrationViewController: RegistrationViewProtocol {
-    
 }
