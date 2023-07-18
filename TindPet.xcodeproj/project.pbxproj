@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		481116E32A66C08500FFEE1C /* KeyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481116E22A66C08500FFEE1C /* KeyConstants.swift */; };
 		484693382A56DFD700CD016C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693372A56DFD700CD016C /* LoginViewController.swift */; };
 		4846933A2A56E00100CD016C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693392A56E00100CD016C /* LoginView.swift */; };
 		4846933F2A56EE7A00CD016C /* LoginViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4846933E2A56EE7A00CD016C /* LoginViewBuilder.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		481116E22A66C08500FFEE1C /* KeyConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyConstants.swift; sourceTree = "<group>"; };
 		484693372A56DFD700CD016C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		484693392A56E00100CD016C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4846933E2A56EE7A00CD016C /* LoginViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewBuilder.swift; sourceTree = "<group>"; };
@@ -130,6 +132,14 @@
 				D75832C22A59EF7900E434FD /* FirebaseService.swift */,
 			);
 			path = FirebaseService;
+			sourceTree = "<group>";
+		};
+		481116E12A66C07100FFEE1C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				481116E22A66C08500FFEE1C /* KeyConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		484693362A56DF7F00CD016C /* Login */ = {
@@ -297,6 +307,7 @@
 		758D96792A42F215005A12E1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				481116E12A66C07100FFEE1C /* Constants */,
 				481116DC2A66888200FFEE1C /* FirebaseService */,
 				48BBD8612A52F2760053738A /* Extention */,
 			);
@@ -562,6 +573,7 @@
 				4846933A2A56E00100CD016C /* LoginView.swift in Sources */,
 				D752B8132A5CA833005820D0 /* UIViewController Extension.swift in Sources */,
 				758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */,
+				481116E32A66C08500FFEE1C /* KeyConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

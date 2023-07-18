@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LoginPresenterProtocol {
-    func loginAction(login: String, password: String)
+    func loginAction(login: String?, password: String?)
     func registationButtonAction()
 }
 
@@ -76,7 +76,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: LoginViewDelegate {
     func loginButtonAction() {
-        presenter?.loginAction(login: loginView.loginTextField.text ?? "", password: loginView.passwordTextField.text ?? "")
+        presenter?.loginAction(login: loginView.loginTextField.text, password: loginView.passwordTextField.text)
     }
     func registrationButtonaction() {
         presenter?.registationButtonAction()
@@ -84,4 +84,7 @@ extension LoginViewController: LoginViewDelegate {
 }
 
 extension LoginViewController: LoginViewProtocol {
+    func showInfo(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
 }

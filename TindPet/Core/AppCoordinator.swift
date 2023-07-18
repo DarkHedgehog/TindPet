@@ -21,15 +21,19 @@ final class AppCoordinator: AppCoordinatorProtocol {
         self.navigatinController = navigetinController
     }
     func start() {
-        if UserDefaults.standard.bool(forKey: "isLogin") {
+        if UserDefaults.standard.bool(forKey: KeyConstants.isLogin) {
             goToMainScene()
         } else {
             goToLoginVC()
         }
     }
     func goToLoginVC(didTapLogout: Bool = false) {
-        let logVC = LoginViewBuilder.build(coordinator: self)
-        navigatinController.pushViewController(logVC, animated: true)
+        if didTapLogout {
+            //TODO: - Сделать выход из аккаунта
+        } else {
+            let logVC = LoginViewBuilder.build(coordinator: self)
+            navigatinController.pushViewController(logVC, animated: true)
+        }
     }
     func goToRegistrationVC() {
         let regVC = RegistrationViewBuilder.build(coordinator: self)

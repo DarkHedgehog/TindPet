@@ -5,9 +5,10 @@
 //  Created by Артур Кондратьев on 06.07.2023.
 //
 
-import UIKit
+import Foundation
 
-protocol LoginViewProtocol: UIViewController {
+protocol LoginViewProtocol {
+    func showInfo(title: String, message: String)
 }
 
 class LoginPresenter {
@@ -17,14 +18,14 @@ class LoginPresenter {
 }
 
 extension LoginPresenter: LoginPresenterProtocol {
-    func loginAction(login: String, password: String) {
-        guard login.count > 3, password.count > 3 else {
-            view?.showAlert(title: "Ошибка", message: "Введите данные")
+    func loginAction(login: String?, password: String?) {
+        guard let login = login, !login.isEmpty, let password = password, !password.isEmpty else {
+            view?.showInfo(title: "Ошибка", message: "Введите данные")
             return
         }
         networkService?.signIn(email: login, password: password) { isLoggedIn in
             if isLoggedIn {
-                UserDefaults.standard.set(true, forKey: "isLogin")
+                UserDefaults.standard.set(true, forKey: KeyConstants.isLogin)
                 self.coordinator?.goToMainScene()
             }
         }
