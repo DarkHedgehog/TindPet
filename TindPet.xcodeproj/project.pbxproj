@@ -35,7 +35,7 @@
 		758D96892A43858B005A12E1 /* SwipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96862A438562005A12E1 /* SwipesView.swift */; };
 		758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968B2A4385F2005A12E1 /* MatchesViewController.swift */; };
 		758D968E2A438650005A12E1 /* MatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968C2A4385F2005A12E1 /* MatchesView.swift */; };
-		D752B8132A5CA833005820D0 /* UIViewController Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752B8122A5CA833005820D0 /* UIViewController Extension.swift */; };
+		D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */; };
 		D75832B52A59AB7800E434FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B42A59AB7800E434FD /* FirebaseAnalytics */; };
 		D75832B72A59AB7800E434FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B62A59AB7800E434FD /* FirebaseAuth */; };
 		D75832B92A59AB7800E434FD /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B82A59AB7800E434FD /* FirebaseAuthCombine-Community */; };
@@ -96,7 +96,7 @@
 		758D96872A438562005A12E1 /* SwipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewController.swift; sourceTree = "<group>"; };
 		758D968B2A4385F2005A12E1 /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		758D968C2A4385F2005A12E1 /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
-		D752B8122A5CA833005820D0 /* UIViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Extension.swift"; sourceTree = "<group>"; };
+		D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
 		D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D75832C22A59EF7900E434FD /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,7 +244,6 @@
 				758D965D2A42E496005A12E1 /* TindPetTests */,
 				758D96672A42E496005A12E1 /* TindPetUITests */,
 				758D96452A42E495005A12E1 /* Products */,
-				7F92065E5EFC566FE8CD496B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -295,7 +294,6 @@
 				758D967E2A437148005A12E1 /* AppStartManager.swift */,
 				758D96472A42E495005A12E1 /* AppDelegate.swift */,
 				758D964B2A42E495005A12E1 /* ViewController.swift */,
-				D752B8122A5CA833005820D0 /* UIViewController Extension.swift */,
 				758D96792A42F215005A12E1 /* Models */,
 				758D96782A42F20F005A12E1 /* BusinessLogic */,
 				758D967A2A42F222005A12E1 /* Assembly */,
@@ -341,6 +339,7 @@
 		758D967C2A42F23D005A12E1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -426,7 +425,6 @@
 			buildConfigurationList = 758D96712A42E496005A12E1 /* Build configuration list for PBXNativeTarget "TindPetTests" */;
 			buildPhases = (
 				758D96562A42E496005A12E1 /* Sources */,
-				758D96572A42E496005A12E1 /* Frameworks */,
 				758D96582A42E496005A12E1 /* Resources */,
 			);
 			buildRules = (
@@ -444,7 +442,6 @@
 			buildConfigurationList = 758D96742A42E496005A12E1 /* Build configuration list for PBXNativeTarget "TindPetUITests" */;
 			buildPhases = (
 				758D96602A42E496005A12E1 /* Sources */,
-				758D96612A42E496005A12E1 /* Frameworks */,
 				758D96622A42E496005A12E1 /* Resources */,
 			);
 			buildRules = (
@@ -579,7 +576,7 @@
 				484693412A56EE9800CD016C /* LoginPresenter.swift in Sources */,
 				1FCE77372A5C2FE80010E427 /* SwipesPresenter.swift in Sources */,
 				4846933A2A56E00100CD016C /* LoginView.swift in Sources */,
-				D752B8132A5CA833005820D0 /* UIViewController Extension.swift in Sources */,
+				D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */,
 				758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
