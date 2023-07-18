@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F98AA642A6687F600FF89BE /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98AA632A6687F600FF89BE /* QuoteView.swift */; };
+		1FCE77352A5C2FCB0010E427 /* SwipesViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE77342A5C2FCB0010E427 /* SwipesViewBuilder.swift */; };
+		1FCE77372A5C2FE80010E427 /* SwipesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE77362A5C2FE80010E427 /* SwipesPresenter.swift */; };
+		3B82ABE7E1E2492DF786515D /* Pods_TindPetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545D385399600C5B25B23AD0 /* Pods_TindPetTests.framework */; };
 		484693382A56DFD700CD016C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693372A56DFD700CD016C /* LoginViewController.swift */; };
 		4846933A2A56E00100CD016C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693392A56E00100CD016C /* LoginView.swift */; };
 		4846933F2A56EE7A00CD016C /* LoginViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4846933E2A56EE7A00CD016C /* LoginViewBuilder.swift */; };
@@ -32,6 +36,8 @@
 		758D96892A43858B005A12E1 /* SwipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96862A438562005A12E1 /* SwipesView.swift */; };
 		758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968B2A4385F2005A12E1 /* MatchesViewController.swift */; };
 		758D968E2A438650005A12E1 /* MatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968C2A4385F2005A12E1 /* MatchesView.swift */; };
+		8A00C9A8842F90CA31642724 /* Pods_TindPet_TindPetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9979A29F3DC30AA318D0BC8 /* Pods_TindPet_TindPetUITests.framework */; };
+		EFB522660F9AC93F27BE74E7 /* Pods_TindPet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0262EDA06AC19D87BA2ED581 /* Pods_TindPet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +58,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0262EDA06AC19D87BA2ED581 /* Pods_TindPet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TindPet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F98AA632A6687F600FF89BE /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		1FCE77342A5C2FCB0010E427 /* SwipesViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewBuilder.swift; sourceTree = "<group>"; };
+		1FCE77362A5C2FE80010E427 /* SwipesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesPresenter.swift; sourceTree = "<group>"; };
+		3692A34753707B5E62192C40 /* Pods-TindPetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TindPetTests.debug.xcconfig"; path = "Target Support Files/Pods-TindPetTests/Pods-TindPetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		484693372A56DFD700CD016C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		484693392A56E00100CD016C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4846933E2A56EE7A00CD016C /* LoginViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewBuilder.swift; sourceTree = "<group>"; };
@@ -60,6 +71,8 @@
 		484693472A56FB3100CD016C /* RegistrationViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewBuilder.swift; sourceTree = "<group>"; };
 		48BBD85F2A52F1790053738A /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		48BBD8622A52F28C0053738A /* Extention+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+UIColor.swift"; sourceTree = "<group>"; };
+		545D385399600C5B25B23AD0 /* Pods_TindPetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TindPetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67632B8CDFA4E7DE25E7F4B1 /* Pods-TindPetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TindPetTests.release.xcconfig"; path = "Target Support Files/Pods-TindPetTests/Pods-TindPetTests.release.xcconfig"; sourceTree = "<group>"; };
 		755F7BA92A4B565600D38DFC /* ProfileViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewBuilder.swift; sourceTree = "<group>"; };
 		755F7BAB2A4B572000D38DFC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		755F7BAD2A4B5B6A00D38DFC /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
@@ -81,6 +94,11 @@
 		758D96872A438562005A12E1 /* SwipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewController.swift; sourceTree = "<group>"; };
 		758D968B2A4385F2005A12E1 /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		758D968C2A4385F2005A12E1 /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
+		A1BF4928C3F09D65110EE50B /* Pods-TindPet-TindPetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TindPet-TindPetUITests.release.xcconfig"; path = "Target Support Files/Pods-TindPet-TindPetUITests/Pods-TindPet-TindPetUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B6B95A5B315B899E29DCE1B6 /* Pods-TindPet-TindPetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TindPet-TindPetUITests.debug.xcconfig"; path = "Target Support Files/Pods-TindPet-TindPetUITests/Pods-TindPet-TindPetUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B9979A29F3DC30AA318D0BC8 /* Pods_TindPet_TindPetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TindPet_TindPetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C58CF2A4D5848E60474E689E /* Pods-TindPet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TindPet.debug.xcconfig"; path = "Target Support Files/Pods-TindPet/Pods-TindPet.debug.xcconfig"; sourceTree = "<group>"; };
+		C79477D802B9F3C28F06ABF1 /* Pods-TindPet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TindPet.release.xcconfig"; path = "Target Support Files/Pods-TindPet/Pods-TindPet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB522660F9AC93F27BE74E7 /* Pods_TindPet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B82ABE7E1E2492DF786515D /* Pods_TindPetTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,12 +122,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A00C9A8842F90CA31642724 /* Pods_TindPet_TindPetUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FCE77312A5C2F880010E427 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				758D96872A438562005A12E1 /* SwipesViewController.swift */,
+				758D96862A438562005A12E1 /* SwipesView.swift */,
+				1F98AA632A6687F600FF89BE /* QuoteView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1FCE77322A5C2F8E0010E427 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1FCE77362A5C2FE80010E427 /* SwipesPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1FCE77332A5C2F960010E427 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				1FCE77342A5C2FCB0010E427 /* SwipesViewBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		484693362A56DF7F00CD016C /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +224,19 @@
 			path = Extention;
 			sourceTree = "<group>";
 		};
+		52606F13B7C2CCF8AE1DC224 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C58CF2A4D5848E60474E689E /* Pods-TindPet.debug.xcconfig */,
+				C79477D802B9F3C28F06ABF1 /* Pods-TindPet.release.xcconfig */,
+				B6B95A5B315B899E29DCE1B6 /* Pods-TindPet-TindPetUITests.debug.xcconfig */,
+				A1BF4928C3F09D65110EE50B /* Pods-TindPet-TindPetUITests.release.xcconfig */,
+				3692A34753707B5E62192C40 /* Pods-TindPetTests.debug.xcconfig */,
+				67632B8CDFA4E7DE25E7F4B1 /* Pods-TindPetTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		755F7BA62A4B556700D38DFC /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +268,8 @@
 				758D965D2A42E496005A12E1 /* TindPetTests */,
 				758D96672A42E496005A12E1 /* TindPetUITests */,
 				758D96452A42E495005A12E1 /* Products */,
+				52606F13B7C2CCF8AE1DC224 /* Pods */,
+				7F92065E5EFC566FE8CD496B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -326,8 +388,9 @@
 		758D96852A438547005A12E1 /* Swipes */ = {
 			isa = PBXGroup;
 			children = (
-				758D96872A438562005A12E1 /* SwipesViewController.swift */,
-				758D96862A438562005A12E1 /* SwipesView.swift */,
+				1FCE77332A5C2F960010E427 /* Builder */,
+				1FCE77322A5C2F8E0010E427 /* Presenter */,
+				1FCE77312A5C2F880010E427 /* View */,
 			);
 			path = Swipes;
 			sourceTree = "<group>";
@@ -351,6 +414,16 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		7F92065E5EFC566FE8CD496B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0262EDA06AC19D87BA2ED581 /* Pods_TindPet.framework */,
+				B9979A29F3DC30AA318D0BC8 /* Pods_TindPet_TindPetUITests.framework */,
+				545D385399600C5B25B23AD0 /* Pods_TindPetTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -358,6 +431,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 758D966E2A42E496005A12E1 /* Build configuration list for PBXNativeTarget "TindPet" */;
 			buildPhases = (
+				662D57F02E561C66646111DC /* [CP] Check Pods Manifest.lock */,
 				758D96402A42E495005A12E1 /* Sources */,
 				758D96412A42E495005A12E1 /* Frameworks */,
 				758D96422A42E495005A12E1 /* Resources */,
@@ -376,6 +450,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 758D96712A42E496005A12E1 /* Build configuration list for PBXNativeTarget "TindPetTests" */;
 			buildPhases = (
+				89A94BAB9C737CEBE16728CE /* [CP] Check Pods Manifest.lock */,
 				758D96562A42E496005A12E1 /* Sources */,
 				758D96572A42E496005A12E1 /* Frameworks */,
 				758D96582A42E496005A12E1 /* Resources */,
@@ -394,6 +469,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 758D96742A42E496005A12E1 /* Build configuration list for PBXNativeTarget "TindPetUITests" */;
 			buildPhases = (
+				62E08F3A714069A78643FFBD /* [CP] Check Pods Manifest.lock */,
 				758D96602A42E496005A12E1 /* Sources */,
 				758D96612A42E496005A12E1 /* Frameworks */,
 				758D96622A42E496005A12E1 /* Resources */,
@@ -478,6 +554,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		62E08F3A714069A78643FFBD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TindPet-TindPetUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		662D57F02E561C66646111DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TindPet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		758D96942A438766005A12E1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -496,6 +616,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#exit 0\nPATH=/opt/homebrew/bin:$PATH\nif [ -f ./LintConfig/swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ./LintConfig/swiftlint.yml\n  fi\nfi\n";
 		};
+		89A94BAB9C737CEBE16728CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TindPetTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -505,6 +647,7 @@
 			files = (
 				758D964C2A42E495005A12E1 /* ViewController.swift in Sources */,
 				484693482A56FB3100CD016C /* RegistrationViewBuilder.swift in Sources */,
+				1F98AA642A6687F600FF89BE /* QuoteView.swift in Sources */,
 				4846933F2A56EE7A00CD016C /* LoginViewBuilder.swift in Sources */,
 				755F7BAC2A4B572000D38DFC /* ProfileViewController.swift in Sources */,
 				755F7BAE2A4B5B6A00D38DFC /* ProfilePresenter.swift in Sources */,
@@ -519,8 +662,10 @@
 				758D96892A43858B005A12E1 /* SwipesView.swift in Sources */,
 				48BBD8602A52F1790053738A /* GradientView.swift in Sources */,
 				758D96822A437358005A12E1 /* RegistrationViewController.swift in Sources */,
+				1FCE77352A5C2FCB0010E427 /* SwipesViewBuilder.swift in Sources */,
 				484693462A56FB1200CD016C /* RegistrationPresenter.swift in Sources */,
 				484693412A56EE9800CD016C /* LoginPresenter.swift in Sources */,
+				1FCE77372A5C2FE80010E427 /* SwipesPresenter.swift in Sources */,
 				4846933A2A56E00100CD016C /* LoginView.swift in Sources */,
 				758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */,
 			);
@@ -686,12 +831,13 @@
 		};
 		758D966F2A42E496005A12E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C58CF2A4D5848E60474E689E /* Pods-TindPet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 47X734N754;
+				DEVELOPMENT_TEAM = YHNQB5S7XU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TindPet/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -699,6 +845,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -714,12 +861,13 @@
 		};
 		758D96702A42E496005A12E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C79477D802B9F3C28F06ABF1 /* Pods-TindPet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 47X734N754;
+				DEVELOPMENT_TEAM = YHNQB5S7XU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TindPet/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -727,6 +875,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -742,6 +891,7 @@
 		};
 		758D96722A42E496005A12E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3692A34753707B5E62192C40 /* Pods-TindPetTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -762,6 +912,7 @@
 		};
 		758D96732A42E496005A12E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67632B8CDFA4E7DE25E7F4B1 /* Pods-TindPetTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -782,6 +933,7 @@
 		};
 		758D96752A42E496005A12E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6B95A5B315B899E29DCE1B6 /* Pods-TindPet-TindPetUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -800,6 +952,7 @@
 		};
 		758D96762A42E496005A12E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1BF4928C3F09D65110EE50B /* Pods-TindPet-TindPetUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
