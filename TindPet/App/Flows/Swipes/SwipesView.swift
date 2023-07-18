@@ -1,5 +1,5 @@
 //
-//  MatchesView.swift
+//  SwipesView.swift
 //  TindPet
 //
 //  Created by Aleksandr Derevenskih on 21.06.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MatchesView: UIView {
+final class SwipesView: UIView {
     let textLabel = UILabel()
 
     override init(frame: CGRect) {
@@ -21,7 +21,7 @@ final class MatchesView: UIView {
     }
 
     private func configureUI() {
-        textLabel.text = "Matches"
+        textLabel.text = "Swipes"
         textLabel.textAlignment = .center
         textLabel.font = UIFont.systemFont(ofSize: 26.0)
         textLabel.textColor = .yellow

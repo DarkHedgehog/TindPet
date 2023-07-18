@@ -8,7 +8,12 @@
 import Foundation
 import Firebase
 
-class FirebaseService {
+protocol FirebaseServiceProtocol {
+    func registerNewUser(name: String, surname: String, email: String, password: String, completion: @escaping (Bool) -> Void)
+    func signIn(email: String, password: String, completion: @escaping (Bool) -> Void)
+}
+
+class FirebaseService: FirebaseServiceProtocol {
     //функция зарегистрироваться
     func registerNewUser(name: String, surname: String, email: String, password: String, completion: @escaping (Bool) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] res, err in
