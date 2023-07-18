@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F98AA642A6687F600FF89BE /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98AA632A6687F600FF89BE /* QuoteView.swift */; };
+		1FCE77352A5C2FCB0010E427 /* SwipesViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE77342A5C2FCB0010E427 /* SwipesViewBuilder.swift */; };
+		1FCE77372A5C2FE80010E427 /* SwipesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE77362A5C2FE80010E427 /* SwipesPresenter.swift */; };
 		484693382A56DFD700CD016C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693372A56DFD700CD016C /* LoginViewController.swift */; };
 		4846933A2A56E00100CD016C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484693392A56E00100CD016C /* LoginView.swift */; };
 		4846933F2A56EE7A00CD016C /* LoginViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4846933E2A56EE7A00CD016C /* LoginViewBuilder.swift */; };
@@ -32,7 +35,7 @@
 		758D96892A43858B005A12E1 /* SwipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96862A438562005A12E1 /* SwipesView.swift */; };
 		758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968B2A4385F2005A12E1 /* MatchesViewController.swift */; };
 		758D968E2A438650005A12E1 /* MatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968C2A4385F2005A12E1 /* MatchesView.swift */; };
-		D752B8132A5CA833005820D0 /* UIViewController Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752B8122A5CA833005820D0 /* UIViewController Extension.swift */; };
+		D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */; };
 		D75832B52A59AB7800E434FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B42A59AB7800E434FD /* FirebaseAnalytics */; };
 		D75832B72A59AB7800E434FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B62A59AB7800E434FD /* FirebaseAuth */; };
 		D75832B92A59AB7800E434FD /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B82A59AB7800E434FD /* FirebaseAuthCombine-Community */; };
@@ -61,6 +64,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F98AA632A6687F600FF89BE /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		1FCE77342A5C2FCB0010E427 /* SwipesViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewBuilder.swift; sourceTree = "<group>"; };
+		1FCE77362A5C2FE80010E427 /* SwipesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesPresenter.swift; sourceTree = "<group>"; };
 		484693372A56DFD700CD016C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		484693392A56E00100CD016C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4846933E2A56EE7A00CD016C /* LoginViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewBuilder.swift; sourceTree = "<group>"; };
@@ -90,7 +96,7 @@
 		758D96872A438562005A12E1 /* SwipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewController.swift; sourceTree = "<group>"; };
 		758D968B2A4385F2005A12E1 /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		758D968C2A4385F2005A12E1 /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
-		D752B8122A5CA833005820D0 /* UIViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Extension.swift"; sourceTree = "<group>"; };
+		D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
 		D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D75832C22A59EF7900E434FD /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,23 +115,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		758D96572A42E496005A12E1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		758D96612A42E496005A12E1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FCE77312A5C2F880010E427 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				758D96872A438562005A12E1 /* SwipesViewController.swift */,
+				758D96862A438562005A12E1 /* SwipesView.swift */,
+				1F98AA632A6687F600FF89BE /* QuoteView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1FCE77322A5C2F8E0010E427 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1FCE77362A5C2FE80010E427 /* SwipesPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1FCE77332A5C2F960010E427 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				1FCE77342A5C2FCB0010E427 /* SwipesViewBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		484693362A56DF7F00CD016C /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,7 +294,6 @@
 				758D967E2A437148005A12E1 /* AppStartManager.swift */,
 				758D96472A42E495005A12E1 /* AppDelegate.swift */,
 				758D964B2A42E495005A12E1 /* ViewController.swift */,
-				D752B8122A5CA833005820D0 /* UIViewController Extension.swift */,
 				758D96792A42F215005A12E1 /* Models */,
 				758D96782A42F20F005A12E1 /* BusinessLogic */,
 				758D967A2A42F222005A12E1 /* Assembly */,
@@ -322,6 +339,7 @@
 		758D967C2A42F23D005A12E1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -347,8 +365,9 @@
 		758D96852A438547005A12E1 /* Swipes */ = {
 			isa = PBXGroup;
 			children = (
-				758D96872A438562005A12E1 /* SwipesViewController.swift */,
-				758D96862A438562005A12E1 /* SwipesView.swift */,
+				1FCE77332A5C2F960010E427 /* Builder */,
+				1FCE77322A5C2F8E0010E427 /* Presenter */,
+				1FCE77312A5C2F880010E427 /* View */,
 			);
 			path = Swipes;
 			sourceTree = "<group>";
@@ -406,7 +425,6 @@
 			buildConfigurationList = 758D96712A42E496005A12E1 /* Build configuration list for PBXNativeTarget "TindPetTests" */;
 			buildPhases = (
 				758D96562A42E496005A12E1 /* Sources */,
-				758D96572A42E496005A12E1 /* Frameworks */,
 				758D96582A42E496005A12E1 /* Resources */,
 			);
 			buildRules = (
@@ -424,7 +442,6 @@
 			buildConfigurationList = 758D96742A42E496005A12E1 /* Build configuration list for PBXNativeTarget "TindPetUITests" */;
 			buildPhases = (
 				758D96602A42E496005A12E1 /* Sources */,
-				758D96612A42E496005A12E1 /* Frameworks */,
 				758D96622A42E496005A12E1 /* Resources */,
 			);
 			buildRules = (
@@ -538,6 +555,7 @@
 			files = (
 				758D964C2A42E495005A12E1 /* ViewController.swift in Sources */,
 				484693482A56FB3100CD016C /* RegistrationViewBuilder.swift in Sources */,
+				1F98AA642A6687F600FF89BE /* QuoteView.swift in Sources */,
 				4846933F2A56EE7A00CD016C /* LoginViewBuilder.swift in Sources */,
 				755F7BAC2A4B572000D38DFC /* ProfileViewController.swift in Sources */,
 				D75832C32A59EF7900E434FD /* FirebaseService.swift in Sources */,
@@ -553,10 +571,12 @@
 				758D96892A43858B005A12E1 /* SwipesView.swift in Sources */,
 				48BBD8602A52F1790053738A /* GradientView.swift in Sources */,
 				758D96822A437358005A12E1 /* RegistrationViewController.swift in Sources */,
+				1FCE77352A5C2FCB0010E427 /* SwipesViewBuilder.swift in Sources */,
 				484693462A56FB1200CD016C /* RegistrationPresenter.swift in Sources */,
 				484693412A56EE9800CD016C /* LoginPresenter.swift in Sources */,
+				1FCE77372A5C2FE80010E427 /* SwipesPresenter.swift in Sources */,
 				4846933A2A56E00100CD016C /* LoginView.swift in Sources */,
-				D752B8132A5CA833005820D0 /* UIViewController Extension.swift in Sources */,
+				D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */,
 				758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -726,7 +746,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 47X734N754;
+				DEVELOPMENT_TEAM = YHNQB5S7XU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TindPet/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -734,6 +754,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -754,7 +775,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 47X734N754;
+				DEVELOPMENT_TEAM = YHNQB5S7XU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TindPet/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -762,6 +783,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
