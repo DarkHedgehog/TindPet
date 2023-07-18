@@ -17,7 +17,14 @@ final class RegistrationViewController: UIViewController {
         return self.view as! RegistrationView
     }
     let service = FirebaseService()
-
+    let registrationService: RegistrationServiceProtocol
+    init(registrationService: RegistrationServiceProtocol) {
+        self.registrationService = registrationService
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     // MARK: - LifeCycle
     override func loadView() {
         super.loadView()
