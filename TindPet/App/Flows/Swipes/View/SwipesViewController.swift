@@ -19,13 +19,13 @@ class SwipesViewController: UIViewController {
         return self.view as! SwipesView
     }
 
-    
-    //MARK: - Init
+
+    // MARK: - Init
     override func loadView() {
         super.loadView()
         self.view = SwipesView()
     }
- 
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -35,7 +35,7 @@ extension SwipesViewController: SwipeCardsDelegate {
     func likeButtonAction() {
         print("Like")
     }
-    
+
     func dislikeButtonAction() {
         print("Dislike")
     }

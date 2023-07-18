@@ -13,17 +13,15 @@ protocol SwipeCardsDelegate: AnyObject {
 }
 
 class SwipesView: UIView {
-    
-    //MARK: - Properties
-    
+    // MARK: - Properties
     weak var delegate: SwipeCardsDelegate?
-    
+
     lazy var swipeView: QuoteView = {
         let view = QuoteView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     lazy var dislikeButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -41,8 +39,8 @@ class SwipesView: UIView {
         button.addTarget(self, action: #selector(didTabDislikeButton), for: .touchUpInside)
         return button
     }()
-    
-   lazy var likeButton: UIButton = {
+
+    lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -59,52 +57,51 @@ class SwipesView: UIView {
         button.addTarget(self, action: #selector(didTabLikeButton), for: .touchUpInside)
         return button
     }()
-    
+
     // MARK: - Functions
-    
+
     @objc func didTabLikeButton() {
         delegate?.likeButtonAction()
     }
-    
+
     @objc func didTabDislikeButton() {
         delegate?.dislikeButtonAction()
     }
-    
+
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureUI()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.configureUI()
     }
-    
-    
+
+
     // MARK: - SetUI
     func configureUI() {
         backgroundColor = .systemBackground
         addSubview(swipeView)
         addSubview(dislikeButton)
         addSubview(likeButton)
-        
+
         NSLayoutConstraint.activate([
             swipeView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             swipeView.leftAnchor.constraint(equalTo: leftAnchor),
             swipeView.rightAnchor.constraint(equalTo: rightAnchor),
             swipeView.heightAnchor.constraint(equalToConstant: 646),
-            
+
             dislikeButton.topAnchor.constraint(equalTo: swipeView.bottomAnchor, constant: 20),
             dislikeButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 60),
             dislikeButton.heightAnchor.constraint(equalToConstant: 70),
             dislikeButton.widthAnchor.constraint(equalToConstant: 70),
-            
+
             likeButton.topAnchor.constraint(equalTo: swipeView.bottomAnchor, constant: 20),
             likeButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -60),
             likeButton.heightAnchor.constraint(equalToConstant: 70),
-            likeButton.widthAnchor.constraint(equalToConstant: 70),
+            likeButton.widthAnchor.constraint(equalToConstant: 70)
         ])
     }
 }
-
