@@ -8,10 +8,11 @@
 import UIKit
 
 enum RegistrationViewBuilder {
-    static func build() -> UIViewController {
+    static func build(coordinator: AppCoordinatorProtocol) -> UIViewController {
         let presenter = RegistrationPresenter()
         let view = RegistrationViewController()
         presenter.view = view
+        presenter.coordinator = coordinator
         view.presenter = presenter
         return view
     }

@@ -12,7 +12,14 @@ protocol RegistrationViewProtocol {
 
 class RegistrationPresenter {
     var view: RegistrationViewProtocol?
+    var coordinator: AppCoordinatorProtocol?
 }
 
 extension RegistrationPresenter: RegistrationPresenterProtocol {
+    func registrationButtonAction() {
+       // coordinator?.goToMainScene()
+    }
+    func loginButttonAction() {
+        coordinator?.goToBack()
+    }
 }

@@ -30,6 +30,7 @@ final class SwipesView: UIView {
     }
 
     private func setupConstraints() {
+        backgroundColor = .systemBackground
         let safeArea = self.safeAreaLayoutGuide
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

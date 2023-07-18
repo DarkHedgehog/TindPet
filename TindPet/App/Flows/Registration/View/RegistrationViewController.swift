@@ -8,6 +8,8 @@
 import UIKit
 
 protocol RegistrationPresenterProtocol {
+    func registrationButtonAction()
+    func loginButttonAction()
 }
 
 final class RegistrationViewController: UIViewController {
@@ -80,10 +82,8 @@ final class RegistrationViewController: UIViewController {
             let value = info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue
             else { return }
         regView.addGestureRecognizer(tapGest)
-
         let kbSize = value.cgRectValue.size
         let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
-
         regView.scrollView.contentInset = contentInset
         regView.scrollView.scrollIndicatorInsets = contentInset
     }
@@ -119,13 +119,15 @@ extension RegistrationViewController: RegistrationViewDelegate {
                     title: "Подтвердите регистрацию",
                     message: "На Вашу почту было выслано сообщение с подтверждением регистрации"
                 )
-                self.navigationController?.popViewController(animated: true)
+                self.presenter?.loginButttonAction()
+            } else {
+                self.presenter?.registrationButtonAction()
             }
         }
     }
 
     func loginButtonAction() {
-        navigationController?.popViewController(animated: true)
+        presenter?.loginButttonAction()
     }
 }
 

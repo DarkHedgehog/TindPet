@@ -24,7 +24,7 @@
 		758D965F2A42E496005A12E1 /* TindPetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D965E2A42E496005A12E1 /* TindPetTests.swift */; };
 		758D96692A42E496005A12E1 /* TindPetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96682A42E496005A12E1 /* TindPetUITests.swift */; };
 		758D966B2A42E496005A12E1 /* TindPetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D966A2A42E496005A12E1 /* TindPetUITestsLaunchTests.swift */; };
-		758D967F2A437148005A12E1 /* AppStartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D967E2A437148005A12E1 /* AppStartManager.swift */; };
+		758D967F2A437148005A12E1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D967E2A437148005A12E1 /* AppCoordinator.swift */; };
 		758D96822A437358005A12E1 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96812A437358005A12E1 /* RegistrationViewController.swift */; };
 		758D96842A43760D005A12E1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96832A43760D005A12E1 /* RegistrationView.swift */; };
 		758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96872A438562005A12E1 /* SwipesViewController.swift */; };
@@ -81,7 +81,7 @@
 		758D96642A42E496005A12E1 /* TindPetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TindPetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D96682A42E496005A12E1 /* TindPetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TindPetUITests.swift; sourceTree = "<group>"; };
 		758D966A2A42E496005A12E1 /* TindPetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TindPetUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		758D967E2A437148005A12E1 /* AppStartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartManager.swift; sourceTree = "<group>"; };
+		758D967E2A437148005A12E1 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		758D96812A437358005A12E1 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		758D96832A43760D005A12E1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		758D96862A438562005A12E1 /* SwipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesView.swift; sourceTree = "<group>"; };
@@ -325,8 +325,8 @@
 		758D967C2A42F23D005A12E1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				758D967E2A437148005A12E1 /* AppStartManager.swift */,
 				758D96472A42E495005A12E1 /* AppDelegate.swift */,
+				758D967E2A437148005A12E1 /* AppCoordinator.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -550,7 +550,7 @@
 				758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */,
 				755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */,
 				758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */,
-				758D967F2A437148005A12E1 /* AppStartManager.swift in Sources */,
+				758D967F2A437148005A12E1 /* AppCoordinator.swift in Sources */,
 				758D968E2A438650005A12E1 /* MatchesView.swift in Sources */,
 				48BBD8632A52F28C0053738A /* Extention+UIColor.swift in Sources */,
 				758D96842A43760D005A12E1 /* RegistrationView.swift in Sources */,
