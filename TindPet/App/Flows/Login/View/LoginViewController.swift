@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     }
 
     private var tapGest: UITapGestureRecognizer?
+    let service = FirebaseService()
 
     // MARK: - LifeCycle
     override func loadView() {
@@ -36,6 +37,8 @@ class LoginViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeObserver()
+        endEditing()
+        loginView.endEditTextFild()
     }
 
     // MARK: - Functions
@@ -82,11 +85,24 @@ class LoginViewController: UIViewController {
     }
 }
 
-extension LoginViewController: loginViewDelegate {
+extension LoginViewController: LoginViewDelegate {
     func loginButtonAction() {
-        presenter?.loginAction(
-            login: loginView.loginTextField.text ?? "",
-            password: loginView.passwordTextField.text ?? "")
+//        presenter?.loginAction(
+//            login: loginView.loginTextField.text ?? "",
+//            password: loginView.passwordTextField.text ?? "")
+        guard let email = loginView.loginTextField.text, !email.isEmpty,
+              let password = loginView.passwordTextField.text, !password.isEmpty else {
+            showAlert(title: "Ошибка", message: "Введите данные")
+            return
+        }
+        
+        service.signIn(email: email, password: password) { isLoggedIn in
+            if isLoggedIn {
+                // здесь переход на основное приложение
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                print("sign in success")
+            }
+        }
     }
 
     func registrationButtonaction() {

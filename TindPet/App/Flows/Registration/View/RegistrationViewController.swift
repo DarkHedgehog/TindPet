@@ -16,6 +16,7 @@ final class RegistrationViewController: UIViewController {
     private var regView: RegistrationView {
         return self.view as! RegistrationView
     }
+    let service = FirebaseService()
 
     // MARK: - LifeCycle
     override func loadView() {
@@ -37,6 +38,7 @@ final class RegistrationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeObserver()
+        endEditing()
     }
 
     // MARK: - Functions
@@ -98,6 +100,28 @@ final class RegistrationViewController: UIViewController {
 
 extension RegistrationViewController: RegistrationViewDelegate {
     func regButtonAction() {
+        //проверить, что данные есть
+        guard let name = regView.nameTextField.text, !name.isEmpty,
+            let surname = regView.surnameTextField.text, !surname.isEmpty,
+            let email = regView.emailTextField.text, !email.isEmpty,
+            let password = regView.passwordTextField.text, !password.isEmpty else {
+            showAlert(title: "Ошибка", message: "Введите данные")
+            return
+        }
+//        регистрация -> alert  что человеку нужно подтвердить регистрацию по почте и перезапустить приложение
+        service.registerNewUser(
+            name: name,
+            surname: surname,
+            email: email,
+            password: password) { isRegistered in
+            if isRegistered {
+                self.showAlert(
+                    title: "Подтвердите регистрацию",
+                    message: "На Вашу почту было выслано сообщение с подтверждением регистрации"
+                )
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
 
     func loginButtonAction() {
