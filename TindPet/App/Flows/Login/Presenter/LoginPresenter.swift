@@ -8,6 +8,7 @@
 import UIKit
 
 protocol LoginViewProtocol {
+    func showAlerts(title: String, message: String)
 }
 
 class LoginPresenter {
@@ -15,6 +16,7 @@ class LoginPresenter {
     var view: LoginViewProtocol?
     init(loginService: LoginServiceProtocol, view: LoginViewProtocol? = nil) {
         self.loginService = loginService
+        self.loginService.delegate = self
         self.view = view
     }
 }
@@ -31,22 +33,23 @@ extension LoginPresenter: LoginServiceDelegate {
     func didSignInWith(uid: String) {
         //hide loader
     }
-    
     func didReceiveUnverifiedEmail() {
+        view?.showAlerts(title: "Unverified email", message: "Please verify your email")
         print("Unverified email")
     }
-    
     func didReceiveWrongPasswordError() {
         print("Wrong password")
     }
-    
     func didReceiveUnknownError() {
         print("Unknown error")
     }
-    
     func didNotReceiveResult() {
-        <#code#>
+        print("Did not receive result")
     }
+    func didSignOut() {
+        print("successfully signed out")
+    }
+    
     
     
 }

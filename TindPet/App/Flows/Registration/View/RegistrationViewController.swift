@@ -16,7 +16,7 @@ final class RegistrationViewController: UIViewController {
     private var regView: RegistrationView {
         return self.view as! RegistrationView
     }
-    let service = FirebaseService()
+//    let service = FirebaseService()
     let registrationService: RegistrationServiceProtocol
     init(registrationService: RegistrationServiceProtocol) {
         self.registrationService = registrationService
@@ -115,20 +115,18 @@ extension RegistrationViewController: RegistrationViewDelegate {
             showAlert(title: "Ошибка", message: "Введите данные")
             return
         }
+        let credentials = Credentials(name: name, surname: surname, email: email, password: password)
 //        регистрация -> alert  что человеку нужно подтвердить регистрацию по почте и перезапустить приложение
-        service.registerNewUser(
-            name: name,
-            surname: surname,
-            email: email,
-            password: password) { isRegistered in
-            if isRegistered {
-                self.showAlert(
-                    title: "Подтвердите регистрацию",
-                    message: "На Вашу почту было выслано сообщение с подтверждением регистрации"
-                )
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
+        registrationService.registerNewUser(credentials: credentials)
+//         { isRegistered in
+//            if isRegistered {
+//                self.showAlert(
+//                    title: "Подтвердите регистрацию",
+//                    message: "На Вашу почту было выслано сообщение с подтверждением регистрации"
+//                )
+//                self.navigationController?.popViewController(animated: true)
+//            }
+//        }
     }
 
     func loginButtonAction() {
