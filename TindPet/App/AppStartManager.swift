@@ -45,7 +45,6 @@ final class AppStartManager {
             window?.rootViewController = navVC
             print("authentification screen opened because not logged in \(isLoggedIn) ")
         }
-        window?.rootViewController = navVC //tabsVC
         window?.makeKeyAndVisible()
     }
 
