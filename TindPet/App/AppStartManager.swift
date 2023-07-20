@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import UIKit
 
 final class AppStartManager {
@@ -19,6 +18,7 @@ final class AppStartManager {
 
     func start() {
         let isLoggedIn = userDefaults.object(forKey: "isLoggedIn") as? Bool ?? false
+        let uid = userDefaults.object(forKey: "uid") as? String ?? ""
         let registrationVC = configureRegistrationController()
         let swipesVC = configureSwipesController()
         let matchesVC = configureMatchesController()
@@ -36,19 +36,22 @@ final class AppStartManager {
 
         let logVC = LoginViewBuilder.build()
         let navVC = UINavigationController(rootViewController: logVC)
-//        if isLoggedIn {
-//            //открываем основное приложение
-//            window?.rootViewController = tabsVC
-//        } else {
-//            //открываем экран аутентификации
-//            window?.rootViewController = navVC
-//        }
+        if isLoggedIn {
+            //открываем основное приложение
+            window?.rootViewController = tabsVC
+            print("main app opened because is logged in \(isLoggedIn) ")
+        } else {
+            //открываем экран аутентификации
+            window?.rootViewController = navVC
+            print("authentification screen opened because not logged in \(isLoggedIn) ")
+        }
         window?.rootViewController = navVC //tabsVC
         window?.makeKeyAndVisible()
     }
 
     private func configureRegistrationController() -> UIViewController {
-        let controller = RegistrationViewController()
+        let registrationService = RegistrationService()
+        let controller = RegistrationViewController(registrationService: registrationService)
         let navVC = UINavigationController()
 
         navVC.navigationBar.barTintColor = UIColor.blue

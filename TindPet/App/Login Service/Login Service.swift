@@ -65,7 +65,6 @@ class LoginService: LoginServiceProtocol {
             print("not logged in")
             return
         }
-//        var userInfo: [String: Any] = [:]
         firestore.collection("users").document(uid).getDocument { [weak self] snapshot, error in
             guard let strongSelf = self else {
                 return
@@ -81,24 +80,20 @@ class LoginService: LoginServiceProtocol {
                let isOwner = dic["isOwner"] as? Bool else {
                 return
             }
-        
             completion(UserInfo(email: email,
                                 name: name,
                                 surname: surname,
                                 isOwner: isOwner))//заменить на функции в делегате
             // add struct user and pet
-            
         }
     }
     func signOut() {
-        do{
+        do {
             try auth.signOut()
-        }
-        catch {
+        } catch {
             if let error = error as? NSError {
                 processError(errorID: error.code)
             }
         }
     }
 }
-
