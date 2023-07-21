@@ -9,20 +9,17 @@ import Foundation
 import UIKit
 
 protocol ProfileViewProtocol: UIViewController {
-    func showLabelWith(text: String)
 }
 
 final class ProfilePresenter {
     var view: ProfileViewProtocol?
-//    private let apiService: APIService
-
-    init() {
-    }
+    var coordinator: AppCoordinatorProtocol?
+    var networkService: FirebaseServiceProtocol?
 }
 
 extension ProfilePresenter: ProfilePresenterProtocol {
-    func onButtonTap() {
-        view?.showLabelWith(text: "gjfsdgk dsgsfdsh dfs hdfsh")
-        view?.navigationController?.pushViewController(ProfileViewBuilder.build(), animated: true)
+    func tabLogoutButton() {
+        UserDefaults.standard.set(false, forKey: KeyConstants.isLogin)
+        coordinator?.goToLoginVC(didTapLogout: true)
     }
 }

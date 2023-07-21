@@ -28,10 +28,13 @@ final class AppCoordinator: AppCoordinatorProtocol {
         }
     }
     func goToLoginVC(didTapLogout: Bool = false) {
+        let logVC = LoginViewBuilder.build(coordinator: self)
         if didTapLogout {
-            //TODO: - Сделать выход из аккаунта
+//            logVC.modalPresentationStyle = .fullScreen
+//            logVC.modalTransitionStyle = .flipHorizontal
+//            navigatinController.present(logVC, animated: true)
+            navigatinController.pushViewController(logVC, animated: true)
         } else {
-            let logVC = LoginViewBuilder.build(coordinator: self)
             navigatinController.pushViewController(logVC, animated: true)
         }
     }
@@ -86,13 +89,13 @@ final class AppCoordinator: AppCoordinatorProtocol {
         return navVC
     }
     private func configureProfileController() -> UIViewController {
-        let controller = ProfileViewBuilder.build()
+        let controller = ProfileViewBuilder.build(coordinator: self)
         let navVC = UINavigationController()
-        navVC.navigationBar.barTintColor = UIColor.blue
+        navVC.navigationBar.barTintColor = UIColor.systemBackground
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navVC.viewControllers = [controller]
-        navVC.tabBarItem.image = UIImage(systemName: "exclamationmark.triangle.fill")
+        navVC.tabBarItem.image = UIImage(systemName: "person")
         navVC.title = "Profile"
         return navVC
     }
