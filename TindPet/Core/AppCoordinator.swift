@@ -29,10 +29,9 @@ final class AppCoordinator: AppCoordinatorProtocol {
         }
     }
     func goToLoginVC(didTapLogout: Bool = false) {
+        let logVC = LoginViewBuilder.build(coordinator: self)
         if didTapLogout {
-            //TODO: - Сделать выход из аккаунта
         } else {
-            let logVC = LoginViewBuilder.build(coordinator: self)
             navigatinController.pushViewController(logVC, animated: true)
         }
     }
@@ -45,32 +44,14 @@ final class AppCoordinator: AppCoordinatorProtocol {
         let matchesVC = configureMatchesController()
         let profileVC = configureProfileController()
         let tabsVC = UITabBarController()
-        tabsVC.setViewControllers(
-            [
-                swipesVC,
-                matchesVC,
-                profileVC
-            ],
-            animated: false)
-
-        let logVC = LoginViewBuilder.build()
-        let navVC = UINavigationController(rootViewController: logVC)
-        if isLoggedIn {
-            //открываем основное приложение
-            window?.rootViewController = tabsVC
-            print("main app opened because is logged in \(isLoggedIn) ")
-        } else {
-            //открываем экран аутентификации
-            window?.rootViewController = navVC
-            print("authentification screen opened because not logged in \(isLoggedIn) ")
-        }
-        window?.makeKeyAndVisible()
+        tabsVC.tabBar.barTintColor = .systemGray5
+        tabsVC.setViewControllers([swipesVC, matchesVC, profileVC], animated: false)
+        navigatinController.pushViewController(tabsVC, animated: true)
+        navigatinController.navigationBar.isHidden = true
     }
-
     func goToBack() {
-
+        navigatinController.popViewController(animated: true)
     }
-    
     private func configureRegistrationController() -> UIViewController {
         let registrationService = RegistrationService()
         let controller = RegistrationViewController(registrationService: registrationService)
