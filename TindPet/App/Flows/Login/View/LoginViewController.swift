@@ -8,16 +8,16 @@
 import UIKit
 
 protocol LoginPresenterProtocol {
-    func loginAction(login: String, password: String)
+    func loginAction(login: String?, password: String?)
     func registationButtonAction()
 }
 
 class LoginViewController: UIViewController {
     var presenter: LoginPresenterProtocol?
-
     private var loginView: LoginView {
         return self.view as! LoginView
     }
+
     let loginService: LoginServiceProtocol
     init(presenter: LoginPresenterProtocol? = nil, loginService: LoginServiceProtocol) {
         self.presenter = presenter
@@ -30,26 +30,22 @@ class LoginViewController: UIViewController {
     }
     private var tapGest: UITapGestureRecognizer?
     let service = FirebaseService()
-
     // MARK: - LifeCycle
     override func loadView() {
         super.loadView()
         self.view = LoginView()
         loginView.delegate = self
     }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addObserver()
     }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeObserver()
         endEditing()
         loginView.endEditTextFild()
     }
-
     // MARK: - Functions
     private func addObserver() {
         NotificationCenter.default.addObserver(
@@ -57,14 +53,12 @@ class LoginViewController: UIViewController {
             selector: #selector(keyBoardWasShow),
             name: UIResponder.keyboardWillShowNotification,
             object: nil)
-
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyBoardWillBeHidden),
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
     }
-
     private func removeObserver() {
         NotificationCenter.default.removeObserver(
             self,
@@ -75,7 +69,6 @@ class LoginViewController: UIViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
     }
-
     @objc private func keyBoardWasShow() {
         loginView.startEditTextFild()
         if tapGest == nil {
@@ -84,11 +77,9 @@ class LoginViewController: UIViewController {
         guard let tapGest = tapGest else { return }
         loginView.addGestureRecognizer(tapGest)
     }
-
     @objc private func keyBoardWillBeHidden() {
         loginView.endEditTextFild()
     }
-
     @objc private func endEditing() {
         loginView.endEditing(true)
     }
@@ -96,33 +87,15 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: LoginViewDelegate {
     func loginButtonAction() {
-//        presenter?.loginAction(
-//            login: loginView.loginTextField.text ?? "",
-//            password: loginView.passwordTextField.text ?? "")
-        guard let email = loginView.loginTextField.text, !email.isEmpty,
-              let password = loginView.passwordTextField.text, !password.isEmpty else {
-            showAlert(title: "Ошибка", message: "Введите данные")
-            return
-        }
-        loginService.signIn(email: email, password: password)
-//        service.signIn(email: email, password: password) { isLoggedIn in
-//            if isLoggedIn {
-//                // здесь переход на основное приложение
-//                UserDefaults.standard.set(true, forKey: "isLoggedIn")
-//                print("sign in success")
-//            }
-//        }
+        presenter?.loginAction(login: loginView.loginTextField.text, password: loginView.passwordTextField.text)
     }
-
     func registrationButtonaction() {
-        navigationController?.pushViewController(RegistrationViewBuilder.build(), animated: true)
-        //  presenter?.registationButtonAction()
+        presenter?.registationButtonAction()
     }
 }
 
 extension LoginViewController: LoginViewProtocol {
-    func showAlerts(title: String, message: String) {
-        //
+    func showInfo(title: String, message: String) {
+        showAlert(title: title, message: message)
     }
-    
 }

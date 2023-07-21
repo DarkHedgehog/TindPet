@@ -24,6 +24,7 @@ class SwipesViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view = SwipesView()
+        swipeView.delegate = self
     }
 
     override func viewDidLoad() {

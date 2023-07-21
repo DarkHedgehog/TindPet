@@ -8,26 +8,45 @@
 import Foundation
 import UIKit
 
-final class AppStartManager {
-    var window: UIWindow?
-    var userDefaults = UserDefaults.standard
+protocol AppCoordinatorProtocol {
+    func start()
+    func goToLoginVC(didTapLogout: Bool)
+    func goToRegistrationVC()
+    func goToMainScene()
+    func goToBack()
+}
 
-    init(window: UIWindow?) {
-        self.window = window
+final class AppCoordinator: AppCoordinatorProtocol {
+    var navigatinController: UINavigationController
+    init(navigetinController: UINavigationController) {
+        self.navigatinController = navigetinController
     }
-
     func start() {
-        let isLoggedIn = userDefaults.object(forKey: "isLoggedIn") as? Bool ?? false
-        let uid = userDefaults.object(forKey: "uid") as? String ?? ""
-        let registrationVC = configureRegistrationController()
+        if UserDefaults.standard.bool(forKey: KeyConstants.isLogin) {
+            goToMainScene()
+        } else {
+            goToLoginVC()
+        }
+    }
+    func goToLoginVC(didTapLogout: Bool = false) {
+        if didTapLogout {
+            //TODO: - Сделать выход из аккаунта
+        } else {
+            let logVC = LoginViewBuilder.build(coordinator: self)
+            navigatinController.pushViewController(logVC, animated: true)
+        }
+    }
+    func goToRegistrationVC() {
+        let regVC = RegistrationViewBuilder.build(coordinator: self)
+        navigatinController.pushViewController(regVC, animated: true)
+    }
+    func goToMainScene() {
         let swipesVC = configureSwipesController()
         let matchesVC = configureMatchesController()
         let profileVC = configureProfileController()
-
         let tabsVC = UITabBarController()
         tabsVC.setViewControllers(
             [
-                registrationVC,
                 swipesVC,
                 matchesVC,
                 profileVC
@@ -48,11 +67,14 @@ final class AppStartManager {
         window?.makeKeyAndVisible()
     }
 
+    func goToBack() {
+
+    }
+    
     private func configureRegistrationController() -> UIViewController {
         let registrationService = RegistrationService()
         let controller = RegistrationViewController(registrationService: registrationService)
         let navVC = UINavigationController()
-
         navVC.navigationBar.barTintColor = UIColor.blue
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -61,11 +83,9 @@ final class AppStartManager {
         navVC.title = "Login"
         return navVC
     }
-
     private func configureSwipesController() -> UIViewController {
         let controller = SwipesViewController()
         let navVC = UINavigationController()
-
         navVC.navigationBar.barTintColor = UIColor.blue
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -74,11 +94,9 @@ final class AppStartManager {
         navVC.title = "Swipes"
         return navVC
     }
-
     private func configureMatchesController() -> UIViewController {
         let controller = MatchesViewController()
         let navVC = UINavigationController()
-
         navVC.navigationBar.barTintColor = UIColor.blue
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -87,11 +105,9 @@ final class AppStartManager {
         navVC.title = "Matches"
         return navVC
     }
-
     private func configureProfileController() -> UIViewController {
         let controller = ProfileViewBuilder.build()
         let navVC = UINavigationController()
-
         navVC.navigationBar.barTintColor = UIColor.blue
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
