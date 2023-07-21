@@ -5,6 +5,7 @@
 //  Created by Aleksandr Derevenskih on 21.06.2023.
 //
 
+import Foundation
 import UIKit
 
 protocol AppCoordinatorProtocol {
@@ -44,16 +45,35 @@ final class AppCoordinator: AppCoordinatorProtocol {
         let matchesVC = configureMatchesController()
         let profileVC = configureProfileController()
         let tabsVC = UITabBarController()
-        tabsVC.tabBar.barTintColor = .systemGray5
-        tabsVC.setViewControllers([swipesVC, matchesVC, profileVC], animated: false)
-        navigatinController.pushViewController(tabsVC, animated: true)
-        navigatinController.navigationBar.isHidden = true
+        tabsVC.setViewControllers(
+            [
+                swipesVC,
+                matchesVC,
+                profileVC
+            ],
+            animated: false)
+
+        let logVC = LoginViewBuilder.build()
+        let navVC = UINavigationController(rootViewController: logVC)
+        if isLoggedIn {
+            //открываем основное приложение
+            window?.rootViewController = tabsVC
+            print("main app opened because is logged in \(isLoggedIn) ")
+        } else {
+            //открываем экран аутентификации
+            window?.rootViewController = navVC
+            print("authentification screen opened because not logged in \(isLoggedIn) ")
+        }
+        window?.makeKeyAndVisible()
     }
+
     func goToBack() {
-        navigatinController.popViewController(animated: true)
+
     }
+    
     private func configureRegistrationController() -> UIViewController {
-        let controller = RegistrationViewController()
+        let registrationService = RegistrationService()
+        let controller = RegistrationViewController(registrationService: registrationService)
         let navVC = UINavigationController()
         navVC.navigationBar.barTintColor = UIColor.blue
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]

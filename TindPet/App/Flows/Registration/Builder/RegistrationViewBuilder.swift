@@ -9,8 +9,9 @@ import UIKit
 
 enum RegistrationViewBuilder {
     static func build(coordinator: AppCoordinatorProtocol) -> UIViewController {
-        let presenter = RegistrationPresenter()
-        let view = RegistrationViewController()
+        let registrationService = RegistrationService()
+        let presenter = RegistrationPresenter(registrationService: registrationService)
+        let view = RegistrationViewController(registrationService: registrationService)
         let networkService = FirebaseService()
         presenter.view = view
         presenter.coordinator = coordinator

@@ -12,9 +12,16 @@ protocol LoginViewProtocol {
 }
 
 class LoginPresenter {
+    var loginService: LoginServiceProtocol
     var view: LoginViewProtocol?
     var coordinator: AppCoordinatorProtocol?
     var networkService: FirebaseServiceProtocol?
+
+    init(loginService: LoginServiceProtocol, view: LoginViewProtocol? = nil) {
+        self.loginService = loginService
+        self.loginService.delegate = self
+        self.view = view
+    }
 }
 
 extension LoginPresenter: LoginPresenterProtocol {
@@ -33,4 +40,29 @@ extension LoginPresenter: LoginPresenterProtocol {
     func registationButtonAction() {
         coordinator?.goToRegistrationVC()
     }
+}
+
+extension LoginPresenter: LoginServiceDelegate {
+    func didSignInWith(uid: String) {
+        //hide loader
+    }
+    func didReceiveUnverifiedEmail() {
+        view?.showInfo(title: "Unverified email", message: "Please verify your email")
+        print("Unverified email")
+    }
+    func didReceiveWrongPasswordError() {
+        print("Wrong password")
+    }
+    func didReceiveUnknownError() {
+        print("Unknown error")
+    }
+    func didNotReceiveResult() {
+        print("Did not receive result")
+    }
+    func didSignOut() {
+        print("successfully signed out")
+    }
+    
+    
+    
 }

@@ -41,6 +41,11 @@
 		D75832BD2A59AB7800E434FD /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D75832BC2A59AB7800E434FD /* FirebaseMessaging */; };
 		D75832BF2A59AB7800E434FD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D75832BE2A59AB7800E434FD /* FirebaseStorage */; };
 		D75832C12A59ACCA00E434FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */; };
+		D7589A992A673F6300145760 /* Registration Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7589A982A673F6300145760 /* Registration Service.swift */; };
+		D7589A9B2A673FB700145760 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7589A9A2A673FB700145760 /* Credentials.swift */; };
+		D7589A9E2A6741A100145760 /* Login Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7589A9D2A6741A100145760 /* Login Service.swift */; };
+		D76D0AE12A69822F0041BEC6 /* User Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D0AE02A69822F0041BEC6 /* User Info.swift */; };
+		D76D0AE32A6982D80041BEC6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D0AE22A6982D80041BEC6 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +101,11 @@
 		758D968C2A4385F2005A12E1 /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
 		D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
 		D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D7589A982A673F6300145760 /* Registration Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration Service.swift"; sourceTree = "<group>"; };
+		D7589A9A2A673FB700145760 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		D7589A9D2A6741A100145760 /* Login Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login Service.swift"; sourceTree = "<group>"; };
+		D76D0AE02A69822F0041BEC6 /* User Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User Info.swift"; sourceTree = "<group>"; };
+		D76D0AE22A6982D80041BEC6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +313,8 @@
 		758D96772A42F204005A12E1 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D7589A9C2A67416F00145760 /* Login Service */,
+				D7589A972A673F1100145760 /* Registration Service */,
 				758D96792A42F215005A12E1 /* Models */,
 				758D96782A42F20F005A12E1 /* BusinessLogic */,
 				758D967A2A42F222005A12E1 /* Assembly */,
@@ -402,6 +414,25 @@
 				755F7BA62A4B556700D38DFC /* View */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		D7589A972A673F1100145760 /* Registration Service */ = {
+			isa = PBXGroup;
+			children = (
+				D7589A982A673F6300145760 /* Registration Service.swift */,
+				D7589A9A2A673FB700145760 /* Credentials.swift */,
+			);
+			path = "Registration Service";
+			sourceTree = "<group>";
+		};
+		D7589A9C2A67416F00145760 /* Login Service */ = {
+			isa = PBXGroup;
+			children = (
+				D7589A9D2A6741A100145760 /* Login Service.swift */,
+				D76D0AE02A69822F0041BEC6 /* User Info.swift */,
+				D76D0AE22A6982D80041BEC6 /* Constants.swift */,
+			);
+			path = "Login Service";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -570,20 +601,26 @@
 				1F98AA642A6687F600FF89BE /* QuoteView.swift in Sources */,
 				4846933F2A56EE7A00CD016C /* LoginViewBuilder.swift in Sources */,
 				755F7BAC2A4B572000D38DFC /* ProfileViewController.swift in Sources */,
+				D76D0AE32A6982D80041BEC6 /* Constants.swift in Sources */,
 				755F7BAE2A4B5B6A00D38DFC /* ProfilePresenter.swift in Sources */,
 				484693382A56DFD700CD016C /* LoginViewController.swift in Sources */,
 				758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */,
 				755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */,
+				D76D0AE12A69822F0041BEC6 /* User Info.swift in Sources */,
 				758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */,
+				D7589A992A673F6300145760 /* Registration Service.swift in Sources */,
+				758D967F2A437148005A12E1 /* AppCoordinator.swift in Sources */,
 				758D967F2A437148005A12E1 /* AppCoordinator.swift in Sources */,
 				758D968E2A438650005A12E1 /* MatchesView.swift in Sources */,
 				48BBD8632A52F28C0053738A /* Extention+UIColor.swift in Sources */,
 				758D96842A43760D005A12E1 /* RegistrationView.swift in Sources */,
+				D7589A9E2A6741A100145760 /* Login Service.swift in Sources */,
 				758D96892A43858B005A12E1 /* SwipesView.swift in Sources */,
 				48BBD8602A52F1790053738A /* GradientView.swift in Sources */,
 				758D96822A437358005A12E1 /* RegistrationViewController.swift in Sources */,
 				1FCE77352A5C2FCB0010E427 /* SwipesViewBuilder.swift in Sources */,
 				484693462A56FB1200CD016C /* RegistrationPresenter.swift in Sources */,
+				D7589A9B2A673FB700145760 /* Credentials.swift in Sources */,
 				484693412A56EE9800CD016C /* LoginPresenter.swift in Sources */,
 				7565C06B2A671D9F00CE3EAF /* FirebaseService.swift in Sources */,
 				1FCE77372A5C2FE80010E427 /* SwipesPresenter.swift in Sources */,
