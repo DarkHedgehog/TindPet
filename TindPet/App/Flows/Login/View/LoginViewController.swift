@@ -17,6 +17,17 @@ class LoginViewController: UIViewController {
     private var loginView: LoginView {
         return self.view as! LoginView
     }
+
+    let loginService: LoginServiceProtocol
+    init(presenter: LoginPresenterProtocol? = nil, loginService: LoginServiceProtocol) {
+        self.presenter = presenter
+        self.loginService = loginService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     private var tapGest: UITapGestureRecognizer?
     let service = FirebaseService()
     // MARK: - LifeCycle
