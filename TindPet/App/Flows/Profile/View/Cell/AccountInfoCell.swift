@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol AccountInfoCellDelegate: AnyObject {
+    func addPetButtonAction()
+}
+
 class AccountInfoCell: UITableViewCell {
     static let identifier = "AccountInfoCell"
+    weak var delegate: AccountInfoCellDelegate?
     // MARK: - Subviews
     lazy var nameSurnameLable: UILabel = {
         let label = UILabel()
@@ -82,6 +87,28 @@ class AccountInfoCell: UITableViewCell {
         label.text = "Email: Osipova1260@gmail.com"
         return label
     }()
+    lazy var lineView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemGreen
+        return view
+    }()
+    lazy var addPetButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.image = UIImage(
+            systemName: "plus.bubble.fill",
+            withConfiguration: UIImage.SymbolConfiguration(scale: .large))
+        config.title = "AddPet"
+        config.baseBackgroundColor = .systemGreen
+        config.imagePlacement = .trailing
+        config.imagePadding = 8.0
+        config.cornerStyle = .medium
+        let button = UIButton(type: .roundedRect)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = config
+        button.addTarget(self, action: #selector(tapAddButton), for: .touchUpInside)
+        return button
+    }()
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -91,8 +118,10 @@ class AccountInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - Configure
-    func configure(icon: String, name: String) {
-        self.nameSurnameLable.text = name
+    func configure() {
+    }
+    @objc private func tapAddButton() {
+        delegate?.addPetButtonAction()
     }
     // MARK: - UI
     private func setUI() {
@@ -105,6 +134,8 @@ class AccountInfoCell: UITableViewCell {
         contentView.addSubview(infoLable)
         contentView.addSubview(addressLable)
         contentView.addSubview(emailLable)
+        contentView.addSubview(lineView)
+        contentView.addSubview(addPetButton)
         NSLayoutConstraint.activate([
             nameSurnameLable.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             nameSurnameLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
@@ -129,7 +160,15 @@ class AccountInfoCell: UITableViewCell {
             addressLable.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             emailLable.topAnchor.constraint(equalTo: addressLable.bottomAnchor, constant: 8),
             emailLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 28),
-            emailLable.rightAnchor.constraint(equalTo: rightAnchor, constant: -16)
+            emailLable.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            lineView.topAnchor.constraint(equalTo: emailLable.bottomAnchor, constant: 16),
+            lineView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            lineView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            lineView.heightAnchor.constraint(equalToConstant: 2),
+            addPetButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            addPetButton.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: 8),
+            addPetButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7),
+            addPetButton.heightAnchor.constraint(equalToConstant: 34)
         ])
     }
 }

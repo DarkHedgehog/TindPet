@@ -10,16 +10,17 @@ import UIKit
 class ProfileView: UIView {
     // MARK: - Subviews
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.backgroundColor = .systemBackground
         tableView.separatorInset.left = 0
         tableView.separatorInset.right = 0
-  //      tableView.separatorColor = .clear
+        tableView.separatorColor = .clear
+        tableView.register(AvatarCell.self, forCellReuseIdentifier: AvatarCell.identifier)
         tableView.register(AccountInfoCell.self, forCellReuseIdentifier: AccountInfoCell.identifier)
-        tableView.register(AccountHeaderView.self, forHeaderFooterViewReuseIdentifier: AccountHeaderView.identifier)
+        tableView.register(PetCell.self, forCellReuseIdentifier: PetCell.identifier)
         return tableView
     }()
     // MARK: - Init
@@ -36,7 +37,7 @@ class ProfileView: UIView {
         backgroundColor = .systemBackground
         self.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.leftAnchor.constraint(equalTo: leftAnchor),
             tableView.rightAnchor.constraint(equalTo: rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
