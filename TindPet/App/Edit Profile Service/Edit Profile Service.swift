@@ -9,11 +9,16 @@ import Foundation
 import Firebase
 
 protocol EditServiceProtocol {
+    func updateCurrentUserData(name: String)
+    func updateCurrentUserData(surname: String)
+    func updateCurrentUserData(email: String)
+    func updateCurrentUserData(password: String)
     var delegate: EditServiceDelegate? { get set }
 }
 
 protocol EditServiceDelegate {
-    
+    func didNotReceiveResult()
+    func didReceiveUnknownError()
 }
 
 class EditService: EditServiceProtocol {
@@ -21,7 +26,43 @@ class EditService: EditServiceProtocol {
     private let firestore = Firestore.firestore()
     var delegate: EditServiceDelegate?
     
-    func updateCurrentUserData() {
-            Firestore.firestore().collection("users").document().updateData()
+    func updateCurrentUserData(name: String) {
+        guard let uid = auth.currentUser?.uid else {
+            return
         }
+        firestore.collection("users").document(uid).updateData(["name": name])
+    }
+    func updateCurrentUserData(surname: String) {
+        guard let uid = auth.currentUser?.uid else {
+            return
+        }
+        firestore.collection("users").document(uid).updateData(["surname": surname])
+    }
+    func updateCurrentUserData(email: String) {
+        guard let uid = auth.currentUser?.uid else {
+            return
+        }
+        firestore.collection("users").document(uid).updateData(["email": email])
+    }
+    func updateCurrentUserData(password: String) {
+        guard let uid = auth.currentUser?.uid else {
+            return
+        }
+        firestore.collection("users").document(uid).updateData(["password": password])
+    }
+    func updateCurrentUserData(isOwner: Bool) {
+        guard let uid = auth.currentUser?.uid else {
+            return
+        }
+        firestore.collection("users").document(uid).updateData(["isOwner": isOwner])
+    }
+    //add avatar
+    
+    private func processError(errorID: Int) {
+        switch errorID {
+            
+        default:
+            delegate?.didReceiveUnknownError()
+        }
+    }
 }
