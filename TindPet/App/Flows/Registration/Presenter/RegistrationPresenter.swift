@@ -16,10 +16,9 @@ class RegistrationPresenter {
     var view: RegistrationViewProtocol?
     var coordinator: AppCoordinatorProtocol?
     var networkService: FirebaseServiceProtocol?
-    init(registrationService: RegistrationServiceProtocol, view: RegistrationViewProtocol? = nil) {
+    init(registrationService: RegistrationServiceProtocol) {
         self.registrationService = registrationService
         self.registrationService.delegate = self
-        self.view = view
     }
 }
 
@@ -28,24 +27,19 @@ extension RegistrationPresenter: RegistrationPresenterProtocol {
         guard let name = name, !name.isEmpty,
               let surname = surname, !surname.isEmpty,
               let email = email, !email.isEmpty,
-              let password = password, !password.isEmpty else {
+              let password = password, !password.isEmpty,
+              let state = state == 0 ? false : true
+        else {
             view?.showInfo(title: "Ошибка", message: "Введите данные")
             return
         }
-        networkService?.registerNewUser(
+        let credentials = Credentials(
             name: name,
             surname: surname,
             email: email,
-            password: password) { isRegistered in
-                if isRegistered {
-                    self.view?.showInfo(title: "Подтвердите регистрацию",
-                                         message: "На Вашу почту было выслано сообщение с подтверждением регистрации")
-                    self.coordinator?.goToMainScene()
-                } else {
-                    self.view?.showInfo(title: "Ошибка регистарции",
-                                         message: "Возможно пользователь с таким логином уже существует")
-                }
-            }
+            password: password,
+            isOwner: state)
+        registrationService.registerNewUser(credentials: credentials)
     }
     func loginButttonAction() {
         coordinator?.goToBack()
@@ -54,10 +48,12 @@ extension RegistrationPresenter: RegistrationPresenterProtocol {
 
 extension RegistrationPresenter: RegistrationServiceDelegate {
     func didRegisterWith(uid: String) {
-        //hide loader
     }
     func didReceiveEmailAlreadyInUseError() {
-        print("Email already in use")
+        self.view?.showInfo(
+            title: "Ошибка регистарции",
+            message: "Этот электронный адрес уже занят"
+        )
     }
     func didReceiveUnknownError() {
         print("Unknown error")

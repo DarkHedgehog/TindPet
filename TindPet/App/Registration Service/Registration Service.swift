@@ -62,7 +62,7 @@ class RegistrationService: RegistrationServiceProtocol {
             "name": credentials.name,
             "surname": credentials.surname,
             "date": Date(),
-            "isOwner": false,
+            "isOwner": credentials.isOwner,
             "isVerified": false
         ]
         firestore.collection("users").document(uid).setData(userData)

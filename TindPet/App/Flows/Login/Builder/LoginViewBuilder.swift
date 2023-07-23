@@ -9,13 +9,12 @@ import UIKit
 
 enum LoginViewBuilder {
     static func build(coordinator: AppCoordinatorProtocol) -> UIViewController {
-        let presenter = LoginPresenter()
+        let loginService = LoginService()
+        let presenter = LoginPresenter(loginService: loginService)
         let view = LoginViewController()
-        let networkService = FirebaseService()
         view.presenter = presenter
         presenter.view = view
         presenter.coordinator = coordinator
-        presenter.networkService = networkService
         return view
     }
 }

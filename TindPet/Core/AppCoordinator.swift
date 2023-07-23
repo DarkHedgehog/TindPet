@@ -21,7 +21,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
         self.navigatinController = navigetinController
     }
     func start() {
-        if UserDefaults.standard.bool(forKey: KeyConstants.isLogin) {
+        if UserDefaults.standard.bool(forKey: Key.isLogin) {
             goToMainScene()
         } else {
             goToLoginVC()
@@ -54,17 +54,6 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
     func goToBack() {
         navigatinController.popViewController(animated: true)
-    }
-    private func configureRegistrationController() -> UIViewController {
-        let controller = RegistrationViewController()
-        let navVC = UINavigationController()
-        navVC.navigationBar.barTintColor = UIColor.blue
-        navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navVC.tabBarItem.image = UIImage(systemName: "exclamationmark.triangle.fill")
-        navVC.viewControllers = [controller]
-        navVC.title = "Login"
-        return navVC
     }
     private func configureSwipesController() -> UIViewController {
         let controller = SwipesViewController()

@@ -49,7 +49,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         view?.showImagePicker()
     }
     func tabLogoutButton() {
-        UserDefaults.standard.set(false, forKey: KeyConstants.isLogin)
+        UserDefaults.standard.set(false, forKey: Key.isLogin)
         coordinator?.goToLoginVC(didTapLogout: true)
     }
 }
