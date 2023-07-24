@@ -12,4 +12,5 @@ struct Credentials {
     let surname: String
     let email: String
     let password: String
+    let isOwner: Bool
 }

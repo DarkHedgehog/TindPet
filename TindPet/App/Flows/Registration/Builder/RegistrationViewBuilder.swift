@@ -11,11 +11,9 @@ enum RegistrationViewBuilder {
     static func build(coordinator: AppCoordinatorProtocol) -> UIViewController {
         let registrationService = RegistrationService()
         let presenter = RegistrationPresenter(registrationService: registrationService)
-        let view = RegistrationViewController(registrationService: registrationService)
-        let networkService = FirebaseService()
+        let view = RegistrationViewController()
         presenter.view = view
         presenter.coordinator = coordinator
-        presenter.networkService = networkService
         view.presenter = presenter
         return view
     }

@@ -9,10 +9,11 @@ import Foundation
 import UIKit
 
 enum ProfileViewBuilder {
-    static func build() -> UIViewController {
+    static func build(coordinator: AppCoordinatorProtocol) -> UIViewController {
         let presenter = ProfilePresenter()
         let controller = ProfileViewController()
         presenter.view = controller
+        presenter.coordinator = coordinator
         controller.presenter = presenter
         return controller
     }
