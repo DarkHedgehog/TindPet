@@ -91,7 +91,7 @@ class SwipesView: UIView {
             swipeView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             swipeView.leftAnchor.constraint(equalTo: leftAnchor),
             swipeView.rightAnchor.constraint(equalTo: rightAnchor),
-            swipeView.heightAnchor.constraint(equalToConstant: 646),
+            swipeView.heightAnchor.constraint(equalToConstant: 324),
 
             dislikeButton.topAnchor.constraint(equalTo: swipeView.bottomAnchor, constant: 20),
             dislikeButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 60),
