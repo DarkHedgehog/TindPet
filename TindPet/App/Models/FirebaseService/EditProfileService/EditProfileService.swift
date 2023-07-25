@@ -25,42 +25,31 @@ class EditService: EditServiceProtocol {
     private let auth = Auth.auth()
     private let firestore = Firestore.firestore()
     var delegate: EditServiceDelegate?
-    
+    let uid = Auth.auth().currentUser?.uid
+
     func updateCurrentUserData(name: String) {
-        guard let uid = auth.currentUser?.uid else {
-            return
-        }
+        guard let uid = uid else { return }
         firestore.collection("users").document(uid).updateData(["name": name])
     }
     func updateCurrentUserData(surname: String) {
-        guard let uid = auth.currentUser?.uid else {
-            return
-        }
+        guard let uid = uid else { return }
         firestore.collection("users").document(uid).updateData(["surname": surname])
     }
     func updateCurrentUserData(email: String) {
-        guard let uid = auth.currentUser?.uid else {
-            return
-        }
+        guard let uid = uid else { return }
         firestore.collection("users").document(uid).updateData(["email": email])
     }
     func updateCurrentUserData(password: String) {
-        guard let uid = auth.currentUser?.uid else {
-            return
-        }
+        guard let uid = uid else { return }
         firestore.collection("users").document(uid).updateData(["password": password])
     }
     func updateCurrentUserData(isOwner: Bool) {
-        guard let uid = auth.currentUser?.uid else {
-            return
-        }
+        guard let uid = uid else { return }
         firestore.collection("users").document(uid).updateData(["isOwner": isOwner])
     }
     //add avatar
-    
     private func processError(errorID: Int) {
         switch errorID {
-            
         default:
             delegate?.didReceiveUnknownError()
         }
