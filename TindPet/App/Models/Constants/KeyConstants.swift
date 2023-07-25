@@ -7,7 +7,6 @@
 
 import Foundation
 
-enum Key {
+enum KeyConstants {
     static let isLogin = "isLogin"
-    static let uid = "uid"
 }

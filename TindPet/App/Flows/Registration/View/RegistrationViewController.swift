@@ -8,13 +8,7 @@
 import UIKit
 
 protocol RegistrationPresenterProtocol {
-    func registrationButtonAction(
-        name: String?,
-        surname: String?,
-        email: String?,
-        password: String?,
-        state: Int
-    )
+    func registrationButtonAction(name: String?, surname: String?, email: String?, password: String?, state: Int)
     func loginButttonAction()
 }
 
@@ -24,6 +18,16 @@ final class RegistrationViewController: UIViewController {
     private var regView: RegistrationView {
         return self.view as! RegistrationView
     }
+
+    let registrationService: RegistrationServiceProtocol
+    init(registrationService: RegistrationServiceProtocol) {
+        self.registrationService = registrationService
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - LifeCycle
     override func loadView() {
         super.loadView()
@@ -96,13 +100,17 @@ final class RegistrationViewController: UIViewController {
 
 extension RegistrationViewController: RegistrationViewDelegate {
     func regButtonAction() {
-        presenter?.registrationButtonAction(
-            name: regView.nameTextField.text,
-            surname: regView.surnameTextField.text,
-            email: regView.emailTextField.text,
-            password: regView.passwordTextField.text,
-            state: regView.segmentControl.selectedSegmentIndex
-        )
+
+        guard let name = regView.nameTextField.text, !name.isEmpty,
+            let surname = regView.surnameTextField.text, !surname.isEmpty,
+            let email = regView.emailTextField.text, !email.isEmpty,
+            let password = regView.passwordTextField.text, !password.isEmpty else {
+            showAlert(title: "Ошибка", message: "Введите данные")
+            return
+        }
+        let credentials = Credentials(name: name, surname: surname, email: email, password: password)
+
+        registrationService.registerNewUser(credentials: credentials)
     }
     func loginButtonAction() {
         presenter?.loginButttonAction()

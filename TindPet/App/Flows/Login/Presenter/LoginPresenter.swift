@@ -16,9 +16,11 @@ class LoginPresenter {
     var view: LoginViewProtocol?
     var coordinator: AppCoordinatorProtocol?
     var networkService: FirebaseServiceProtocol?
-    init(loginService: LoginServiceProtocol) {
+
+    init(loginService: LoginServiceProtocol, view: LoginViewProtocol? = nil) {
         self.loginService = loginService
         self.loginService.delegate = self
+        self.view = view
     }
 }
 
@@ -28,7 +30,12 @@ extension LoginPresenter: LoginPresenterProtocol {
             view?.showInfo(title: "Ошибка", message: "Введите данные")
             return
         }
-        loginService.signIn(email: login, password: password)
+        networkService?.signIn(email: login, password: password) { isLoggedIn in
+            if isLoggedIn {
+                UserDefaults.standard.set(true, forKey: KeyConstants.isLogin)
+                self.coordinator?.goToMainScene()
+            }
+        }
     }
     func registationButtonAction() {
         coordinator?.goToRegistrationVC()
@@ -37,18 +44,17 @@ extension LoginPresenter: LoginPresenterProtocol {
 
 extension LoginPresenter: LoginServiceDelegate {
     func didSignInWith(uid: String) {
-        UserDefaults.standard.set(uid, forKey: Key.uid)
-        UserDefaults.standard.set(true, forKey: Key.isLogin)
-        self.coordinator?.goToMainScene()
+        //hide loader
     }
     func didReceiveUnverifiedEmail() {
         view?.showInfo(title: "Unverified email", message: "Please verify your email")
+        print("Unverified email")
     }
     func didReceiveWrongPasswordError() {
         print("Wrong password")
     }
     func didReceiveUnknownError() {
-        view?.showInfo(title: "Ошибка", message: "Неверный логин или пароль")
+        print("Unknown error")
     }
     func didNotReceiveResult() {
         print("Did not receive result")
@@ -56,4 +62,7 @@ extension LoginPresenter: LoginServiceDelegate {
     func didSignOut() {
         print("successfully signed out")
     }
+    
+    
+    
 }
