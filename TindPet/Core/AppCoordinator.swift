@@ -5,7 +5,6 @@
 //  Created by Aleksandr Derevenskih on 21.06.2023.
 //
 
-import Foundation
 import UIKit
 
 protocol AppCoordinatorProtocol {
@@ -22,7 +21,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
         self.navigatinController = navigetinController
     }
     func start() {
-        if UserDefaults.standard.bool(forKey: KeyConstants.isLogin) {
+        if UserDefaults.standard.bool(forKey: Key.isLogin) {
             goToMainScene()
         } else {
             goToLoginVC()
@@ -31,6 +30,10 @@ final class AppCoordinator: AppCoordinatorProtocol {
     func goToLoginVC(didTapLogout: Bool = false) {
         let logVC = LoginViewBuilder.build(coordinator: self)
         if didTapLogout {
+//            logVC.modalPresentationStyle = .fullScreen
+//            logVC.modalTransitionStyle = .flipHorizontal
+//            navigatinController.present(logVC, animated: true)
+            navigatinController.pushViewController(logVC, animated: true)
         } else {
             navigatinController.pushViewController(logVC, animated: true)
         }
@@ -51,18 +54,6 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
     func goToBack() {
         navigatinController.popViewController(animated: true)
-    }
-    private func configureRegistrationController() -> UIViewController {
-        let registrationService = RegistrationService()
-        let controller = RegistrationViewController(registrationService: registrationService)
-        let navVC = UINavigationController()
-        navVC.navigationBar.barTintColor = UIColor.blue
-        navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navVC.tabBarItem.image = UIImage(systemName: "exclamationmark.triangle.fill")
-        navVC.viewControllers = [controller]
-        navVC.title = "Login"
-        return navVC
     }
     private func configureSwipesController() -> UIViewController {
         let controller = SwipesViewController()
@@ -87,13 +78,13 @@ final class AppCoordinator: AppCoordinatorProtocol {
         return navVC
     }
     private func configureProfileController() -> UIViewController {
-        let controller = ProfileViewBuilder.build()
+        let controller = ProfileViewBuilder.build(coordinator: self)
         let navVC = UINavigationController()
-        navVC.navigationBar.barTintColor = UIColor.blue
+        navVC.navigationBar.barTintColor = UIColor.systemBackground
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navVC.viewControllers = [controller]
-        navVC.tabBarItem.image = UIImage(systemName: "exclamationmark.triangle.fill")
+        navVC.tabBarItem.image = UIImage(systemName: "person")
         navVC.title = "Profile"
         return navVC
     }
