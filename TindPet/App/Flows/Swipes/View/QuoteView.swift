@@ -8,18 +8,21 @@
 import UIKit
 
 class QuoteView: UIView {
+    
     var didRate: (() -> Void)?
-
+    var presenter: SwipesPresenterProtocol?
+    
     private let label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
-        label.numberOfLines = 0
+        label.numberOfLines = 3
         label.isUserInteractionEnabled = true
         label.backgroundColor = UIColor.systemGray6
-        label.textAlignment = .center
+        label.textAlignment = .justified
+        label.layer.cornerRadius = 0
         return label
     }()
-
+    
     private let thumbImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -29,25 +32,22 @@ class QuoteView: UIView {
         imageView.tintColor = UIColor.green
         return imageView
     }()
-
+    
     private var animator: UIViewPropertyAnimator?
     private var like = true
-
     // MARK: - Override
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-
         if animator == nil {
             label.frame = bounds.insetBy(dx: 20, dy: 10)
             thumbImageView.frame = bounds.insetBy(dx: 20, dy: 10)
@@ -57,14 +57,15 @@ class QuoteView: UIView {
     private func setup() {
         addSubview(label)
         addSubview(thumbImageView)
-
+                
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 10
-
+       
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
         self.addGestureRecognizer(panRecognizer)
     }
 }
+
 
 extension QuoteView {
     @objc private func swipe(sender: UISwipeGestureRecognizer) {
@@ -96,12 +97,11 @@ extension QuoteView {
 
     @objc private func pan(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: self).x
-
         switch sender.state {
         case .began:
             like = translation > 0
 
-            let endX = like ? 3 * bounds.width / 2 + 50: -bounds.width / 2 - 50
+            let endX = like ? 3 * bounds.width / 2 + 50 : -bounds.width / 2 - 50
             let angle = like ? CGFloat.pi / 4 : -CGFloat.pi / 4
             let thumbImage = like ? "hand.thumbsup.fill" : "hand.thumbsdown.fill"
             thumbImageView.image = UIImage(systemName: thumbImage)
@@ -114,7 +114,7 @@ extension QuoteView {
                 }
                 self.thumbImageView.alpha = 1
             }
-            animator?.addCompletion { [weak self] _ in
+            animator?.addCompletion { [weak self] some in
                 guard let self = self else { return }
 
                 [self.label, self.thumbImageView].forEach {
@@ -126,7 +126,7 @@ extension QuoteView {
                 self.alpha = 0
                 self.didRate?()
 
-                UIView.animate(withDuration: 0.2) {
+                UIView.animate(withDuration: 0.5) {
                     self.alpha = 1
                 }
             }
@@ -134,10 +134,13 @@ extension QuoteView {
         case .changed:
             let slide = like ? max(translation, 0) : min(translation, 0)
             animator?.fractionComplete = abs(slide) / bounds.width
-
         case .ended:
+            if like {
+                self.presenter?.likeButtonAction()
+            } else {
+                self.presenter?.dislikeButtonAction()
+            }
             animator?.startAnimation()
-
         default:
             break
         }
