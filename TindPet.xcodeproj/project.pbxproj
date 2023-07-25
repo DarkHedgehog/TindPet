@@ -38,9 +38,9 @@
 		758D96892A43858B005A12E1 /* SwipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96862A438562005A12E1 /* SwipesView.swift */; };
 		758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968B2A4385F2005A12E1 /* MatchesViewController.swift */; };
 		758D968E2A438650005A12E1 /* MatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D968C2A4385F2005A12E1 /* MatchesView.swift */; };
-		D74DC7282A6D7CC6005439E1 /* Edit Profile Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC7272A6D7CC6005439E1 /* Edit Profile Service.swift */; };
-		D74DC72B2A6D8EAF005439E1 /* Pet Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72A2A6D8EAF005439E1 /* Pet Service.swift */; };
-		D74DC72F2A6D9067005439E1 /* Pet Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72E2A6D9067005439E1 /* Pet Info.swift */; };
+		D74DC7282A6D7CC6005439E1 /* EditProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC7272A6D7CC6005439E1 /* EditProfileService.swift */; };
+		D74DC72B2A6D8EAF005439E1 /* PetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72A2A6D8EAF005439E1 /* PetService.swift */; };
+		D74DC72F2A6D9067005439E1 /* PetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72E2A6D9067005439E1 /* PetInfo.swift */; };
 		D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */; };
 		D75832B52A59AB7800E434FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B42A59AB7800E434FD /* FirebaseAnalytics */; };
 		D75832B72A59AB7800E434FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B62A59AB7800E434FD /* FirebaseAuth */; };
@@ -49,10 +49,10 @@
 		D75832BD2A59AB7800E434FD /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D75832BC2A59AB7800E434FD /* FirebaseMessaging */; };
 		D75832BF2A59AB7800E434FD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D75832BE2A59AB7800E434FD /* FirebaseStorage */; };
 		D75832C12A59ACCA00E434FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */; };
-		D7589A992A673F6300145760 /* Registration Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7589A982A673F6300145760 /* Registration Service.swift */; };
+		D7589A992A673F6300145760 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7589A982A673F6300145760 /* RegistrationService.swift */; };
 		D7589A9B2A673FB700145760 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7589A9A2A673FB700145760 /* Credentials.swift */; };
-		D7589A9E2A6741A100145760 /* Login Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7589A9D2A6741A100145760 /* Login Service.swift */; };
-		D76D0AE12A69822F0041BEC6 /* User Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D0AE02A69822F0041BEC6 /* User Info.swift */; };
+		D7589A9E2A6741A100145760 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7589A9D2A6741A100145760 /* LoginService.swift */; };
+		D76D0AE12A69822F0041BEC6 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D0AE02A69822F0041BEC6 /* UserInfo.swift */; };
 		D76D0AE32A6982D80041BEC6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D0AE22A6982D80041BEC6 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,15 +112,15 @@
 		758D96872A438562005A12E1 /* SwipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesViewController.swift; sourceTree = "<group>"; };
 		758D968B2A4385F2005A12E1 /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		758D968C2A4385F2005A12E1 /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
-		D74DC7272A6D7CC6005439E1 /* Edit Profile Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Edit Profile Service.swift"; sourceTree = "<group>"; };
-		D74DC72A2A6D8EAF005439E1 /* Pet Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pet Service.swift"; sourceTree = "<group>"; };
-		D74DC72E2A6D9067005439E1 /* Pet Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pet Info.swift"; sourceTree = "<group>"; };
+		D74DC7272A6D7CC6005439E1 /* EditProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileService.swift; sourceTree = "<group>"; };
+		D74DC72A2A6D8EAF005439E1 /* PetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetService.swift; sourceTree = "<group>"; };
+		D74DC72E2A6D9067005439E1 /* PetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfo.swift; sourceTree = "<group>"; };
 		D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
 		D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D7589A982A673F6300145760 /* Registration Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration Service.swift"; sourceTree = "<group>"; };
+		D7589A982A673F6300145760 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		D7589A9A2A673FB700145760 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
-		D7589A9D2A6741A100145760 /* Login Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login Service.swift"; sourceTree = "<group>"; };
-		D76D0AE02A69822F0041BEC6 /* User Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User Info.swift"; sourceTree = "<group>"; };
+		D7589A9D2A6741A100145760 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		D76D0AE02A69822F0041BEC6 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D76D0AE22A6982D80041BEC6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,10 +170,10 @@
 		481116DC2A66888200FFEE1C /* FirebaseService */ = {
 			isa = PBXGroup;
 			children = (
-				D74DC7262A6D7C7E005439E1 /* Edit Profile Service */,
-				D7589A9C2A67416F00145760 /* Login Service */,
-				D7589A972A673F1100145760 /* Registration Service */,
-				D74DC7292A6D8E92005439E1 /* Pet Service */,
+				D74DC7262A6D7C7E005439E1 /* EditProfileService */,
+				D7589A9C2A67416F00145760 /* LoginService */,
+				D7589A972A673F1100145760 /* RegistrationService */,
+				D74DC7292A6D8E92005439E1 /* PetService */,
 				7565C06A2A671D9F00CE3EAF /* FirebaseService.swift */,
 			);
 			path = FirebaseService;
@@ -455,40 +455,40 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		D74DC7262A6D7C7E005439E1 /* Edit Profile Service */ = {
+		D74DC7262A6D7C7E005439E1 /* EditProfileService */ = {
 			isa = PBXGroup;
 			children = (
-				D74DC7272A6D7CC6005439E1 /* Edit Profile Service.swift */,
+				D74DC7272A6D7CC6005439E1 /* EditProfileService.swift */,
 			);
-			path = "Edit Profile Service";
+			path = EditProfileService;
 			sourceTree = "<group>";
 		};
-		D74DC7292A6D8E92005439E1 /* Pet Service */ = {
+		D74DC7292A6D8E92005439E1 /* PetService */ = {
 			isa = PBXGroup;
 			children = (
-				D74DC72A2A6D8EAF005439E1 /* Pet Service.swift */,
-				D74DC72E2A6D9067005439E1 /* Pet Info.swift */,
+				D74DC72A2A6D8EAF005439E1 /* PetService.swift */,
+				D74DC72E2A6D9067005439E1 /* PetInfo.swift */,
 			);
-			path = "Pet Service";
+			path = PetService;
 			sourceTree = "<group>";
 		};
-		D7589A972A673F1100145760 /* Registration Service */ = {
+		D7589A972A673F1100145760 /* RegistrationService */ = {
 			isa = PBXGroup;
 			children = (
-				D7589A982A673F6300145760 /* Registration Service.swift */,
+				D7589A982A673F6300145760 /* RegistrationService.swift */,
 				D7589A9A2A673FB700145760 /* Credentials.swift */,
 			);
-			path = "Registration Service";
+			path = RegistrationService;
 			sourceTree = "<group>";
 		};
-		D7589A9C2A67416F00145760 /* Login Service */ = {
+		D7589A9C2A67416F00145760 /* LoginService */ = {
 			isa = PBXGroup;
 			children = (
-				D7589A9D2A6741A100145760 /* Login Service.swift */,
-				D76D0AE02A69822F0041BEC6 /* User Info.swift */,
+				D7589A9D2A6741A100145760 /* LoginService.swift */,
+				D76D0AE02A69822F0041BEC6 /* UserInfo.swift */,
 				D76D0AE22A6982D80041BEC6 /* Constants.swift */,
 			);
-			path = "Login Service";
+			path = LoginService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -665,16 +665,16 @@
 				484693382A56DFD700CD016C /* LoginViewController.swift in Sources */,
 				758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */,
 				755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */,
-				D76D0AE12A69822F0041BEC6 /* User Info.swift in Sources */,
+				D76D0AE12A69822F0041BEC6 /* UserInfo.swift in Sources */,
 				758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */,
-				D7589A992A673F6300145760 /* Registration Service.swift in Sources */,
-				D74DC72B2A6D8EAF005439E1 /* Pet Service.swift in Sources */,
+				D7589A992A673F6300145760 /* RegistrationService.swift in Sources */,
+				D74DC72B2A6D8EAF005439E1 /* PetService.swift in Sources */,
 				758D967F2A437148005A12E1 /* AppCoordinator.swift in Sources */,
 				758D967F2A437148005A12E1 /* AppCoordinator.swift in Sources */,
 				758D968E2A438650005A12E1 /* MatchesView.swift in Sources */,
 				48BBD8632A52F28C0053738A /* Extention+UIColor.swift in Sources */,
 				758D96842A43760D005A12E1 /* RegistrationView.swift in Sources */,
-				D7589A9E2A6741A100145760 /* Login Service.swift in Sources */,
+				D7589A9E2A6741A100145760 /* LoginService.swift in Sources */,
 				758D96892A43858B005A12E1 /* SwipesView.swift in Sources */,
 				481DD1CF2A683CFD00BA5C6B /* ProfileView.swift in Sources */,
 				48BBD8602A52F1790053738A /* GradientView.swift in Sources */,
@@ -683,13 +683,13 @@
 				484693462A56FB1200CD016C /* RegistrationPresenter.swift in Sources */,
 				D7589A9B2A673FB700145760 /* Credentials.swift in Sources */,
 				484693412A56EE9800CD016C /* LoginPresenter.swift in Sources */,
-				D74DC72F2A6D9067005439E1 /* Pet Info.swift in Sources */,
+				D74DC72F2A6D9067005439E1 /* PetInfo.swift in Sources */,
 				48AC9B962A6BCD0A0055E6A4 /* PetModel.swift in Sources */,
 				7565C06B2A671D9F00CE3EAF /* FirebaseService.swift in Sources */,
 				1FCE77372A5C2FE80010E427 /* SwipesPresenter.swift in Sources */,
 				4846933A2A56E00100CD016C /* LoginView.swift in Sources */,
 				D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */,
-				D74DC7282A6D7CC6005439E1 /* Edit Profile Service.swift in Sources */,
+				D74DC7282A6D7CC6005439E1 /* EditProfileService.swift in Sources */,
 				758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */,
 				481116E32A66C08500FFEE1C /* Key.swift in Sources */,
 			);
