@@ -10,14 +10,20 @@ import UIKit
 protocol SwipesViewProtocol {
 }
 
+protocol SwipesPresenterProtocol {
+    func likeButtonAction()
+    func dislikeButtonAction()
+}
+
 class SwipesPresenter {
     var view: SwipesViewProtocol?
 }
 
 extension SwipesPresenter: SwipesPresenterProtocol {
     func likeButtonAction() {
+        print("Like")
     }
-    
     func dislikeButtonAction() {
+        print("Dislike")
     }
 }

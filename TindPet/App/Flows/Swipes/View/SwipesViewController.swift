@@ -7,40 +7,30 @@
 
 import UIKit
 
-protocol SwipesPresenterProtocol {
-    func likeButtonAction()
-    func dislikeButtonAction()
-}
-
 class SwipesViewController: UIViewController {
-    var presenter: SwipesPresenterProtocol?
+    
+    var presenter: SwipesPresenterProtocol? {
+        didSet {
+            swipeView.presenter = self.presenter
+        }
+    }
 
     private var swipeView: SwipesView {
         return self.view as! SwipesView
     }
 
-
-    // MARK: - Init
+    
+    //MARK: - Init
     override func loadView() {
         super.loadView()
         self.view = SwipesView()
-        swipeView.delegate = self
     }
-
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 }
 
-extension SwipesViewController: SwipeCardsDelegate {
-    func likeButtonAction() {
-        print("Like")
-    }
-
-    func dislikeButtonAction() {
-        print("Dislike")
-    }
-}
-
 extension SwipesViewController: SwipesViewProtocol {
 }
+

@@ -56,7 +56,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
         navigatinController.popViewController(animated: true)
     }
     private func configureSwipesController() -> UIViewController {
-        let controller = SwipesViewController()
+        let controller = SwipesViewBuilder.build()
         let navVC = UINavigationController()
         navVC.navigationBar.barTintColor = UIColor.blue
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
