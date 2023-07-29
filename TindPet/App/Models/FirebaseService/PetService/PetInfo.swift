@@ -12,7 +12,7 @@ struct PetInfo {
     var age: Int
     var species: Species
     var ownerID: String
-//    var photo: String
+    var photo: String?
 }
 
 enum Species {

@@ -7,9 +7,10 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 protocol PetServiceProtocol {
-    func addPet(petInfo: PetInfo, completion: @escaping (Bool) -> Void)
+    func addPet(petInfo: PetInfo, photo: UIImage, completion: @escaping (Bool) -> Void)
     func editPet(petId: String, name: String)
     func editPet(petId: String, age: Int)
     func editPet(petId: String, species: Species)
@@ -25,25 +26,32 @@ protocol PetServiceDelegate {
 class PetService: PetServiceProtocol {
     private let auth = Auth.auth()
     private let firestore = Firestore.firestore()
+    private let storage = Storage.storage().reference()
     var delegate: PetServiceDelegate?
     let uid = Auth.auth().currentUser?.uid
-    func addPet(petInfo: PetInfo, completion: @escaping (Bool) -> Void) { //add photo
+    func addPet(petInfo: PetInfo, photo: UIImage, completion: @escaping (Bool) -> Void) {
         guard let uid = uid else { return }
         let ref = firestore.collection("users").document(uid).collection("pets").document()
         let petId = ref.documentID
-        let petData: [String: Any] = [
-            "name": petInfo.name,
-            "age": petInfo.age,
-            "species": petInfo.species,
-//            "photo": petInfo.photo,
-            "date": Date(),
-            "ownerID": uid
-        ]
-        ref.setData(petData, completion: { error in
-            if let err = error as? NSError {
-                self.processError(errorID: err.code)
-            }
+        addPetPhoto(petID: ref.documentID, image: photo, completion: { url in
+            let photoUrl = url
+            let petData: [String: Any] = [
+                "name": petInfo.name,
+                "age": petInfo.age,
+                "species": petInfo.species,
+                "photo": photoUrl,
+                "date": Date(),
+                "ownerID": uid
+             ]
+            ref.setData(petData, completion: { error in
+                if let err = error as? NSError {
+                    self.processError(errorID: err.code)
+                    completion(false)
+                }
+            })
+            completion(true)
         })
+        
     }
     func editPet(petId: String, name: String) {
         guard let uid = uid else { return }
@@ -66,14 +74,13 @@ class PetService: PetServiceProtocol {
                 for document in snapshot!.documents {
                 if let ownerID = document["ownerID"] as? String,
                    let name = document["name"] as? String,
-//                   let photo = document["photo"] as? String,
+                   let photo = document["photo"] as? String,
                    let species = document["species"] as? Species,
                    let age = document["age"] as? Int {
-                    let petInfo = PetInfo(name: name, age: age, species: species, ownerID: ownerID)
-//                    petInfo.photo = photo
+                    let petInfo = PetInfo(name: name, age: age, species: species, ownerID: ownerID, photo: photo)
                     pets.append(petInfo)
-                    }
-                }
+                     }
+                 }
                 completion(pets)
             } else {
                 if let error = error as? NSError {
@@ -82,6 +89,28 @@ class PetService: PetServiceProtocol {
                 }
             }
         })
+    }
+    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (String) -> Void) {
+        guard let imageData = image.pngData() else {
+            return
+        }
+        //replace with userid
+        storage.child("images/users/\(petID).png").putData(imageData, metadata: nil) { _, error in
+            guard error == nil else {
+                let error = error as? NSError
+                self.processError(errorID: error!.code)
+                return
+            }
+            self.storage.child("images/users/\(petID).png").downloadURL() { url, error in
+                guard let url = url, error == nil else {
+                    return
+                }
+                let urlString = url.absoluteString
+                //replace with saving url
+                print("Download URL: \(urlString)")
+                completion(urlString)
+            }
+        }
     }
     private func processError(errorID: Int) {
         switch errorID {

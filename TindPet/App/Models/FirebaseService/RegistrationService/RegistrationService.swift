@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 protocol RegistrationServiceProtocol {
     func registerNewUser(credentials: Credentials)
