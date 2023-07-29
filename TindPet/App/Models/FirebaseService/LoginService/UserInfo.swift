@@ -14,4 +14,7 @@ struct UserInfo {
     let name: String
     let surname: String
     var isOwner: Bool
+    var photo: String?
+//    var locationCountry: String
+//    var locationCity: String
 }

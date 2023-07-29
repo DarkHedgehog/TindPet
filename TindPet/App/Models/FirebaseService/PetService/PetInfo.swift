@@ -8,10 +8,11 @@
 import Foundation
 
 struct PetInfo {
-    let name: String
-    let age: Int
-    let species: Species
-//    let photo: String
+    var name: String
+    var age: Int
+    var species: Species
+    var ownerID: String
+    var photo: String?
 }
 
 enum Species {
