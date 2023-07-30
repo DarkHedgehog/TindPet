@@ -41,19 +41,46 @@ extension LoginPresenter: LoginServiceDelegate {
         UserDefaults.standard.set(true, forKey: Key.isLogin)
         self.coordinator?.goToMainScene()
     }
+    func didReceiveUnavailableError() {
+        view?.showInfo(title: "Ошибка соединения", message: "Сервис временно недоступен")
+    }
+    func didReceiveDocumentAlreadyExistsError() {
+        view?.showInfo(title: "Ошибка", message: "Объект уже существует")
+    }
+    func didReceiveDataLossError() {
+        view?.showInfo(title: "Ошибка", message: "Данные утеряны")
+    }
+    func didReceiveObjectNotFoundError() {
+        view?.showInfo(title: "Ошибка", message: "Объект не найден в базе данных")
+    }
+    func didReceiveUnauthenticatedError() {
+        view?.showInfo(title: "Ошибка", message: "Вы не авторизированы")
+    }
+    func didReceiveUnauthorizedError() {
+        view?.showInfo(title: "Ошибка", message: "У вас нет прав для совершения данной операции")
+    }
+    func didReceiveCancelledError() {
+        view?.showInfo(title: "Отмена", message: "Операция отменена")
+    }
+    func didReceiveRetryLimitExceededError() {
+        view?.showInfo(title: "Ошибка", message: "Лимит загрузок за сегодня превышен. Попробуйте позже")
+    }
+    func didReceiveInvalidEmailError() {
+        view?.showInfo(title: "Ошибка", message: "Введен неверный или не существующий адрес почты")
+    }
     func didReceiveUnverifiedEmail() {
-        view?.showInfo(title: "Unverified email", message: "Please verify your email")
+        view?.showInfo(title: "Почта не подтверждена", message: "Зайдите на почту и пройдите по ссылке в письме верификации")
     }
     func didReceiveWrongPasswordError() {
-        print("Wrong password")
+        view?.showInfo(title: "Ошибка", message: "Неверный пароль")
     }
     func didReceiveUnknownError() {
         view?.showInfo(title: "Ошибка", message: "Неверный логин или пароль")
     }
     func didNotReceiveResult() {
-        print("Did not receive result")
+        view?.showInfo(title: "Ошибка", message: "Данные с сервера не были получены")
     }
     func didSignOut() {
-        print("successfully signed out")
+        view?.showInfo(title: "Выход", message: "Вы успешно вышли")
     }
 }

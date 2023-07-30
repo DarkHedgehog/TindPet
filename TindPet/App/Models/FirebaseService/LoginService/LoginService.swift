@@ -19,6 +19,15 @@ protocol LoginServiceDelegate {
     func didSignInWith(uid: String)
     func didReceiveUnverifiedEmail()
     func didReceiveWrongPasswordError()
+    func didReceiveInvalidEmailError()
+    func didReceiveObjectNotFoundError()
+    func didReceiveUnauthenticatedError()
+    func didReceiveUnauthorizedError()
+    func didReceiveCancelledError()
+    func didReceiveRetryLimitExceededError()
+    func didReceiveDocumentAlreadyExistsError()
+    func didReceiveDataLossError()
+    func didReceiveUnavailableError()
     func didReceiveUnknownError()
     func didNotReceiveResult()
     func didSignOut()
@@ -47,18 +56,43 @@ class LoginService: LoginServiceProtocol {
                 return
             }
             strongSelf.didReceiveResult(result: result)
+            let uid = result.user.uid
+            strongSelf.firestore.collection("users").document(uid).updateData(["isVerified": true])
         }
     }
     private func didReceiveResult(result: AuthDataResult) {
         let uid = result.user.uid
         delegate?.didSignInWith(uid: uid)
-        UserDefaults.standard.set(true, forKey: "isLoggedIn")
         UserDefaults.standard.set(uid, forKey: "uid")
     }
     private func processError(errorID: Int) {
         switch errorID {
-        case AuthErrorCode.emailAlreadyInUse.rawValue:
+        case AuthErrorCode.unverifiedEmail.rawValue:
+            delegate?.didReceiveUnverifiedEmail()
+        case AuthErrorCode.wrongPassword.rawValue:
             delegate?.didReceiveWrongPasswordError()
+        case AuthErrorCode.invalidEmail.rawValue:
+            delegate?.didReceiveInvalidEmailError()
+        case StorageErrorCode.objectNotFound.rawValue:
+            delegate?.didReceiveObjectNotFoundError()
+        case StorageErrorCode.unauthenticated.rawValue:
+            delegate?.didReceiveUnauthenticatedError()
+        case StorageErrorCode.unauthorized.rawValue:
+            delegate?.didReceiveUnauthorizedError()
+        case StorageErrorCode.cancelled.rawValue:
+            delegate?.didReceiveCancelledError()
+        case StorageErrorCode.retryLimitExceeded.rawValue:
+            delegate?.didReceiveRetryLimitExceededError()
+        case FirestoreErrorCode.notFound.rawValue:
+            delegate?.didReceiveObjectNotFoundError()
+        case FirestoreErrorCode.cancelled.rawValue:
+            delegate?.didReceiveCancelledError()
+        case FirestoreErrorCode.alreadyExists.rawValue:
+            delegate?.didReceiveDocumentAlreadyExistsError()
+        case FirestoreErrorCode.dataLoss.rawValue:
+            delegate?.didReceiveDataLossError()
+        case FirestoreErrorCode.unavailable.rawValue:
+            delegate?.didReceiveUnavailableError()
         default:
             delegate?.didReceiveUnknownError()
         }

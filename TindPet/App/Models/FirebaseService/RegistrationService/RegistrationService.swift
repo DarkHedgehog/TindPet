@@ -17,6 +17,8 @@ protocol RegistrationServiceProtocol {
 protocol RegistrationServiceDelegate {
     func didRegisterWith(uid: String)
     func didReceiveEmailAlreadyInUseError()
+    func didReceiveInvalidEmailError()
+    func didReceiveUserNotFoundError()
     func didReceiveUnknownError()
     func didNotReceiveResult()
 }
@@ -43,7 +45,11 @@ class RegistrationService: RegistrationServiceProtocol {
     }
     // MARK: - Private methods
     private func didReceiveResult(result: AuthDataResult, credentials: Credentials) {
-        result.user.sendEmailVerification()
+        result.user.sendEmailVerification { error in
+            if let error = error as? NSError {
+                self.processError(errorID: error.code)
+            }
+        }
         let uid = result.user.uid
         saveUserData(uid: uid, credentials: credentials)
         delegate?.didRegisterWith(uid: uid)
@@ -52,6 +58,10 @@ class RegistrationService: RegistrationServiceProtocol {
         switch errorID {
         case AuthErrorCode.emailAlreadyInUse.rawValue:
             delegate?.didReceiveEmailAlreadyInUseError()
+        case AuthErrorCode.invalidEmail.rawValue:
+            delegate?.didReceiveInvalidEmailError()
+        case AuthErrorCode.userNotFound.rawValue:
+            delegate?.didReceiveUserNotFoundError()
         default:
             delegate?.didReceiveUnknownError()
         }

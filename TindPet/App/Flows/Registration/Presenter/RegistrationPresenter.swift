@@ -47,11 +47,25 @@ extension RegistrationPresenter: RegistrationPresenterProtocol {
 }
 
 extension RegistrationPresenter: RegistrationServiceDelegate {
+    func didReceiveUserNotFoundError() {
+        self.view?.showInfo(
+            title: "Ошибка верификации",
+            message: "Пользователь не найден, письмо верификации не отправлено"
+        )
+    }
+    
+    func didReceiveInvalidEmailError() {
+        self.view?.showInfo(
+            title: "Ошибка регистрации",
+            message: "Указанный адрес почты не существует"
+        )
+    }
+    
     func didRegisterWith(uid: String) {
     }
     func didReceiveEmailAlreadyInUseError() {
         self.view?.showInfo(
-            title: "Ошибка регистарции",
+            title: "Ошибка регистрации",
             message: "Этот электронный адрес уже занят"
         )
     }
@@ -59,6 +73,9 @@ extension RegistrationPresenter: RegistrationServiceDelegate {
         print("Unknown error")
     }
     func didNotReceiveResult() {
-        print("did not receive result")
+        self.view?.showInfo(
+            title: "Ошибка",
+            message: "Данные не были получены"
+        )
     }
 }
