@@ -28,7 +28,11 @@ extension LoginPresenter: LoginPresenterProtocol {
             view?.showInfo(title: "Ошибка", message: "Введите данные")
             return
         }
-        loginService.signIn(email: login, password: password)
+        loginService.signIn(email: login, password: password) { isLoggedIn in
+            if isLoggedIn {
+                self.coordinator?.goToMainScene()
+            }
+        }
     }
     func registationButtonAction() {
         coordinator?.goToRegistrationVC()

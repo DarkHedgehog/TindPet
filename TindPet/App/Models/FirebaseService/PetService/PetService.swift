@@ -15,6 +15,7 @@ protocol PetServiceProtocol {
     func editPet(petId: String, age: Int)
     func editPet(petId: String, species: Species)
     func getPets(completion: @escaping ([PetInfo]) -> Void)
+    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (String) -> Void)
     var delegate: PetServiceDelegate? { get set }
 }
 
@@ -101,7 +102,6 @@ class PetService: PetServiceProtocol {
         guard let imageData = image.pngData() else {
             return
         }
-        //replace with userid
         storage.child("images/users/\(petID).png").putData(imageData, metadata: nil) { _, error in
             guard error == nil else {
                 let error = error as? NSError

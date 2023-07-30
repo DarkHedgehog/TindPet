@@ -10,10 +10,13 @@ import Firebase
 import FirebaseStorage
 
 protocol EditServiceProtocol {
-    func updateCurrentUserData(name: String)
-    func updateCurrentUserData(surname: String)
-    func updateCurrentUserData(email: String)
-    func updateCurrentUserData(password: String)
+    func updateCurrentUserData(name: String, completion: @escaping (Bool) -> Void)
+    func updateCurrentUserData(surname: String, completion: @escaping (Bool) -> Void)
+    func updateCurrentUserData(email: String, completion: @escaping (Bool) -> Void)
+    func updateCurrentUserData(password: String, completion: @escaping (Bool) -> Void)
+    func updateCurrentUserData(isOwner: Bool, completion: @escaping (Bool) -> Void)
+    func updateCurrentUserData(photoUrl: String, completion: @escaping (Bool) -> Void)
+    func updateCurrentUserData(image: UIImage, completion: @escaping (Bool) -> Void)
     var delegate: EditServiceDelegate? { get set }
 }
 
@@ -38,31 +41,79 @@ class EditService: EditServiceProtocol {
     var delegate: EditServiceDelegate?
     let uid = Auth.auth().currentUser?.uid
 
-    func updateCurrentUserData(name: String) {
+    func updateCurrentUserData(name: String, completion: @escaping (Bool) -> Void) {
         guard let uid = uid else { return }
-        firestore.collection("users").document(uid).updateData(["name": name])
+        firestore.collection("users").document(uid).updateData(["name": name]) { error in
+            guard error == nil else {
+                let error = error as? NSError
+                self.processError(errorID: error!.code)
+                completion(false)
+                return
+            }
+            completion(true)
+        }
     }
-    func updateCurrentUserData(surname: String) {
+    func updateCurrentUserData(surname: String, completion: @escaping (Bool) -> Void) {
         guard let uid = uid else { return }
-        firestore.collection("users").document(uid).updateData(["surname": surname])
+        firestore.collection("users").document(uid).updateData(["surname": surname]) { error in
+            guard error == nil else {
+                let error = error as? NSError
+                self.processError(errorID: error!.code)
+                completion(false)
+                return
+            }
+            completion(true)
+        }
     }
-    func updateCurrentUserData(email: String) {
+    func updateCurrentUserData(email: String, completion: @escaping (Bool) -> Void) {
         guard let uid = uid else { return }
-        firestore.collection("users").document(uid).updateData(["email": email])
+        firestore.collection("users").document(uid).updateData(["email": email]) { error in
+            guard error == nil else {
+                let error = error as? NSError
+                self.processError(errorID: error!.code)
+                completion(false)
+                return
+            }
+            completion(true)
+        }
     }
-    func updateCurrentUserData(password: String) {
+    func updateCurrentUserData(password: String, completion: @escaping (Bool) -> Void) {
         guard let uid = uid else { return }
-        firestore.collection("users").document(uid).updateData(["password": password])
+        firestore.collection("users").document(uid).updateData(["password": password]) { error in
+            guard error == nil else {
+                let error = error as? NSError
+                self.processError(errorID: error!.code)
+                completion(false)
+                return
+            }
+            completion(true)
+        }
     }
-    func updateCurrentUserData(isOwner: Bool) {
+    func updateCurrentUserData(isOwner: Bool, completion: @escaping (Bool) -> Void) {
         guard let uid = uid else { return }
-        firestore.collection("users").document(uid).updateData(["isOwner": isOwner])
+        firestore.collection("users").document(uid).updateData(["isOwner": isOwner]) { error in
+            guard error == nil else {
+                let error = error as? NSError
+                self.processError(errorID: error!.code)
+                completion(false)
+                return
+            }
+            completion(true)
+        }
     }
-    func updateCurrentUserData(photo: String) {
+    func updateCurrentUserData(photoUrl: String, completion: @escaping (Bool) -> Void) {
         guard let uid = uid else { return }
-        firestore.collection("users").document(uid).updateData(["photo": photo])
+        firestore.collection("users").document(uid).updateData(["photoUrl": photoUrl]) { error in
+            guard error == nil else {
+                let error = error as? NSError
+                self.processError(errorID: error!.code)
+                completion(false)
+                return
+            }
+            completion(true)
+        }
     }
-    func updateCurrentUserData(image: UIImage) {
+    func updateCurrentUserData(image: UIImage, completion: @escaping (Bool) -> Void) {
         guard let imageData = image.pngData() else {
             return
         }
@@ -73,7 +124,7 @@ class EditService: EditServiceProtocol {
                 self.processError(errorID: error!.code)
                 return
             }
-            self.storage.child("images/users/\(uid).png").downloadURL() { url, error in
+            self.storage.child("images/users/\(uid).png").downloadURL { url, error in
                 guard let url = url, error == nil else {
                     return
                 }
@@ -84,6 +135,7 @@ class EditService: EditServiceProtocol {
             }
         }
     }
+    //MARK: - Private methods
     private func processError(errorID: Int) {
         switch errorID {
         case StorageErrorCode.objectNotFound.rawValue:
