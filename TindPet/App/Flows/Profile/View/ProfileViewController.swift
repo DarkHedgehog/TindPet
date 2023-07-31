@@ -9,11 +9,13 @@ import UIKit
 
 protocol ProfilePresenterProtocol {
     func viewDidLoad()
-    func tabLogoutButton()
+    func tapLogoutButton()
     func addPetButtonAction()
     func selectedPetImage(index: IndexPath)
     func pickedImage(image: UIImage)
     func deletePet(index: IndexPath)
+    var user: UserInfo { get set }
+    var avatar: UIImage { get set }
 }
 
 final class ProfileViewController: UIViewController {
@@ -59,7 +61,7 @@ final class ProfileViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logoutButton)
     }
     @objc func logoutButtonAction() {
-        presenter?.tabLogoutButton()
+        presenter?.tapLogoutButton()
     }
     // MARK: - Functions
     private func addObserver() {
@@ -129,7 +131,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                     withIdentifier: AvatarCell.identifier,
                     for: indexPath) as? AvatarCell else { return UITableViewCell() }
             cell.selectionStyle = .none
-            cell.configure(avatar: avatarImage ?? UIImage())
+            cell.configure(avatar: presenter?.avatar ?? UIImage())
+            print("avatar configured")
             return cell
         case 1:
             guard
@@ -138,6 +141,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                     for: indexPath) as? AccountInfoCell else { return UITableViewCell() }
             cell.selectionStyle = .none
             cell.delegate = self
+            if let user = presenter?.user {
+                cell.configure(userInfo: user)
+            }
             return cell
         default:
             guard
@@ -174,8 +180,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 }
 // MARK: - ProfileViewProtocol
 extension ProfileViewController: ProfileViewProtocol {
-    func setAvatarImge(avatat: UIImage) {
-        avatarImage = avatat
+    func reloadTableView() {
+        profileView.tableView.reloadData()
+    }
+    func showInfo(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
+    func setAvatarImage(avatar: UIImage) {
+        avatarImage = avatar
         DispatchQueue.main.async {
             self.profileView.tableView.reloadData()
         }

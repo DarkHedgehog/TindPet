@@ -15,7 +15,7 @@ class AccountInfoCell: UITableViewCell {
     static let identifier = "AccountInfoCell"
     weak var delegate: AccountInfoCellDelegate?
     // MARK: - Subviews
-    lazy var nameSurnameLable: UILabel = {
+    lazy var nameSurnameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 24)
@@ -32,7 +32,7 @@ class AccountInfoCell: UITableViewCell {
         button.tintColor = .systemGreen
         return button
     }()
-    lazy var locationLable: UILabel = {
+    lazy var locationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18)
@@ -41,7 +41,7 @@ class AccountInfoCell: UITableViewCell {
         label.text = "Челябинск, Россия"
         return label
     }()
-    lazy var searchLable: UILabel = {
+    lazy var searchLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 18)
@@ -62,7 +62,7 @@ class AccountInfoCell: UITableViewCell {
         segment.translatesAutoresizingMaskIntoConstraints = false
         return segment
     }()
-    lazy var infoLable: UILabel = {
+    lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 18)
@@ -70,7 +70,7 @@ class AccountInfoCell: UITableViewCell {
         label.text = "Контакты"
         return label
     }()
-    lazy var addressLable: UILabel = {
+    lazy var addressLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 14)
@@ -79,7 +79,7 @@ class AccountInfoCell: UITableViewCell {
         label.text = "Адрес: Россия, Челябинск, Загорская, 60"
         return label
     }()
-    lazy var emailLable: UILabel = {
+    lazy var emailLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 14)
@@ -118,7 +118,10 @@ class AccountInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - Configure
-    func configure() {
+    func configure(userInfo: UserInfo) {
+        nameSurnameLabel.text = "\(userInfo.name) \(userInfo.surname)"
+        emailLabel.text = userInfo.email
+        segmentControl.selectedSegmentIndex = userInfo.preference
     }
     @objc private func tapAddButton() {
         delegate?.addPetButtonAction()
@@ -126,42 +129,42 @@ class AccountInfoCell: UITableViewCell {
     // MARK: - UI
     private func setUI() {
         backgroundColor = .systemBackground
-        contentView.addSubview(nameSurnameLable)
+        contentView.addSubview(nameSurnameLabel)
         contentView.addSubview(locationButton)
-        contentView.addSubview(locationLable)
-        contentView.addSubview(searchLable)
+        contentView.addSubview(locationLabel)
+        contentView.addSubview(searchLabel)
         contentView.addSubview(segmentControl)
-        contentView.addSubview(infoLable)
-        contentView.addSubview(addressLable)
-        contentView.addSubview(emailLable)
+        contentView.addSubview(infoLabel)
+        contentView.addSubview(addressLabel)
+        contentView.addSubview(emailLabel)
         contentView.addSubview(lineView)
         contentView.addSubview(addPetButton)
         NSLayoutConstraint.activate([
-            nameSurnameLable.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            nameSurnameLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            nameSurnameLable.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            locationButton.topAnchor.constraint(equalTo: nameSurnameLable.bottomAnchor, constant: 16),
-            locationButton.leftAnchor.constraint(equalTo: nameSurnameLable.leftAnchor),
+            nameSurnameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            nameSurnameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            nameSurnameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            locationButton.topAnchor.constraint(equalTo: nameSurnameLabel.bottomAnchor, constant: 16),
+            locationButton.leftAnchor.constraint(equalTo: nameSurnameLabel.leftAnchor),
             locationButton.heightAnchor.constraint(equalToConstant: 30),
             locationButton.widthAnchor.constraint(equalToConstant: 30),
-            locationLable.leftAnchor.constraint(equalTo: locationButton.rightAnchor, constant: 12),
-            locationLable.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
-            locationLable.centerYAnchor.constraint(equalTo: locationButton.centerYAnchor),
-            searchLable.topAnchor.constraint(equalTo: locationLable.bottomAnchor, constant: 12),
-            searchLable.leftAnchor.constraint(equalTo: nameSurnameLable.leftAnchor),
-            segmentControl.topAnchor.constraint(equalTo: searchLable.bottomAnchor, constant: 8),
+            locationLabel.leftAnchor.constraint(equalTo: locationButton.rightAnchor, constant: 12),
+            locationLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+            locationLabel.centerYAnchor.constraint(equalTo: locationButton.centerYAnchor),
+            searchLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 12),
+            searchLabel.leftAnchor.constraint(equalTo: nameSurnameLabel.leftAnchor),
+            segmentControl.topAnchor.constraint(equalTo: searchLabel.bottomAnchor, constant: 8),
             segmentControl.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             segmentControl.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             segmentControl.heightAnchor.constraint(equalToConstant: 28),
-            infoLable.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 16),
-            infoLable.leftAnchor.constraint(equalTo: segmentControl.leftAnchor),
-            addressLable.topAnchor.constraint(equalTo: infoLable.bottomAnchor, constant: 8),
-            addressLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 28),
-            addressLable.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            emailLable.topAnchor.constraint(equalTo: addressLable.bottomAnchor, constant: 8),
-            emailLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 28),
-            emailLable.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            lineView.topAnchor.constraint(equalTo: emailLable.bottomAnchor, constant: 16),
+            infoLabel.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 16),
+            infoLabel.leftAnchor.constraint(equalTo: segmentControl.leftAnchor),
+            addressLabel.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 8),
+            addressLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 28),
+            addressLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            emailLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 8),
+            emailLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 28),
+            emailLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            lineView.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 16),
             lineView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             lineView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             lineView.heightAnchor.constraint(equalToConstant: 2),

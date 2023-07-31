@@ -15,10 +15,19 @@ protocol PetServiceProtocol {
     func editPet(petId: String, age: Int)
     func editPet(petId: String, species: Species)
     func getPets(completion: @escaping ([PetInfo]) -> Void)
+    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (Bool) -> Void)
     var delegate: PetServiceDelegate? { get set }
 }
 
 protocol PetServiceDelegate {
+    func didReceiveObjectNotFoundError()
+    func didReceiveUnauthenticatedError()
+    func didReceiveUnauthorizedError()
+    func didReceiveCancelledError()
+    func didReceiveRetryLimitExceededError()
+    func didReceiveDocumentAlreadyExistsError()
+    func didReceiveDataLossError()
+    func didReceiveUnavailableError()
     func didReceiveUnknownError()
     func didNotReceiveResult()
 }
@@ -33,7 +42,7 @@ class PetService: PetServiceProtocol {
         guard let uid = uid else { return }
         let ref = firestore.collection("users").document(uid).collection("pets").document()
         let petId = ref.documentID
-        addPetPhoto(petID: ref.documentID, image: photo, completion: { url in
+        addPetPhoto(petID: petId, image: photo, completion: { url in
             let photoUrl = url
             let petData: [String: Any] = [
                 "name": petInfo.name,
@@ -42,7 +51,7 @@ class PetService: PetServiceProtocol {
                 "photo": photoUrl,
                 "date": Date(),
                 "ownerID": uid
-             ]
+            ]
             ref.setData(petData, completion: { error in
                 if let err = error as? NSError {
                     self.processError(errorID: err.code)
@@ -51,7 +60,6 @@ class PetService: PetServiceProtocol {
             })
             completion(true)
         })
-        
     }
     func editPet(petId: String, name: String) {
         guard let uid = uid else { return }
@@ -90,30 +98,53 @@ class PetService: PetServiceProtocol {
             }
         })
     }
-    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (String) -> Void) {
+    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (Bool) -> Void) {
+        guard let uid = uid else { return }
         guard let imageData = image.pngData() else {
+            completion(false)
             return
         }
-        //replace with userid
-        storage.child("images/users/\(petID).png").putData(imageData, metadata: nil) { _, error in
+        storage.child("images/pets/\(petID).png").putData(imageData, metadata: nil) { _, error in
             guard error == nil else {
                 let error = error as? NSError
                 self.processError(errorID: error!.code)
+                completion(false)
                 return
             }
-            self.storage.child("images/users/\(petID).png").downloadURL() { url, error in
+            self.storage.child("images/pets/\(petID).png").downloadURL() { url, error in
                 guard let url = url, error == nil else {
+                    completion(false)
                     return
                 }
                 let urlString = url.absoluteString
-                //replace with saving url
                 print("Download URL: \(urlString)")
-                completion(urlString)
+                self.firestore.collection("users").document(uid).collection("pets").document(petID).updateData(["photo": urlString])
+                completion(true)
             }
         }
     }
     private func processError(errorID: Int) {
         switch errorID {
+        case StorageErrorCode.objectNotFound.rawValue:
+            delegate?.didReceiveObjectNotFoundError()
+        case StorageErrorCode.unauthenticated.rawValue:
+            delegate?.didReceiveUnauthenticatedError()
+        case StorageErrorCode.unauthorized.rawValue:
+            delegate?.didReceiveUnauthorizedError()
+        case StorageErrorCode.cancelled.rawValue:
+            delegate?.didReceiveCancelledError()
+        case StorageErrorCode.retryLimitExceeded.rawValue:
+            delegate?.didReceiveRetryLimitExceededError()
+        case FirestoreErrorCode.notFound.rawValue:
+            delegate?.didReceiveObjectNotFoundError()
+        case FirestoreErrorCode.cancelled.rawValue:
+            delegate?.didReceiveCancelledError()
+        case FirestoreErrorCode.alreadyExists.rawValue:
+            delegate?.didReceiveDocumentAlreadyExistsError()
+        case FirestoreErrorCode.dataLoss.rawValue:
+            delegate?.didReceiveDataLossError()
+        case FirestoreErrorCode.unavailable.rawValue:
+            delegate?.didReceiveUnavailableError()
         default:
             delegate?.didReceiveUnknownError()
         }
