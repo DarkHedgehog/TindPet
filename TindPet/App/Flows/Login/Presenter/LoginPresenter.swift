@@ -15,7 +15,6 @@ class LoginPresenter {
     var loginService: LoginServiceProtocol
     var view: LoginViewProtocol?
     var coordinator: AppCoordinatorProtocol?
-    var networkService: FirebaseServiceProtocol?
     init(loginService: LoginServiceProtocol) {
         self.loginService = loginService
         self.loginService.delegate = self
@@ -58,7 +57,7 @@ extension LoginPresenter: LoginServiceDelegate {
         view?.showInfo(title: "Ошибка", message: "Объект не найден в базе данных")
     }
     func didReceiveUnauthenticatedError() {
-        view?.showInfo(title: "Ошибка", message: "Вы не авторизированы")
+        view?.showInfo(title: "Ошибка авторизации", message: "Вы не авторизированы")
     }
     func didReceiveUnauthorizedError() {
         view?.showInfo(title: "Ошибка", message: "У вас нет прав для совершения данной операции")

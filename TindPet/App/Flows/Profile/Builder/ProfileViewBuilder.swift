@@ -10,7 +10,9 @@ import UIKit
 
 enum ProfileViewBuilder {
     static func build(coordinator: AppCoordinatorProtocol) -> UIViewController {
-        let presenter = ProfilePresenter()
+        let editService = EditService()
+        let petService = PetService()
+        let presenter = ProfilePresenter(editService: editService, petService: petService)
         let controller = ProfileViewController()
         presenter.view = controller
         presenter.coordinator = coordinator

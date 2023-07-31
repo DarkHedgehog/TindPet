@@ -15,7 +15,7 @@ protocol PetServiceProtocol {
     func editPet(petId: String, age: Int)
     func editPet(petId: String, species: Species)
     func getPets(completion: @escaping ([PetInfo]) -> Void)
-    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (String) -> Void)
+    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (Bool) -> Void)
     var delegate: PetServiceDelegate? { get set }
 }
 
@@ -98,24 +98,28 @@ class PetService: PetServiceProtocol {
             }
         })
     }
-    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (String) -> Void) {
+    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (Bool) -> Void) {
+        guard let uid = uid else { return }
         guard let imageData = image.pngData() else {
+            completion(false)
             return
         }
-        storage.child("images/users/\(petID).png").putData(imageData, metadata: nil) { _, error in
+        storage.child("images/pets/\(petID).png").putData(imageData, metadata: nil) { _, error in
             guard error == nil else {
                 let error = error as? NSError
                 self.processError(errorID: error!.code)
+                completion(false)
                 return
             }
-            self.storage.child("images/users/\(petID).png").downloadURL() { url, error in
+            self.storage.child("images/pets/\(petID).png").downloadURL() { url, error in
                 guard let url = url, error == nil else {
+                    completion(false)
                     return
                 }
                 let urlString = url.absoluteString
-                //replace with saving url
                 print("Download URL: \(urlString)")
-                completion(urlString)
+                self.firestore.collection("users").document(uid).collection("pets").document(petID).updateData(["photo": urlString])
+                completion(true)
             }
         }
     }

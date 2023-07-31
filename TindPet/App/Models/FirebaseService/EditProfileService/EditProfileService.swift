@@ -17,11 +17,13 @@ protocol EditServiceProtocol {
     func updateCurrentUserData(isOwner: Bool, completion: @escaping (Bool) -> Void)
     func updateCurrentUserData(photoUrl: String, completion: @escaping (Bool) -> Void)
     func updateCurrentUserData(image: UIImage, completion: @escaping (Bool) -> Void)
+    func updateCurrentUserData(preference: Int, completion: @escaping (Bool) -> Void)
+    func getCurrentUserInfo(completion: @escaping (Bool, UserInfo?) -> Void)
+    func signOut(completion: @escaping (Bool) -> Void)
     var delegate: EditServiceDelegate? { get set }
 }
 
 protocol EditServiceDelegate {
-    func didReceiveResult()
     func didReceiveObjectNotFoundError()
     func didReceiveUnauthenticatedError()
     func didReceiveUnauthorizedError()
@@ -103,7 +105,7 @@ class EditService: EditServiceProtocol {
     }
     func updateCurrentUserData(photoUrl: String, completion: @escaping (Bool) -> Void) {
         guard let uid = uid else { return }
-        firestore.collection("users").document(uid).updateData(["photoUrl": photoUrl]) { error in
+        firestore.collection("users").document(uid).updateData(["photo": photoUrl]) { error in
             guard error == nil else {
                 let error = error as? NSError
                 self.processError(errorID: error!.code)
@@ -111,6 +113,25 @@ class EditService: EditServiceProtocol {
                 return
             }
             completion(true)
+        }
+    }
+    func updateCurrentUserData(preference: Int, completion: @escaping (Bool) -> Void) {
+        guard let uid = uid else { return }
+        //        if firestore.collection("users").document(uid).upda
+        firestore.collection("users").document(uid).updateData(["preference": preference]) { error in
+            if error == nil {
+                completion(true)
+            } else {
+                let error = error as? NSError
+                switch error!.code {
+                case FirestoreErrorCode.notFound.rawValue:
+                    self.firestore.collection("users").document(uid).setData(["preference": preference])
+                default:
+                    self.processError(errorID: error!.code)
+                    completion(false)
+                    return
+                }
+            }
         }
     }
     func updateCurrentUserData(image: UIImage, completion: @escaping (Bool) -> Void) {
@@ -135,7 +156,74 @@ class EditService: EditServiceProtocol {
             }
         }
     }
-    //MARK: - Private methods
+    func signOut(completion: @escaping (Bool) -> Void) {
+        do {
+            try auth.signOut()
+        } catch {
+            if let error = error as? NSError {
+                processError(errorID: error.code)
+                completion(false)
+            }
+        }
+        completion(true)
+    }
+    func getCurrentUserInfo(completion: @escaping (Bool, UserInfo?) -> Void) {
+        guard let uid = auth.currentUser?.uid else {
+            print("not logged in")
+            completion(false, nil)
+            return
+        }
+        firestore.collection("users").document(uid).getDocument { [weak self] snapshot, error in
+            guard let strongSelf = self else {
+                completion(false, nil)
+                return
+            }
+            if let error = error as? NSError {
+                print(error)
+                strongSelf.processError(errorID: error.code)
+                completion(false, nil)
+                return
+            }
+            var preference = 0
+            guard let dic = snapshot?.data(),
+               let email = dic[Constants.email] as? String,
+               let name = dic[Constants.name] as? String,
+               let surname = dic[Constants.surname] as? String,
+               let isOwner = dic["isOwner"] as? Bool else {
+                print("guard dic failed")
+                completion(false, nil)
+                return
+            }
+            if let pref = dic["preference"] as? Int {
+                preference = pref
+            } else {
+                strongSelf.updateCurrentUserData(preference: preference) { didLoad in
+                    if didLoad {
+                        print("did load preference")
+                    } else {
+                        print("did not load preference")
+                    }
+                }
+            }
+            if let photo = dic["photo"] as? String {
+                completion(true, UserInfo(email: email,
+                                    name: name,
+                                    surname: surname,
+                                    isOwner: isOwner,
+                                    photo: photo,
+                                    preference: preference))
+                print("\(email), \(name), \(photo)")
+            } else {
+                completion(true, UserInfo(email: email,
+                                    name: name,
+                                    surname: surname,
+                                    isOwner: isOwner,
+                                    preference: preference))
+            }
+            print("\(email), \(name)")//заменить на функции в делегате
+        }
+    }
+    // MARK: - Private methods
     private func processError(errorID: Int) {
         switch errorID {
         case StorageErrorCode.objectNotFound.rawValue:

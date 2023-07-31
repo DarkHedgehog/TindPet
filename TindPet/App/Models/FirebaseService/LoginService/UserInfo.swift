@@ -9,12 +9,13 @@ import Foundation
 
 struct UserInfo {
 //    let uid: String
-    let email: String
+    var email: String = ""
 //    let password: String
-    let name: String
-    let surname: String
-    var isOwner: Bool
+    var name: String = ""
+    var surname: String = ""
+    var isOwner: Bool = false
     var photo: String?
+    var preference: Int = 0
 //    var locationCountry: String
 //    var locationCity: String
 }
