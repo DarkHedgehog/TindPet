@@ -220,7 +220,7 @@ class EditService: EditServiceProtocol {
                                     isOwner: isOwner,
                                     preference: preference))
             }
-            print("\(email), \(name)")//заменить на функции в делегате
+            print("\(email), \(name)")
         }
     }
     // MARK: - Private methods

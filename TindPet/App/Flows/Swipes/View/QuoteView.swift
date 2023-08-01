@@ -8,11 +8,9 @@
 import UIKit
 
 class QuoteView: UIView {
-    
     var didRate: (() -> Void)?
     var presenter: SwipesPresenterProtocol?
-    
-    private let label: UILabel = {
+    let label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         label.numberOfLines = 3
@@ -22,8 +20,7 @@ class QuoteView: UIView {
         label.layer.cornerRadius = 0
         return label
     }()
-    
-    private let thumbImageView: UIImageView = {
+    let thumbImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = false
@@ -32,7 +29,6 @@ class QuoteView: UIView {
         imageView.tintColor = UIColor.green
         return imageView
     }()
-    
     private var animator: UIViewPropertyAnimator?
     private var like = true
     // MARK: - Override
@@ -40,12 +36,10 @@ class QuoteView: UIView {
         super.init(frame: frame)
         setup()
     }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         if animator == nil {
@@ -53,7 +47,6 @@ class QuoteView: UIView {
             thumbImageView.frame = bounds.insetBy(dx: 20, dy: 10)
         }
     }
-
     private func setup() {
         addSubview(label)
         addSubview(thumbImageView)
@@ -85,7 +78,6 @@ extension QuoteView {
         default:
             break
         }
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.label.frame = self.bounds
             self.thumbImageView.frame = self.bounds
