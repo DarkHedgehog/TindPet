@@ -48,11 +48,12 @@ class SwipeService: SwipeServiceProtocol {
             if let error = error as? NSError {
                 print(error)
                 strongSelf.processError(errorID: error.code)
-                completion(false, 0)
+                completion(true, 0)
                 return
             }
             guard let dic = snapshot?.data() else {
                 print("guard dic failed")
+                strongSelf.delegate?.didNotReceiveResult()
                 completion(false, nil)
                 return
             }
@@ -75,7 +76,6 @@ class SwipeService: SwipeServiceProtocol {
             }
         }
     }
-    
     func petDisliked(petID: String) {
         guard let uid = uid else { return }
         let ref = firestore.collection("users").document(uid).collection("petsDisliked").document()
@@ -89,7 +89,7 @@ class SwipeService: SwipeServiceProtocol {
     }
     func getPets(preference: Int, completion: @escaping (Bool, [PetInfo]?) -> Void) {
         guard let uid = uid else { return }
-        var pets = [PetInfo]()
+        var pets: [PetInfo] = [PetInfo]()
         if preference == 0 {
             firestore.collectionGroup("pets").getDocuments { [weak self] snapshot, error in
                 guard let strongSelf = self else {
@@ -104,12 +104,14 @@ class SwipeService: SwipeServiceProtocol {
                 }
                 guard let docs = snapshot?.documents else {
                     print("guard docs failed")
+                    strongSelf.delegate?.didNotReceiveResult()
                     completion(false, nil)
                     return
                 }
                 for doc in docs {
                     var pet = PetInfo()
                     guard let name = doc["name"] as? String,
+                          let petID = doc["petID"] as? String,
                           let age = doc["age"] as? Int,
                           let photo = doc["photo"] as? String,
                           let species = doc["species"] as? Int,
@@ -118,6 +120,7 @@ class SwipeService: SwipeServiceProtocol {
                         completion(false, nil)
                         return
                     }
+                    pet.petID = petID
                     pet.name = name
                     pet.age = age
                     pet.photo = photo
@@ -141,12 +144,14 @@ class SwipeService: SwipeServiceProtocol {
                 }
                 guard let docs = snapshot?.documents else {
                     print("guard docs failed")
+                    strongSelf.delegate?.didNotReceiveResult()
                     completion(false, nil)
                     return
                 }
                 for doc in docs {
                     var pet = PetInfo()
                     guard let name = doc["name"] as? String,
+                          let petID = doc["petID"] as? String,
                           let age = doc["age"] as? Int,
                           let photo = doc["photo"] as? String,
                           let species = doc["species"] as? Int,
@@ -155,6 +160,7 @@ class SwipeService: SwipeServiceProtocol {
                         completion(false, nil)
                         return
                     }
+                    pet.petID = petID
                     pet.name = name
                     pet.age = age
                     pet.photo = photo

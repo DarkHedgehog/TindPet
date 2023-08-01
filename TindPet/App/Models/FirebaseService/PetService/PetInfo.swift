@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct PetInfo {
+    var petID: String = ""
     var name: String = ""
     var age: Int = 0
     var species: Int = 0

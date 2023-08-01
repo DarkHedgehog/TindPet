@@ -45,6 +45,7 @@ class PetService: PetServiceProtocol {
         addPetPhoto(petID: petId, image: photo, completion: { url in
             let photoUrl = url
             let petData: [String: Any] = [
+                "petID": petId,
                 "name": petInfo.name,
                 "age": petInfo.age,
                 "species": petInfo.species,
@@ -81,18 +82,19 @@ class PetService: PetServiceProtocol {
             if error == nil {
                 for document in snapshot!.documents {
                 if let ownerID = document["ownerID"] as? String,
+                   let petID = document["petID"] as? String,
                    let name = document["name"] as? String,
                    let photo = document["photo"] as? String,
                    let species = document["species"] as? Int,
                    let age = document["age"] as? Int {
-                    let petInfo = PetInfo(name: name, age: age, species: species, ownerID: ownerID, photo: photo)
+                    let petInfo = PetInfo(petID: petID, name: name, age: age, species: species, ownerID: ownerID, photo: photo)
                     pets.append(petInfo)
                      }
                  }
                 completion(pets)
             } else {
                 if let error = error as? NSError {
-                    // TODO: прописать работу с ошибками
+                    self.processError(errorID: error.code)
                     print(error)
                 }
             }
