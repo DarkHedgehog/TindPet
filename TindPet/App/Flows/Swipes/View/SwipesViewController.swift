@@ -8,7 +8,7 @@
 import UIKit
 
 class SwipesViewController: UIViewController {
-    
+
     var presenter: SwipesPresenterProtocol? {
         didSet {
             swipeView.presenter = self.presenter

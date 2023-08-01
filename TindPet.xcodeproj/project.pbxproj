@@ -42,6 +42,7 @@
 		D74DC72B2A6D8EAF005439E1 /* PetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72A2A6D8EAF005439E1 /* PetService.swift */; };
 		D74DC72F2A6D9067005439E1 /* PetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72E2A6D9067005439E1 /* PetInfo.swift */; };
 		D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */; };
+		D7571BE52A785D2A008D9EB7 /* SwipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571BE42A785D2A008D9EB7 /* SwipeService.swift */; };
 		D75832B52A59AB7800E434FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B42A59AB7800E434FD /* FirebaseAnalytics */; };
 		D75832B72A59AB7800E434FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B62A59AB7800E434FD /* FirebaseAuth */; };
 		D75832B92A59AB7800E434FD /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B82A59AB7800E434FD /* FirebaseAuthCombine-Community */; };
@@ -116,6 +117,7 @@
 		D74DC72A2A6D8EAF005439E1 /* PetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetService.swift; sourceTree = "<group>"; };
 		D74DC72E2A6D9067005439E1 /* PetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfo.swift; sourceTree = "<group>"; };
 		D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
+		D7571BE42A785D2A008D9EB7 /* SwipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeService.swift; sourceTree = "<group>"; };
 		D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D7589A982A673F6300145760 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		D7589A9A2A673FB700145760 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		481116DC2A66888200FFEE1C /* FirebaseService */ = {
 			isa = PBXGroup;
 			children = (
+				D7571BE32A785D0B008D9EB7 /* SwipeService */,
 				D74DC7262A6D7C7E005439E1 /* EditProfileService */,
 				D7589A9C2A67416F00145760 /* LoginService */,
 				D7589A972A673F1100145760 /* RegistrationService */,
@@ -472,6 +475,14 @@
 			path = PetService;
 			sourceTree = "<group>";
 		};
+		D7571BE32A785D0B008D9EB7 /* SwipeService */ = {
+			isa = PBXGroup;
+			children = (
+				D7571BE42A785D2A008D9EB7 /* SwipeService.swift */,
+			);
+			path = SwipeService;
+			sourceTree = "<group>";
+		};
 		D7589A972A673F1100145760 /* RegistrationService */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,6 +678,7 @@
 				755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */,
 				D76D0AE12A69822F0041BEC6 /* UserInfo.swift in Sources */,
 				758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */,
+				D7571BE52A785D2A008D9EB7 /* SwipeService.swift in Sources */,
 				D7589A992A673F6300145760 /* RegistrationService.swift in Sources */,
 				D74DC72B2A6D8EAF005439E1 /* PetService.swift in Sources */,
 				758D967F2A437148005A12E1 /* AppCoordinator.swift in Sources */,

@@ -17,6 +17,7 @@ protocol SwipesPresenterProtocol {
 
 class SwipesPresenter {
     var view: SwipesViewProtocol?
+//    var swipeService: SwipeServiceProtocol
 }
 
 extension SwipesPresenter: SwipesPresenterProtocol {

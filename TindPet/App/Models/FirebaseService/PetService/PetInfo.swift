@@ -11,7 +11,7 @@ import UIKit
 struct PetInfo {
     var name: String = ""
     var age: Int = 0
-    var species: Species = .cat
+    var species: Int = 0
     var ownerID: String = ""
     var photo: String?
     var image: UIImage?

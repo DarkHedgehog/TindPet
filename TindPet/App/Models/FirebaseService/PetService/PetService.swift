@@ -83,7 +83,7 @@ class PetService: PetServiceProtocol {
                 if let ownerID = document["ownerID"] as? String,
                    let name = document["name"] as? String,
                    let photo = document["photo"] as? String,
-                   let species = document["species"] as? Species,
+                   let species = document["species"] as? Int,
                    let age = document["age"] as? Int {
                     let petInfo = PetInfo(name: name, age: age, species: species, ownerID: ownerID, photo: photo)
                     pets.append(petInfo)
