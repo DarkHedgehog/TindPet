@@ -40,6 +40,7 @@ class SwipeService: SwipeServiceProtocol {
     
     func getUserPreference(completion: @escaping (Bool, Int?) -> Void) {
         guard let uid = uid else { return }
+        print(uid)
         firestore.collection("users").document(uid).getDocument { [weak self] snapshot, error in
             guard let strongSelf = self else {
                 completion(false, nil)

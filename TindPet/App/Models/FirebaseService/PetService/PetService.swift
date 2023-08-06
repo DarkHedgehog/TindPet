@@ -14,8 +14,9 @@ protocol PetServiceProtocol {
     func editPet(petId: String, name: String)
     func editPet(petId: String, age: Int)
     func editPet(petId: String, species: Species)
-    func getPets(completion: @escaping ([PetInfo]) -> Void)
+    func getPets(completion: @escaping (Bool, [PetInfo]?) -> Void)
     func addPetPhoto(petID: String, image: UIImage, completion: @escaping (Bool) -> Void)
+    func deletePet(petID: String, completion: @escaping (Bool) -> Void)
     var delegate: PetServiceDelegate? { get set }
 }
 
@@ -74,7 +75,7 @@ class PetService: PetServiceProtocol {
         guard let uid = uid else { return }
         firestore.collection("users").document(uid).collection("pets").document(petId).updateData(["species": species])
     }
-    func getPets(completion: @escaping ([PetInfo]) -> Void) {
+    func getPets(completion: @escaping (Bool, [PetInfo]?) -> Void) {
         guard let uid = uid else { return }
         var pets: [PetInfo] = []
         let ref = firestore.collection("users").document(uid).collection("pets")
@@ -91,11 +92,12 @@ class PetService: PetServiceProtocol {
                     pets.append(petInfo)
                      }
                  }
-                completion(pets)
+                completion(true, pets)
             } else {
                 if let error = error as? NSError {
                     self.processError(errorID: error.code)
                     print(error)
+                    completion(false, nil)
                 }
             }
         })
@@ -122,6 +124,19 @@ class PetService: PetServiceProtocol {
                 print("Download URL: \(urlString)")
                 self.firestore.collection("users").document(uid).collection("pets").document(petID).updateData(["photo": urlString])
                 completion(true)
+            }
+        }
+    }
+    func deletePet(petID: String, completion: @escaping (Bool) -> Void) {
+        guard let uid = uid else { return }
+        firestore.collection("users").document(uid).collection("pets").document(petID).delete { error in
+            if error == nil {
+                completion(true)
+            } else {
+                let error = error as? NSError
+                self.processError(errorID: error!.code)
+                completion(false)
+                return
             }
         }
     }

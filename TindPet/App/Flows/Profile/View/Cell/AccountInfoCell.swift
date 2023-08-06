@@ -9,6 +9,8 @@ import UIKit
 
 protocol AccountInfoCellDelegate: AnyObject {
     func addPetButtonAction()
+    func tapEditButton()
+    func tapSaveButton()
 }
 
 class AccountInfoCell: UITableViewCell {
@@ -24,6 +26,67 @@ class AccountInfoCell: UITableViewCell {
         label.textColor = .black
         label.text = "Карина Осипова"
         return label
+    }()
+    lazy var editNameSurnameButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.image = UIImage(
+            systemName: "square.and.pencil",
+            withConfiguration: UIImage.SymbolConfiguration(scale: .large))
+        config.baseBackgroundColor = .systemGray2
+        config.imagePlacement = .all
+        config.imagePadding = 8.0
+        config.cornerStyle = .medium
+        let button = UIButton(type: .roundedRect)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = config
+        button.addTarget(self, action: #selector(tapEditButton), for: .touchUpInside)
+        return button
+    }()
+    lazy var saveButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+//        config.title = "Сохранить"
+        config.baseBackgroundColor = .systemGray2
+        config.imagePlacement = .all
+        config.imagePadding = 8.0
+        config.cornerStyle = .medium
+        let button = UIButton(type: .roundedRect)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = config
+        button.setTitle("Save", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 10)
+        button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
+        button.isHidden = true
+        return button
+    }()
+    lazy var nameTextField: UITextField = {
+        let textF = UITextField()
+        textF.translatesAutoresizingMaskIntoConstraints = false
+        textF.borderStyle = .none
+        textF.placeholder = "Имя"
+        textF.backgroundColor = .white
+        textF.clearButtonMode = .whileEditing
+        textF.keyboardType = .default
+        textF.textContentType = .givenName
+        textF.autocapitalizationType = .none
+        textF.font = UIFont.boldSystemFont(ofSize: 16)
+        textF.isHidden = true
+        textF.backgroundColor = .systemGray6
+        return textF
+    }()
+    lazy var surnameTextField: UITextField = {
+        let textF = UITextField()
+        textF.translatesAutoresizingMaskIntoConstraints = false
+        textF.borderStyle = .none
+        textF.placeholder = "Фамилия"
+        textF.backgroundColor = .white
+        textF.clearButtonMode = .whileEditing
+        textF.keyboardType = .default
+        textF.textContentType = .familyName
+        textF.autocapitalizationType = .none
+        textF.font = UIFont.boldSystemFont(ofSize: 16)
+        textF.isHidden = true
+        textF.backgroundColor = .systemGray6
+        return textF
     }()
     lazy var locationButton: UIButton = {
         let button = UIButton(type: .system)
@@ -123,12 +186,36 @@ class AccountInfoCell: UITableViewCell {
         emailLabel.text = userInfo.email
         segmentControl.selectedSegmentIndex = userInfo.preference
     }
+    func addConstraints() {
+//        NSLayoutConstraint.activate([constraints])
+    }
+    func deleteConstraints() {
+//        obfef.removeConstraint(constraint)
+    }
     @objc private func tapAddButton() {
         delegate?.addPetButtonAction()
+    }
+    @objc private func tapEditButton() {
+        nameTextField.isHidden = false
+        surnameTextField.isHidden = false
+        saveButton.isHidden = false
+        editNameSurnameButton.isHidden = true
+        nameSurnameLabel.isHidden = true
+    }
+    @objc private func tapSaveButton() {
+        nameTextField.isHidden = true
+        surnameTextField.isHidden = true
+        saveButton.isHidden = true
+        editNameSurnameButton.isHidden = false
+        nameSurnameLabel.isHidden = false
     }
     // MARK: - UI
     private func setUI() {
         backgroundColor = .systemBackground
+        contentView.addSubview(editNameSurnameButton)
+        contentView.addSubview(saveButton)
+        contentView.addSubview(nameTextField)
+        contentView.addSubview(surnameTextField)
         contentView.addSubview(nameSurnameLabel)
         contentView.addSubview(locationButton)
         contentView.addSubview(locationLabel)
@@ -140,10 +227,27 @@ class AccountInfoCell: UITableViewCell {
         contentView.addSubview(lineView)
         contentView.addSubview(addPetButton)
         NSLayoutConstraint.activate([
+            editNameSurnameButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            editNameSurnameButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            editNameSurnameButton.heightAnchor.constraint(equalToConstant: 30),
+            editNameSurnameButton.widthAnchor.constraint(equalToConstant: 30),
+            saveButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            saveButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            saveButton.heightAnchor.constraint(equalToConstant: 30),
+            saveButton.widthAnchor.constraint(equalToConstant: 70),
             nameSurnameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             nameSurnameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            nameSurnameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            locationButton.topAnchor.constraint(equalTo: nameSurnameLabel.bottomAnchor, constant: 16),
+            nameSurnameLabel.rightAnchor.constraint(equalTo: editNameSurnameButton.leftAnchor, constant: -16),
+            nameTextField.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            nameTextField.heightAnchor.constraint(equalToConstant: 30),
+            nameTextField.widthAnchor.constraint(equalToConstant: 120),
+            nameTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            nameTextField.rightAnchor.constraint(equalTo: surnameTextField.leftAnchor, constant: -10),
+            surnameTextField.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            surnameTextField.heightAnchor.constraint(equalToConstant: 30),
+            surnameTextField.leftAnchor.constraint(equalTo: nameTextField.rightAnchor, constant: 10),
+            surnameTextField.rightAnchor.constraint(equalTo: saveButton.leftAnchor, constant: -16),
+            locationButton.topAnchor.constraint(equalTo: nameSurnameLabel.bottomAnchor),
             locationButton.leftAnchor.constraint(equalTo: nameSurnameLabel.leftAnchor),
             locationButton.heightAnchor.constraint(equalToConstant: 30),
             locationButton.widthAnchor.constraint(equalToConstant: 30),
