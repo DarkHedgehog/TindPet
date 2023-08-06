@@ -14,8 +14,12 @@ protocol ProfilePresenterProtocol {
     func selectedPetImage(index: IndexPath)
     func pickedImage(image: UIImage)
     func deletePet(index: IndexPath)
+    func tapEditButton()
+    func tapSaveButton(name: String?, surname: String?)
+    func savePetButtonAction(petInfo: PetInfo?)
     var user: UserInfo { get set }
     var avatar: UIImage { get set }
+    var pets: [PetInfo] { get set }
 }
 
 final class ProfileViewController: UIViewController {
@@ -25,7 +29,7 @@ final class ProfileViewController: UIViewController {
         return self.view as! ProfileView
     }
     private var avatarImage = UIImage(named: "addPhoto1")
-    private var myPets: [PetModel] = []
+    private var myPets: [PetInfo] = []
     // MARK: - LifeCycle
     override func loadView() {
         super.loadView()
@@ -117,11 +121,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             return 320
         default:
-            return 120
+            return 146
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2 + myPets.count
+        return 2 + (presenter?.pets.count ?? 0)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
@@ -152,7 +156,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                     for: indexPath) as? PetCell else { return UITableViewCell() }
             petCell.selectionStyle = .none
             petCell.delegate = self
-            petCell.configure(model: myPets[indexPath.row - 2])
+            petCell.configure(model: presenter?.pets[indexPath.row - 2] ?? PetInfo())
             return petCell
         }
     }
@@ -181,7 +185,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - ProfileViewProtocol
 extension ProfileViewController: ProfileViewProtocol {
     func reloadTableView() {
-        profileView.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.profileView.tableView.reloadData()
+        }
     }
     func showInfo(title: String, message: String) {
         showAlert(title: title, message: message)
@@ -192,7 +198,7 @@ extension ProfileViewController: ProfileViewProtocol {
             self.profileView.tableView.reloadData()
         }
     }
-    func showPets(pets: [PetModel]) {
+    func showPets(pets: [PetInfo]) {
         self.myPets = pets
         DispatchQueue.main.async {
             self.profileView.tableView.reloadData()
@@ -204,6 +210,32 @@ extension ProfileViewController: ProfileViewProtocol {
 }
 // MARK: - AccountInfoCellDelegate, PetCellDelegate
 extension ProfileViewController: AccountInfoCellDelegate, PetCellDelegate {
+    func savePetButtonAction() {
+        let index = IndexPath(row: 2, section: 0)
+        let cell: PetCell = profileView.tableView.cellForRow(at: index) as! PetCell
+        var petInfo = PetInfo()
+        guard let name = cell.tfName.text,
+              let age = Int(cell.tfAge.text ?? "0"),
+        let image = cell.petPhotoImageView.image  else { return }
+        let species = cell.segmentControl.selectedSegmentIndex
+        petInfo.name = name
+        petInfo.age = age
+        petInfo.species = species
+        petInfo.image = image
+        presenter?.savePetButtonAction(petInfo: petInfo)
+    }
+    func tapEditButton() {
+        presenter?.tapEditButton()
+    }
+    func tapSaveButton() {
+        let index = IndexPath(row: 1, section: 0)
+        let cell: AccountInfoCell = profileView.tableView.cellForRow(at: index) as! AccountInfoCell
+        guard let name = cell.nameTextField.text,
+              let surname = cell.surnameTextField.text,
+              !name.isEmpty,
+              !surname.isEmpty else { return }
+        presenter?.tapSaveButton(name: name, surname: surname)
+    }
     func addPetButtonAction() {
         presenter?.addPetButtonAction()
     }

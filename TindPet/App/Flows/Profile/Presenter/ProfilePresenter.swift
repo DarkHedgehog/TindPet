@@ -9,7 +9,7 @@ import UIKit
 
 protocol ProfileViewProtocol: UIViewController {
     func showImagePicker()
-    func showPets(pets: [PetModel])
+    func showPets(pets: [PetInfo])
     func setAvatarImage(avatar: UIImage)
     func showInfo(title: String, message: String)
     func reloadTableView()
@@ -21,6 +21,7 @@ final class ProfilePresenter {
     var view: ProfileViewProtocol?
     var coordinator: AppCoordinatorProtocol?
     var user = UserInfo()
+    var pets: [PetInfo] = [PetInfo]()
     var avatar = UIImage()
     private var myPets: [PetModel] = []
     private var selectedIndex = 0
@@ -33,14 +34,44 @@ final class ProfilePresenter {
 }
 
 extension ProfilePresenter: ProfilePresenterProtocol {
+    func savePetButtonAction(petInfo: PetInfo?) {
+        guard let petInfo = petInfo else { return }
+        petService.addPet(petInfo: petInfo, photo: petInfo.image!) { didLoad in
+            if didLoad {
+                print("loaded pet")
+            }
+        }
+        //        self.view?.reloadTableView()
+    }
+    func tapEditButton() {
+    }
+    func tapSaveButton(name: String?, surname: String?) {
+        guard let name = name, let surname = surname else { return }
+        editService.updateCurrentUserData(name: name) { didLoad in
+            if didLoad {
+                self.user.name = name
+            }
+        }
+        editService.updateCurrentUserData(surname: surname) { didLoad in
+            if didLoad {
+                self.user.surname = surname
+            }
+        }
+        //        self.view?.reloadTableView()
+    }
     func deletePet(index: IndexPath) {
-        myPets.remove(at: index.row)
-        view?.showPets(pets: myPets)
+        petService.deletePet(petID: pets[index.row].petID) { didDelete in
+            if didDelete {
+                self.pets.remove(at: index.row)
+                self.view?.showPets(pets: self.pets)
+            }
+        }
+        view?.showPets(pets: pets)
     }
     func addPetButtonAction() {
-        let model = PetModel(name: nil, age: nil, icon: UIImage(named: "addPhoto1") ?? UIImage())
-        myPets.insert(model, at: 0)
-        view?.showPets(pets: myPets)
+        let pet = PetInfo(name: "", image: UIImage(named: "addPhoto1") ?? UIImage())
+        pets.insert(pet, at: 0)
+        view?.showPets(pets: pets)
     }
     func pickedImage(image: UIImage) {
         switch selectedIndex {
@@ -54,11 +85,10 @@ extension ProfilePresenter: ProfilePresenterProtocol {
             }
         default:
             myPets[selectedIndex - 2].icon = image
-            view?.showPets(pets: myPets)
+            view?.showPets(pets: pets)
         }
     }
     func viewDidLoad() {
-        //Загрузить данные пользователя
         editService.getCurrentUserInfo(completion: { isReceived, userInfo in
             guard isReceived, let userInfo = userInfo else {
                 return
@@ -85,7 +115,26 @@ extension ProfilePresenter: ProfilePresenterProtocol {
             self.view?.reloadTableView()
             print("reloaded outside")
         })
-        view?.showPets(pets: myPets)
+        petService.getPets { isReceived, petsInfo in
+            guard isReceived, let pets = petsInfo else { return }
+            self.pets = pets
+            DispatchQueue.global().async {
+                for i in self.pets.indices {
+                    if let photoUrl = self.pets[i].photo,
+                          let url = URL(string: photoUrl),
+                       let data = try? Data(contentsOf: url) {
+                        print("data exists")
+                        DispatchQueue.main.async {
+                            self.pets[i].image = UIImage(data: data)!
+                            print("got avatar")
+                            print("reloaded in dispatch")
+                        }
+                    }
+                }
+                self.view?.showPets(pets: pets)
+            }
+        }
+        view?.showPets(pets: pets)
     }
     func selectedPetImage(index: IndexPath) {
         selectedIndex = index.row
