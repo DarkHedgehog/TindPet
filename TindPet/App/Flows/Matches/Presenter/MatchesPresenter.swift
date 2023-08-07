@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import UIKit
+
+let temporaryPetArray: [PetInfo] = [
+    PetInfo(petID: "1", name: "Вася", age: 3, species: 0, ownerID: "1", photo: "", image: UIImage(named: "person"))
+]
 
 protocol MatchesViewProtocol: AnyObject {
+    func setPetList(pets: [PetInfo])
 }
 
 protocol MatchesPresenterProtocol {
@@ -17,10 +23,17 @@ protocol MatchesPresenterProtocol {
 final class MatchesPresenter {
     var view: MatchesViewProtocol?
     var coordinator: AppCoordinatorProtocol?
+    let tmpService = SwipeService()
 }
 
 extension MatchesPresenter: MatchesPresenterProtocol {
     func setFilter(text: String, type: FilterPetType) {
-        print("set filter string: \(text), pets: \(type)")
+        tmpService.getPets(preference: 0) { success, list in
+
+            let results = temporaryPetArray
+            DispatchQueue.main.async {
+                self.view?.setPetList(pets: results ?? [])
+            }
+        }
     }
 }

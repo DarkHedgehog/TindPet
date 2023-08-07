@@ -14,6 +14,8 @@ protocol PetFilterProtocol {
 final class MatchesViewController: UIViewController {
     var presenter: MatchesPresenterProtocol?
 
+    var pets: [PetInfo] = []
+
     let searchString: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = Constants.searchPlaceholder
@@ -24,6 +26,12 @@ final class MatchesViewController: UIViewController {
 
     let filterButtons: FilterViewController = {
         let controller = FilterViewController(values: Constants.filterLabels)
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        return controller
+    }()
+
+    let petList: PetListViewController = {
+        let controller = PetListViewController()
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         return controller
     }()
@@ -48,6 +56,11 @@ final class MatchesViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        presenter?.setFilter(text: "", type: .any)
+        super.viewWillAppear(animated)
+    }
+
     private func configureUI() {
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(searchString)
@@ -65,6 +78,16 @@ final class MatchesViewController: UIViewController {
             filterButtons.view.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             filterButtons.view.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
         ])
+
+        self.addChild(petList)
+        self.view.addSubview(petList.view)
+
+        NSLayoutConstraint.activate([
+            petList.collectionView.topAnchor.constraint(equalTo: filterButtons.view.safeAreaLayoutGuide.bottomAnchor),
+            petList.collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            petList.collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            petList.collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
     enum Constants {
@@ -74,7 +97,10 @@ final class MatchesViewController: UIViewController {
 }
 
 extension MatchesViewController: MatchesViewProtocol {
-
+    func setPetList(pets: [PetInfo]) {
+        self.pets = pets
+        self.petList.reloadData(pets)
+    }
 }
 
 extension MatchesViewController: FilterViewControllerDelegate {
