@@ -15,7 +15,7 @@ protocol PetServiceProtocol {
     func editPet(petId: String, age: Int)
     func editPet(petId: String, species: Species)
     func getPets(completion: @escaping (Bool, [PetInfo]?) -> Void)
-    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (Bool) -> Void)
+    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (Bool, String?) -> Void)
     func deletePet(petID: String, completion: @escaping (Bool) -> Void)
     var delegate: PetServiceDelegate? { get set }
 }
@@ -43,7 +43,7 @@ class PetService: PetServiceProtocol {
         guard let uid = uid else { return }
         let ref = firestore.collection("users").document(uid).collection("pets").document()
         let petId = ref.documentID
-        addPetPhoto(petID: petId, image: photo, completion: { url in
+        addPetPhoto(petID: petId, image: photo, completion: { didLoad, url in
             let photoUrl = url
             let petData: [String: Any] = [
                 "petID": petId,
@@ -102,28 +102,28 @@ class PetService: PetServiceProtocol {
             }
         })
     }
-    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (Bool) -> Void) {
+    func addPetPhoto(petID: String, image: UIImage, completion: @escaping (Bool, String?) -> Void) {
         guard let uid = uid else { return }
         guard let imageData = image.pngData() else {
-            completion(false)
+            completion(false, nil)
             return
         }
         storage.child("images/pets/\(petID).png").putData(imageData, metadata: nil) { _, error in
             guard error == nil else {
                 let error = error as? NSError
                 self.processError(errorID: error!.code)
-                completion(false)
+                completion(false, nil)
                 return
             }
             self.storage.child("images/pets/\(petID).png").downloadURL() { url, error in
                 guard let url = url, error == nil else {
-                    completion(false)
+                    completion(false, nil)
                     return
                 }
                 let urlString = url.absoluteString
                 print("Download URL: \(urlString)")
                 self.firestore.collection("users").document(uid).collection("pets").document(petID).updateData(["photo": urlString])
-                completion(true)
+                completion(true, urlString)
             }
         }
     }
