@@ -16,7 +16,7 @@ class SwipesViewController: UIViewController {
     private var swipeView: SwipesView {
         return self.view as! SwipesView
     }
-    //MARK: - Init
+    // MARK: - Init
     override func loadView() {
         super.loadView()
         self.view = SwipesView()

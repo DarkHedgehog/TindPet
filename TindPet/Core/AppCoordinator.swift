@@ -67,7 +67,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
         return navVC
     }
     private func configureMatchesController() -> UIViewController {
-        let controller = MatchesViewController()
+        let controller = MatchesViewBuilder.build(coordinator: self)
         let navVC = UINavigationController()
         navVC.navigationBar.barTintColor = UIColor.blue
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
