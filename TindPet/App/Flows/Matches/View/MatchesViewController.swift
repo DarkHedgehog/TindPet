@@ -83,7 +83,7 @@ final class MatchesViewController: UIViewController {
         self.view.addSubview(petList.view)
 
         NSLayoutConstraint.activate([
-            petList.collectionView.topAnchor.constraint(equalTo: filterButtons.view.safeAreaLayoutGuide.bottomAnchor),
+            petList.collectionView.topAnchor.constraint(equalTo: filterButtons.view.safeAreaLayoutGuide.bottomAnchor, constant: 10),
             petList.collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             petList.collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             petList.collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 let temporaryPetArray: [PetInfo] = [
-    PetInfo(petID: "1", name: "Вася", age: 3, species: 0, ownerID: "1", photo: "", image: UIImage(named: "person"))
+    PetInfo(petID: "1", name: "Вася", age: 3, species: 0, ownerID: "1", photo: "", image: UIImage(named: "person")),
+    PetInfo(petID: "1", name: "Муся", age: 4, species: 1, ownerID: "1", photo: "", image: UIImage(named: "person"))
 ]
 
 protocol MatchesViewProtocol: AnyObject {

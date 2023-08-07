@@ -7,10 +7,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "PetListCell"
-
 class PetListViewController: UICollectionViewController {
-
     private let layout = UICollectionViewFlowLayout()
     private var values: [PetInfo] = []
 
@@ -23,7 +20,7 @@ class PetListViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(PetCollectionViewCell.self, forCellWithReuseIdentifier: Constants.reuseIdentifier)
     }
 
     public func reloadData(_ values: [PetInfo]) {
@@ -42,11 +39,21 @@ class PetListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: Constants.reuseIdentifier,
+            for: indexPath
+        ) as? PetCollectionViewCell else {
+            preconditionFailure("Error cast to PetCollectionViewCell")
+        }
+        let model = PetCellModel(values[indexPath.row])
+        cell.setPetModel(pet: model)
         cell.backgroundColor = .green
 
         return cell
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("select at \(indexPath.row)")
     }
 
     // MARK: UICollectionViewDelegate
@@ -79,6 +86,9 @@ class PetListViewController: UICollectionViewController {
 
     }
     */
+    enum Constants {
+        static let reuseIdentifier = "PetListCell"
+    }
 }
 
 extension PetListViewController: UICollectionViewDelegateFlowLayout {
