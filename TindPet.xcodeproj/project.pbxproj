@@ -46,6 +46,7 @@
 		75BD54F32A81A48700827702 /* PetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BD54F22A81A48700827702 /* PetCollectionViewCell.swift */; };
 		75BD54F62A81ADC100827702 /* PetCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BD54F52A81ADC100827702 /* PetCellModel.swift */; };
 		75BD54F82A81B42B00827702 /* Int+toLocalizedAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BD54F72A81B42B00827702 /* Int+toLocalizedAge.swift */; };
+		D74D10EC2A81A6E9002DDEE1 /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74D10EB2A81A6E9002DDEE1 /* MatchService.swift */; };
 		D74DC7282A6D7CC6005439E1 /* EditProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC7272A6D7CC6005439E1 /* EditProfileService.swift */; };
 		D74DC72B2A6D8EAF005439E1 /* PetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72A2A6D8EAF005439E1 /* PetService.swift */; };
 		D74DC72F2A6D9067005439E1 /* PetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72E2A6D9067005439E1 /* PetInfo.swift */; };
@@ -130,6 +131,7 @@
 		75BD54F22A81A48700827702 /* PetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCollectionViewCell.swift; sourceTree = "<group>"; };
 		75BD54F52A81ADC100827702 /* PetCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCellModel.swift; sourceTree = "<group>"; };
 		75BD54F72A81B42B00827702 /* Int+toLocalizedAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+toLocalizedAge.swift"; sourceTree = "<group>"; };
+		D74D10EB2A81A6E9002DDEE1 /* MatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchService.swift; sourceTree = "<group>"; };
 		D74DC7272A6D7CC6005439E1 /* EditProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileService.swift; sourceTree = "<group>"; };
 		D74DC72A2A6D8EAF005439E1 /* PetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetService.swift; sourceTree = "<group>"; };
 		D74DC72E2A6D9067005439E1 /* PetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfo.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		481116DC2A66888200FFEE1C /* FirebaseService */ = {
 			isa = PBXGroup;
 			children = (
+				D74D10EA2A81A6CA002DDEE1 /* MatchService */,
 				D7571BE32A785D0B008D9EB7 /* SwipeService */,
 				D74DC7262A6D7C7E005439E1 /* EditProfileService */,
 				D7589A9C2A67416F00145760 /* LoginService */,
@@ -532,6 +535,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		D74D10EA2A81A6CA002DDEE1 /* MatchService */ = {
+			isa = PBXGroup;
+			children = (
+				D74D10EB2A81A6E9002DDEE1 /* MatchService.swift */,
+			);
+			path = MatchService;
+			sourceTree = "<group>";
+		};
 		D74DC7262A6D7C7E005439E1 /* EditProfileService */ = {
 			isa = PBXGroup;
 			children = (
@@ -752,6 +763,7 @@
 				484693382A56DFD700CD016C /* LoginViewController.swift in Sources */,
 				758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */,
 				755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */,
+				D74D10EC2A81A6E9002DDEE1 /* MatchService.swift in Sources */,
 				D76D0AE12A69822F0041BEC6 /* UserInfo.swift in Sources */,
 				758D968D2A43864E005A12E1 /* MatchesViewController.swift in Sources */,
 				D7571BE52A785D2A008D9EB7 /* SwipeService.swift in Sources */,

@@ -60,9 +60,9 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         //        self.view?.reloadTableView()
     }
     func deletePet(index: IndexPath) {
-        petService.deletePet(petID: pets[index.row].petID) { didDelete in
+        petService.deletePet(petID: pets[index.row - 2].petID) { didDelete in
             if didDelete {
-                self.pets.remove(at: index.row)
+                self.pets.remove(at: index.row - 2)
                 self.view?.showPets(pets: self.pets)
             }
         }
@@ -84,7 +84,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
                 }
             }
         default:
-            myPets[selectedIndex - 2].icon = image
+            pets[selectedIndex - 2].image = image
             view?.showPets(pets: pets)
         }
     }
