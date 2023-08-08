@@ -8,7 +8,7 @@
 import UIKit
 
 class PetInfoView: UIView {
-    private var petValue: PetCellModel?
+    private var petValue: PetInfoModel?
 
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -78,7 +78,7 @@ class PetInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func setPetModel(pet: PetCellModel) {
+    public func setPetModel(pet: PetInfoModel) {
         nameLabel.text = pet.name
         locationLabel.text = pet.location
         ageLabel.text = pet.ageText

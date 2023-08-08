@@ -8,8 +8,8 @@
 import UIKit
 
 enum PetDetailViewBuilder {
-    static func build(petId: String, coordinator: AppCoordinatorProtocol) -> UIViewController {
-        let presenter = PetDetailPresenter(petId: petId)
+    static func build(petInfo: PetInfo, coordinator: AppCoordinatorProtocol) -> UIViewController {
+        let presenter = PetDetailPresenter(petInfo: petInfo)
         let view = PetDetailViewController()
         presenter.view = view
         presenter.coordinator = coordinator

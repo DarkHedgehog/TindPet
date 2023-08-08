@@ -49,7 +49,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
 
     func goToPetDetail(_ pet: PetInfo) {
-        let controller = PetDetailViewBuilder.build(petId: pet.petID, coordinator: self)
+        let controller = PetDetailViewBuilder.build(petInfo: pet, coordinator: self)
         navigatinController.pushViewController(controller, animated: true)
     }
 

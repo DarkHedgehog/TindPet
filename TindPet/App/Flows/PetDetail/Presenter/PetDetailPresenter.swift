@@ -9,10 +9,11 @@ import Foundation
 
 protocol PetDetailPresenterProtocol {
     func goBack()
+    func getPetModel() -> PetInfoModel
 }
 
 protocol PetDetailViewProtocol {
-    
+    func setPetModel(pet: PetInfoModel)
 }
 
 final class PetDetailPresenter {
@@ -20,15 +21,19 @@ final class PetDetailPresenter {
     var coordinator: AppCoordinatorProtocol?
     let service = MatchService()
 
-    private let petId: String
+    private let petInfo: PetInfo
 
-    init(petId: String) {
-        self.petId = petId
+    init(petInfo: PetInfo) {
+        self.petInfo = petInfo
     }
 }
 
 extension PetDetailPresenter: PetDetailPresenterProtocol {
     func goBack() {
         coordinator?.goToBack()
+    }
+
+    func getPetModel() -> PetInfoModel {
+        return PetInfoModel(self.petInfo)
     }
 }

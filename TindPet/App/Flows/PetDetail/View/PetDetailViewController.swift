@@ -10,6 +10,8 @@ import UIKit
 final class PetDetailViewController: UIViewController {
     var presenter: PetDetailPresenterProtocol?
 
+    private var petValue: PetInfoModel?
+
     let petImage: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 18
@@ -35,6 +37,18 @@ final class PetDetailViewController: UIViewController {
         return button
     }()
 
+    let petInfo: UIView & PetDetailViewProtocol = {
+        let view = PetDetailInfo()
+        view.backgroundColor = .white
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 5, height: 5)
+        view.layer.cornerRadius = 10
+        view.layer.shadowRadius = 5
+        view.layer.shadowOpacity = 0.5
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -48,6 +62,9 @@ final class PetDetailViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view = UIView()
+        if let presenter = presenter {
+            setPetModel(pet: presenter.getPetModel())
+        }
         configureUI()
     }
 
@@ -82,16 +99,28 @@ final class PetDetailViewController: UIViewController {
             backButton.heightAnchor.constraint(equalTo: backButton.widthAnchor)
         ])
 
-
+        self.view.addSubview(petInfo)
+        NSLayoutConstraint.activate([
+            petInfo.centerYAnchor.constraint(equalTo: petImage.bottomAnchor),
+            petInfo.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.infoXPadding),
+            petInfo.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.infoXPadding),
+            petInfo.heightAnchor.constraint(equalToConstant: Constants.infoHeighth)
+        ])
     }
 
     enum Constants {
         static let unsettedPetPhoto = UIImage(named: "person")!
         static let backButtonImage = UIImage(systemName: "arrow.left")
+        static let infoXPadding = 30.0
+        static let infoHeighth = 120.0
     }
 
 }
 
 extension PetDetailViewController: PetDetailViewProtocol {
-
+    public func setPetModel(pet: PetInfoModel) {
+        petValue = pet
+        petImage.image = pet.photo
+        petInfo.setPetModel(pet: pet)
+    }
 }

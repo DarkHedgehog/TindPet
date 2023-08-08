@@ -12,7 +12,6 @@ protocol PetListDelegate: AnyObject {
 }
 
 final class PetListViewController: UICollectionViewController {
-
     var delegate: PetListDelegate?
     private let layout = UICollectionViewFlowLayout()
     private var values: [PetInfo] = []
@@ -20,6 +19,7 @@ final class PetListViewController: UICollectionViewController {
     init() {
         super.init(collectionViewLayout: layout)
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -51,7 +51,7 @@ final class PetListViewController: UICollectionViewController {
         ) as? PetCollectionViewCell else {
             preconditionFailure("Error cast to PetCollectionViewCell")
         }
-        let model = PetCellModel(values[indexPath.row])
+        let model = PetInfoModel(values[indexPath.row])
         cell.setPetModel(pet: model)
 
         return cell

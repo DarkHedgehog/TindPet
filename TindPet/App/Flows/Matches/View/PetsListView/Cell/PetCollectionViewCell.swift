@@ -8,7 +8,7 @@
 import UIKit
 
 class PetCollectionViewCell: UICollectionViewCell {
-    private var petValue: PetCellModel?
+    private var petValue: PetInfoModel?
 
     let petImage: UIImageView = {
         let image = UIImageView()
@@ -34,7 +34,7 @@ class PetCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func setPetModel(pet: PetCellModel) {
+    public func setPetModel(pet: PetInfoModel) {
         petValue = pet
         petImage.image = pet.photo
         petInfo.setPetModel(pet: pet)

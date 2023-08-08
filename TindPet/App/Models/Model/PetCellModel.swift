@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct PetCellModel {
+struct PetInfoModel {
     var photo: UIImage
     var name: String
     var location: String

@@ -32,6 +32,7 @@
 		75810ABA2A823DED007D0F80 /* PetDetailViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AB92A823DED007D0F80 /* PetDetailViewBuilder.swift */; };
 		75810ABD2A8242CD007D0F80 /* PetDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810ABC2A8242CD007D0F80 /* PetDetailPresenter.swift */; };
 		75810AC02A8244B0007D0F80 /* PetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810ABF2A8244B0007D0F80 /* PetDetailViewController.swift */; };
+		75810AC22A8253C2007D0F80 /* PetDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC12A8253C2007D0F80 /* PetDetailInfo.swift */; };
 		758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96472A42E495005A12E1 /* AppDelegate.swift */; };
 		758D96512A42E496005A12E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 758D96502A42E496005A12E1 /* Assets.xcassets */; };
 		758D96542A42E496005A12E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758D96522A42E496005A12E1 /* LaunchScreen.storyboard */; };
@@ -113,6 +114,7 @@
 		75810AB92A823DED007D0F80 /* PetDetailViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewBuilder.swift; sourceTree = "<group>"; };
 		75810ABC2A8242CD007D0F80 /* PetDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailPresenter.swift; sourceTree = "<group>"; };
 		75810ABF2A8244B0007D0F80 /* PetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewController.swift; sourceTree = "<group>"; };
+		75810AC12A8253C2007D0F80 /* PetDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailInfo.swift; sourceTree = "<group>"; };
 		758D96442A42E495005A12E1 /* TindPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TindPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D96472A42E495005A12E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		758D96502A42E496005A12E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 		48AC9B942A6BCCFA0055E6A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				75BD54F52A81ADC100827702 /* PetCellModel.swift */,
 				48AC9B952A6BCD0A0055E6A4 /* PetModel.swift */,
 			);
 			path = Model;
@@ -361,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				75810ABF2A8244B0007D0F80 /* PetDetailViewController.swift */,
+				75810AC12A8253C2007D0F80 /* PetDetailInfo.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -570,7 +574,6 @@
 			isa = PBXGroup;
 			children = (
 				75BD54F22A81A48700827702 /* PetCollectionViewCell.swift */,
-				75BD54F52A81ADC100827702 /* PetCellModel.swift */,
 				75810AB52A81BBC3007D0F80 /* PetInfoView.swift */,
 			);
 			path = Cell;
@@ -833,6 +836,7 @@
 				48AC9B962A6BCD0A0055E6A4 /* PetModel.swift in Sources */,
 				7565C06B2A671D9F00CE3EAF /* FirebaseService.swift in Sources */,
 				75BD54EC2A8189A800827702 /* FilterPetType.swift in Sources */,
+				75810AC22A8253C2007D0F80 /* PetDetailInfo.swift in Sources */,
 				75BD54F12A81924A00827702 /* PetListViewController.swift in Sources */,
 				75BD54E32A81710000827702 /* MatchesPresenter.swift in Sources */,
 				1FCE77372A5C2FE80010E427 /* SwipesPresenter.swift in Sources */,

@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 
 let temporaryPetArray: [PetInfo] = [
-    PetInfo(petID: "1", name: "Вася", age: 3, species: 0, ownerID: "1", photo: "", image: UIImage(named: "person")),
-    PetInfo(petID: "1", name: "Муся", age: 4, species: 1, ownerID: "1", photo: "", image: UIImage(named: "person")),
-    PetInfo(petID: "1", name: "Ася", age: 23, species: 0, ownerID: "1", photo: "", image: UIImage(named: "person")),
-    PetInfo(petID: "1", name: "Леха", age: 44, species: 1, ownerID: "1", photo: "", image: UIImage(named: "person")),
-    PetInfo(petID: "1", name: "Артем", age: 123, species: 1, ownerID: "1", photo: "", image: UIImage(named: "person")),
-    PetInfo(petID: "1", name: "Муся", age: 4, species: 1, ownerID: "1", photo: "", image: UIImage(named: "person")),
+    PetInfo(petID: "1", name: "Мурзик", age: 3, species: 1, ownerID: "1", photo: "", image: UIImage(named: "cat01")),
+    PetInfo(petID: "2", name: "Муха", age: 4, species: 0, ownerID: "1", photo: "", image: UIImage(named: "cat02")),
+    PetInfo(petID: "3", name: "Кролик", age: 4, species: 1, ownerID: "1", photo: "", image: UIImage(named: "cat03")),
+    PetInfo(petID: "4", name: "Альмир", age: 8, species: 1, ownerID: "1", photo: "", image: UIImage(named: "cat04")),
+    PetInfo(petID: "1", name: "Артем", age: 123, species: 1, ownerID: "1", photo: "", image: UIImage(named: "cat01")),
+    PetInfo(petID: "1", name: "Муся", age: 4, species: 0, ownerID: "1", photo: "", image: UIImage(named: "cat02")),
 ]
 
 protocol MatchesViewProtocol: AnyObject {
