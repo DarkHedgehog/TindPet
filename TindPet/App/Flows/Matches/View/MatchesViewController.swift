@@ -40,6 +40,7 @@ final class MatchesViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         filterButtons.delegate = self
         searchString.delegate = self
+        petList.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -121,5 +122,11 @@ extension MatchesViewController: FilterViewControllerDelegate {
 extension MatchesViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         onFilterChanged(value: filterButtons.selectedFilterIndex())
+    }
+}
+
+extension MatchesViewController: PetListDelegate {
+    func onPetSelected(value: PetInfo) {
+        presenter?.onPetSelected(value: value)
     }
 }

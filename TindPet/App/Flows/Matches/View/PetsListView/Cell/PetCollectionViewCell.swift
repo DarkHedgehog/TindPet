@@ -38,7 +38,6 @@ class PetCollectionViewCell: UICollectionViewCell {
         petValue = pet
         petImage.image = pet.photo
         petInfo.setPetModel(pet: pet)
-//        profileImageButton.setImage(pet.image, for: .normal)
     }
 
     private func addViews() {
@@ -53,7 +52,6 @@ class PetCollectionViewCell: UICollectionViewCell {
         addSubview(petInfo)
         NSLayoutConstraint.activate([
             petInfo.topAnchor.constraint(equalTo: topAnchor, constant: 30),
-//            petInfo.centerYAnchor.constraint(equalTo: petImage.centerYAnchor),
             petInfo.leftAnchor.constraint(equalTo: petImage.rightAnchor, constant: 10),
             petInfo.rightAnchor.constraint(equalTo: rightAnchor, constant: 10),
             petInfo.bottomAnchor.constraint(equalTo: bottomAnchor)

@@ -7,7 +7,13 @@
 
 import UIKit
 
-class PetListViewController: UICollectionViewController {
+protocol PetListDelegate: AnyObject {
+    func onPetSelected(value: PetInfo)
+}
+
+final class PetListViewController: UICollectionViewController {
+
+    var delegate: PetListDelegate?
     private let layout = UICollectionViewFlowLayout()
     private var values: [PetInfo] = []
 
@@ -52,7 +58,8 @@ class PetListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("select at \(indexPath.row)")
+//        print("select at \(indexPath.row)")
+        delegate?.onPetSelected(value: values[indexPath.row])
     }
     
     enum Constants {

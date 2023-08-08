@@ -23,6 +23,7 @@ protocol MatchesViewProtocol: AnyObject {
 
 protocol MatchesPresenterProtocol {
     func setFilter(text: String, type: FilterPetType)
+    func onPetSelected(value: PetInfo)
 }
 
 final class MatchesPresenter {
@@ -32,6 +33,10 @@ final class MatchesPresenter {
 }
 
 extension MatchesPresenter: MatchesPresenterProtocol {
+    func onPetSelected(value: PetInfo) {
+        coordinator?.goToPetDetail(value)
+    }
+
     func setFilter(text: String, type: FilterPetType) {
         service.getLikedPets { success, list in
             let results = temporaryPetArray
