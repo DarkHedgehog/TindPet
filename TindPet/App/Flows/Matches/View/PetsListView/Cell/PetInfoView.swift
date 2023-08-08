@@ -151,6 +151,6 @@ class PetInfoView: UIView {
         static let genderImageLeftPadding: CGFloat = 10
         static let genderImageRightPadding: CGFloat = 5
         static let stateLineTopPadding: CGFloat = 10
-        static let connectButtonTitle = "Связяться"
+        static let connectButtonTitle = "Связаться"
     }
 }
