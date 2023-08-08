@@ -16,6 +16,7 @@ struct PetInfo {
     var ownerID: String = ""
     var photo: String?
     var image: UIImage?
+    var description: String?
 }
 
 enum Species {

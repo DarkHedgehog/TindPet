@@ -33,6 +33,7 @@
 		75810ABD2A8242CD007D0F80 /* PetDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810ABC2A8242CD007D0F80 /* PetDetailPresenter.swift */; };
 		75810AC02A8244B0007D0F80 /* PetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810ABF2A8244B0007D0F80 /* PetDetailViewController.swift */; };
 		75810AC22A8253C2007D0F80 /* PetDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC12A8253C2007D0F80 /* PetDetailInfo.swift */; };
+		75810AC42A82860A007D0F80 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC32A828609007D0F80 /* UserInfoView.swift */; };
 		758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96472A42E495005A12E1 /* AppDelegate.swift */; };
 		758D96512A42E496005A12E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 758D96502A42E496005A12E1 /* Assets.xcassets */; };
 		758D96542A42E496005A12E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758D96522A42E496005A12E1 /* LaunchScreen.storyboard */; };
@@ -115,6 +116,7 @@
 		75810ABC2A8242CD007D0F80 /* PetDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailPresenter.swift; sourceTree = "<group>"; };
 		75810ABF2A8244B0007D0F80 /* PetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewController.swift; sourceTree = "<group>"; };
 		75810AC12A8253C2007D0F80 /* PetDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailInfo.swift; sourceTree = "<group>"; };
+		75810AC32A828609007D0F80 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		758D96442A42E495005A12E1 /* TindPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TindPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D96472A42E495005A12E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		758D96502A42E496005A12E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 			children = (
 				75810ABF2A8244B0007D0F80 /* PetDetailViewController.swift */,
 				75810AC12A8253C2007D0F80 /* PetDetailInfo.swift */,
+				75810AC32A828609007D0F80 /* UserInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -838,6 +841,7 @@
 				75BD54EC2A8189A800827702 /* FilterPetType.swift in Sources */,
 				75810AC22A8253C2007D0F80 /* PetDetailInfo.swift in Sources */,
 				75BD54F12A81924A00827702 /* PetListViewController.swift in Sources */,
+				75810AC42A82860A007D0F80 /* UserInfoView.swift in Sources */,
 				75BD54E32A81710000827702 /* MatchesPresenter.swift in Sources */,
 				1FCE77372A5C2FE80010E427 /* SwipesPresenter.swift in Sources */,
 				75BD54EA2A81781500827702 /* FilterViewController.swift in Sources */,

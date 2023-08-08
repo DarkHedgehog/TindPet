@@ -19,6 +19,7 @@ struct PetInfoModel {
     var statusColor: UIColor
     var isConatactButtonEnabled: Bool
     var ownerID: String
+    var description: String
 
     init(_ info: PetInfo) {
         photo = info.image ?? Constants.unsettedPetPhoto
@@ -26,14 +27,15 @@ struct PetInfoModel {
         location = Constants.unknownLocation
         ageText = info.age.toLocalizedAge()
         genderImage = info.species == 0 ? Constants.femaleImage : Constants.maleImage
-        gender = info.species == 0 ? Constants.femaleGender: Constants.maleGender
+        gender = info.species == 0 ? Constants.femaleGender : Constants.maleGender
         status = Constants.statusReady
         statusColor = .systemGreen
+        description = info.description ?? ""
         isConatactButtonEnabled = true
         ownerID = info.ownerID
     }
 
-    enum Constants {        
+    enum Constants {
         static let unsettedPetPhoto = UIImage(named: "paw")!
         static let unknownLocation = "Unknown location"
         static let femaleImage = UIImage(named: "femaleSign")!

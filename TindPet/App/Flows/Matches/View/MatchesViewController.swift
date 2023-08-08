@@ -71,20 +71,20 @@ final class MatchesViewController: UIViewController {
             searchString.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
         ])
 
-        self.addChild(filterButtons)
-        self.view.addSubview(filterButtons.view)
-
-        NSLayoutConstraint.activate([
-            filterButtons.view.topAnchor.constraint(equalTo: searchString.safeAreaLayoutGuide.bottomAnchor),
-            filterButtons.view.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            filterButtons.view.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
-        ])
+//        self.addChild(filterButtons)
+//        self.view.addSubview(filterButtons.view)
+//
+//        NSLayoutConstraint.activate([
+//            filterButtons.view.topAnchor.constraint(equalTo: searchString.safeAreaLayoutGuide.bottomAnchor),
+//            filterButtons.view.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+//            filterButtons.view.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+//        ])
 
         self.addChild(petList)
         self.view.addSubview(petList.view)
 
         NSLayoutConstraint.activate([
-            petList.collectionView.topAnchor.constraint(equalTo: filterButtons.view.safeAreaLayoutGuide.bottomAnchor, constant: 10),
+            petList.collectionView.topAnchor.constraint(equalTo: searchString.safeAreaLayoutGuide.bottomAnchor, constant: 10),
             petList.collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             petList.collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             petList.collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

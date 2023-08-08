@@ -49,6 +49,24 @@ final class PetDetailViewController: UIViewController {
         return view
     }()
 
+    let userInfo: UserInfoView = {
+        let view = UserInfoView()
+        view.backgroundColor = .red
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 5, height: 5)
+        view.layer.cornerRadius = 10
+        view.layer.shadowRadius = 5
+        view.layer.shadowOpacity = 0.5
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    let descriptionText: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 5
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -82,7 +100,6 @@ final class PetDetailViewController: UIViewController {
 
     private func configureUI() {
         self.view.backgroundColor = .systemBackground
-        self.view.backgroundColor = .red
         self.view.addSubview(petImage)
         NSLayoutConstraint.activate([
             petImage.topAnchor.constraint(equalTo: view.topAnchor),
@@ -104,7 +121,23 @@ final class PetDetailViewController: UIViewController {
             petInfo.centerYAnchor.constraint(equalTo: petImage.bottomAnchor),
             petInfo.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.infoXPadding),
             petInfo.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.infoXPadding),
-            petInfo.heightAnchor.constraint(equalToConstant: Constants.infoHeighth)
+            petInfo.heightAnchor.constraint(equalToConstant: Constants.infoHeight)
+        ])
+
+        self.view.addSubview(userInfo)
+        NSLayoutConstraint.activate([
+            userInfo.topAnchor.constraint(equalTo: petInfo.bottomAnchor, constant: 10),
+            userInfo.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.infoXPadding),
+            userInfo.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.infoXPadding),
+            userInfo.heightAnchor.constraint(equalToConstant: Constants.userHeight)
+        ])
+
+        self.view.addSubview(descriptionText)
+        NSLayoutConstraint.activate([
+            descriptionText.topAnchor.constraint(equalTo: userInfo.bottomAnchor, constant: 10),
+            descriptionText.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.infoXPadding),
+            descriptionText.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.infoXPadding),
+//            descriptionText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 
@@ -112,7 +145,8 @@ final class PetDetailViewController: UIViewController {
         static let unsettedPetPhoto = UIImage(named: "person")!
         static let backButtonImage = UIImage(systemName: "arrow.left")
         static let infoXPadding = 30.0
-        static let infoHeighth = 120.0
+        static let infoHeight = 120.0
+        static let userHeight = 60.0
     }
 
 }
@@ -121,6 +155,7 @@ extension PetDetailViewController: PetDetailViewProtocol {
     public func setPetModel(pet: PetInfoModel) {
         petValue = pet
         petImage.image = pet.photo
+        descriptionText.text = pet.description ?? ""
         petInfo.setPetModel(pet: pet)
     }
 }
