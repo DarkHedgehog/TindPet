@@ -19,6 +19,12 @@ class PetCollectionViewCell: UICollectionViewCell {
         return image
     }()
 
+    let petInfo: PetInfoView = {
+        let view = PetInfoView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         addViews()
@@ -31,6 +37,7 @@ class PetCollectionViewCell: UICollectionViewCell {
     public func setPetModel(pet: PetCellModel) {
         petValue = pet
         petImage.image = pet.photo
+        petInfo.setPetModel(pet: pet)
 //        profileImageButton.setImage(pet.image, for: .normal)
     }
 
@@ -41,6 +48,15 @@ class PetCollectionViewCell: UICollectionViewCell {
             petImage.leftAnchor.constraint(equalTo: leftAnchor),
             petImage.heightAnchor.constraint(equalTo: heightAnchor),
             petImage.widthAnchor.constraint(equalTo: heightAnchor)
+        ])
+
+        addSubview(petInfo)
+        NSLayoutConstraint.activate([
+            petInfo.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+//            petInfo.centerYAnchor.constraint(equalTo: petImage.centerYAnchor),
+            petInfo.leftAnchor.constraint(equalTo: petImage.rightAnchor, constant: 10),
+            petInfo.rightAnchor.constraint(equalTo: rightAnchor, constant: 10),
+            petInfo.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

@@ -25,15 +25,15 @@ struct PetCellModel {
         name = info.name
         location = Constants.unknownLocation
         ageText = info.age.toLocalizedAge()
-        genderImage = info.age == 0 ? Constants.femaleImage : Constants.maleImage
+        genderImage = info.species == 0 ? Constants.femaleImage : Constants.maleImage
         gender = info.species == 0 ? Constants.femaleGender: Constants.maleGender
         status = Constants.statusReady
-        statusColor = .green
+        statusColor = .systemGreen
         isConatactButtonEnabled = true
         ownerID = info.ownerID
     }
 
-    enum Constants {
+    enum Constants {        
         static let unsettedPetPhoto = UIImage(named: "paw")!
         static let unknownLocation = "Unknown location"
         static let femaleImage = UIImage(named: "femaleSign")!
@@ -43,4 +43,3 @@ struct PetCellModel {
         static let statusReady = "Владелец согласен"
     }
 }
-
