@@ -38,8 +38,8 @@ class MatchService: MatchServiceProtocol {
         var pets: [PetInfo] = []
         let ref = firestore.collection("users").document(uid).collection("petsLiked")
         ref.getDocuments { snapshot, error in
-            if error == nil {
-                for document in snapshot!.documents {
+            if error == nil, let snapshot = snapshot {
+                for document in snapshot.documents {
                     if let petID = document["petID"] as? String {
                         self.getPetByID(petID: petID) { didLoad, pet in
                             guard didLoad, let pet = pet else { return }
@@ -54,6 +54,43 @@ class MatchService: MatchServiceProtocol {
                     print(error)
                     completion(false, nil)
                 }
+            }
+        }
+    }
+    func getOwner(ownerID: String, completion: @escaping (Bool, UserInfo?) -> Void) {
+        guard let uid = uid else { return }
+        firestore.collection("users").document(ownerID).getDocument { [weak self] snapshot, error in
+            guard let strongSelf = self else {
+                completion(false, nil)
+                return
+            }
+            if let error = error as? NSError {
+                print(error)
+                strongSelf.processError(errorID: error.code)
+                completion(false, nil)
+                return
+            }
+            guard let dic = snapshot?.data(),
+               let email = dic[Constants.email] as? String,
+               let name = dic[Constants.name] as? String,
+               let surname = dic[Constants.surname] as? String,
+               let isOwner = dic["isOwner"] as? Bool else {
+                print("guard dic failed")
+                completion(false, nil)
+                return
+            }
+            if let photo = dic["photo"] as? String {
+                completion(true, UserInfo(email: email,
+                                    name: name,
+                                    surname: surname,
+                                    isOwner: isOwner,
+                                    photo: photo))
+                print("\(email), \(name), \(photo)")
+            } else {
+                completion(true, UserInfo(email: email,
+                                    name: name,
+                                    surname: surname,
+                                    isOwner: isOwner))
             }
         }
     }
