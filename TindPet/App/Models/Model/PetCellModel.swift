@@ -20,6 +20,7 @@ struct PetInfoModel {
     var isConatactButtonEnabled: Bool
     var ownerID: String
     var description: String
+    var petID: String
 
     init(_ info: PetInfo) {
         photo = info.image ?? Constants.unsettedPetPhoto
@@ -33,6 +34,7 @@ struct PetInfoModel {
         description = info.description ?? ""
         isConatactButtonEnabled = true
         ownerID = info.ownerID
+        petID = info.petID
     }
 
     enum Constants {

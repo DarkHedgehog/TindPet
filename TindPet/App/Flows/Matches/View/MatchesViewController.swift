@@ -14,7 +14,7 @@ protocol PetFilterProtocol {
 final class MatchesViewController: UIViewController {
     var presenter: MatchesPresenterProtocol?
 
-    var pets: [PetInfo] = []
+    var pets: [PetInfoModel] = []
 
     let searchString: UISearchBar = {
         let searchBar = UISearchBar()
@@ -98,7 +98,7 @@ final class MatchesViewController: UIViewController {
 }
 
 extension MatchesViewController: MatchesViewProtocol {
-    func setPetList(pets: [PetInfo]) {
+    func setPetList(pets: [PetInfoModel]) {
         self.pets = pets
         self.petList.reloadData(pets)
     }
@@ -126,7 +126,7 @@ extension MatchesViewController: UISearchBarDelegate {
 }
 
 extension MatchesViewController: PetListDelegate {
-    func onPetSelected(value: PetInfo) {
+    func onPetSelected(value: PetInfoModel) {
         presenter?.onPetSelected(value: value)
     }
 }

@@ -8,13 +8,13 @@
 import UIKit
 
 protocol PetListDelegate: AnyObject {
-    func onPetSelected(value: PetInfo)
+    func onPetSelected(value: PetInfoModel)
 }
 
 final class PetListViewController: UICollectionViewController {
     var delegate: PetListDelegate?
     private let layout = UICollectionViewFlowLayout()
-    private var values: [PetInfo] = []
+    private var values: [PetInfoModel] = []
 
     init() {
         super.init(collectionViewLayout: layout)
@@ -29,7 +29,7 @@ final class PetListViewController: UICollectionViewController {
         self.collectionView.register(PetCollectionViewCell.self, forCellWithReuseIdentifier: Constants.reuseIdentifier)
     }
 
-    public func reloadData(_ values: [PetInfo]) {
+    public func reloadData(_ values: [PetInfoModel]) {
         self.values = values
         collectionView.reloadData()
     }
@@ -51,8 +51,7 @@ final class PetListViewController: UICollectionViewController {
         ) as? PetCollectionViewCell else {
             preconditionFailure("Error cast to PetCollectionViewCell")
         }
-        let model = PetInfoModel(values[indexPath.row])
-        cell.setPetModel(pet: model)
+        cell.setPetModel(pet: values[indexPath.row])
 
         return cell
     }

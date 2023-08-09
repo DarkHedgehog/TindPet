@@ -6,60 +6,40 @@
 //
 
 import Foundation
-import UIKit
-
-let temporaryPetArray: [PetInfo] = [
-    PetInfo(
-        petID: "1",
-        name: "Мурзик",
-        age: 3,
-        species: 1,
-        ownerID: "1",
-        photo: "",
-        image: UIImage(named: "cat01"),
-        description: "Милый хороший котик"
-    ),
-    PetInfo(
-        petID: "2",
-        name: "Муха",
-        age: 4,
-        species: 0,
-        ownerID: "1",
-        photo: "",
-        image: UIImage(named: "cat02"),
-        description: "Безумная тварь, замурчит вас до потери сознания и перевернет все вазы в доме. Лучше кошки не бывает"
-    ),
-    PetInfo(petID: "3", name: "Кролик", age: 4, species: 1, ownerID: "1", photo: "", image: UIImage(named: "cat03")),
-    PetInfo(petID: "4", name: "Альмир", age: 8, species: 1, ownerID: "1", photo: "", image: UIImage(named: "cat04")),
-    PetInfo(petID: "1", name: "Артем", age: 123, species: 1, ownerID: "1", photo: "", image: UIImage(named: "cat01")),
-    PetInfo(petID: "1", name: "Муся", age: 4, species: 0, ownerID: "1", photo: "", image: UIImage(named: "cat02"))
-]
 
 protocol MatchesViewProtocol: AnyObject {
-    func setPetList(pets: [PetInfo])
+    func setPetList(pets: [PetInfoModel])
 }
 
 protocol MatchesPresenterProtocol {
     func setFilter(text: String, type: FilterPetType)
-    func onPetSelected(value: PetInfo)
+    func onPetSelected(value: PetInfoModel)
 }
 
 final class MatchesPresenter {
     var view: MatchesViewProtocol?
     var coordinator: AppCoordinatorProtocol?
-    let service = MatchService()
+    let service = MatchesStaticService()
+
+    func petInfoToModels(_ list: [PetInfo]) -> [PetInfoModel] {
+        return list.map { PetInfoModel($0) }
+    }
 }
 
 extension MatchesPresenter: MatchesPresenterProtocol {
-    func onPetSelected(value: PetInfo) {
-        coordinator?.goToPetDetail(value)
+    func onPetSelected(value: PetInfoModel) {
+        service.getPetByID(petID: value.petID) { success, petInfo in
+            if let petInfo = petInfo {
+                self.coordinator?.goToPetDetail(petInfo)
+            }
+        }
     }
 
     func setFilter(text: String, type: FilterPetType) {
-        service.getLikedPets { success, list in
-            let results = temporaryPetArray
+        service.getLikedPets { _, list in
             DispatchQueue.main.async {
-                self.view?.setPetList(pets: results ?? [])
+                let petModels = self.petInfoToModels(list ?? [])
+                self.view?.setPetList(pets: petModels)
             }
         }
     }
