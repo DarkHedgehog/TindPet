@@ -133,19 +133,19 @@ class PetInfoView: UIView {
             stateLabel.leftAnchor.constraint(equalTo: leftAnchor)
         ])
 
-        addSubview(connectButton)
-        NSLayoutConstraint.activate([
-            connectButton.centerYAnchor.constraint(equalTo: stateLabel.centerYAnchor),
-            connectButton.leftAnchor.constraint(equalTo: stateLabel.rightAnchor, constant: 10)
-        ])
+//        addSubview(connectButton)
+//        NSLayoutConstraint.activate([
+//            connectButton.centerYAnchor.constraint(equalTo: stateLabel.centerYAnchor),
+//            connectButton.leftAnchor.constraint(equalTo: stateLabel.rightAnchor, constant: 10)
+//        ])
     }
 
     enum Constants {
         static let nameLabelHeight: CGFloat = 20
         static let spaceBetweenLabels: CGFloat = 0
-        static let fontBold = UIFont(name: "HelveticaNeue-Bold", size: 13.0)
+        static let fontBold = UIFont.boldSystemFont(ofSize: 16)
         static let fontBoldColor: UIColor = .black
-        static let fontNormal = UIFont(name: "HelveticaNeue", size: 13.0)
+        static let fontNormal = UIFont.systemFont(ofSize: 13) // UIFont(name: "SF Pro", size: 100.0)
         static let fontNormalColor: UIColor = .gray
         static let genderImageSize = CGSize(width: 20, height: 20)
         static let genderImageLeftPadding: CGFloat = 10

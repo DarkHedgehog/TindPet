@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class MatchesStaticService: MatchServiceProtocol {
-
     var delegate: MatchServiceDelegate?
 
     func getLikedPets(completion: @escaping (Bool, [PetInfo]?) -> Void) {
@@ -40,7 +39,7 @@ final class MatchesStaticService: MatchServiceProtocol {
             ownerID: "1",
             photo: "",
             image: UIImage(named: "cat02"),
-            description: "Безумная тварь, замурчит вас до потери сознания и перевернет все вазы в доме. Лучше кошки не бывает"
+            description: "Безумно дружелюбное создание, замурчит вас до потери пульса и перевернет все вазы в доме. Лучше кошки не бывает"
         ),
         PetInfo(petID: "3", name: "Кролик", age: 4, species: 1, ownerID: "1", photo: "", image: UIImage(named: "cat03")),
         PetInfo(petID: "4", name: "Альмир", age: 8, species: 1, ownerID: "1", photo: "", image: UIImage(named: "cat04")),

@@ -19,7 +19,7 @@ final class PetListViewController: UICollectionViewController {
     init() {
         super.init(collectionViewLayout: layout)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -60,7 +60,7 @@ final class PetListViewController: UICollectionViewController {
 //        print("select at \(indexPath.row)")
         delegate?.onPetSelected(value: values[indexPath.row])
     }
-    
+
     enum Constants {
         static let reuseIdentifier = "PetListCell"
     }

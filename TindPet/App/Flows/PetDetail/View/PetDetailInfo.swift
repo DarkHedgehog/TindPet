@@ -68,9 +68,9 @@ class PetDetailInfo: UIView {
     enum Constants {
         static let nameLabelHeight: CGFloat = 20
         static let spaceBetweenLabels: CGFloat = 0
-        static let fontBold = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
+        static let fontBold = UIFont.boldSystemFont(ofSize: 20)
         static let fontBoldColor: UIColor = .black
-        static let fontNormal = UIFont(name: "HelveticaNeue", size: 16.0)
+        static let fontNormal = UIFont.systemFont(ofSize: 16)
         static let fontNormalColor: UIColor = .gray
         static let genderImageSize = CGSize(width: 30, height: 30)
         static let genderImageLeftPadding: CGFloat = 10

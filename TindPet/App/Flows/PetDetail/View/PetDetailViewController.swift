@@ -39,7 +39,7 @@ final class PetDetailViewController: UIViewController {
 
     let petInfo: UIView & PetDetailViewProtocol = {
         let view = PetDetailInfo()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.layer.masksToBounds = false
         view.layer.shadowOffset = CGSize(width: 5, height: 5)
         view.layer.cornerRadius = 10
@@ -51,7 +51,7 @@ final class PetDetailViewController: UIViewController {
 
     let userInfo: UserInfoView = {
         let view = UserInfoView()
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
         view.layer.masksToBounds = false
         view.layer.shadowOffset = CGSize(width: 5, height: 5)
         view.layer.cornerRadius = 10
@@ -66,6 +66,18 @@ final class PetDetailViewController: UIViewController {
         label.numberOfLines = 5
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+
+    let connectButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.title = Constants.connectButtonTitle
+        config.baseBackgroundColor = .systemBlue
+        config.cornerStyle = .large
+        config.buttonSize = .small
+        let button = UIButton(type: .roundedRect)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = config
+        return button
     }()
 
     init() {
@@ -136,8 +148,13 @@ final class PetDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             descriptionText.topAnchor.constraint(equalTo: userInfo.bottomAnchor, constant: 10),
             descriptionText.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.infoXPadding),
-            descriptionText.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.infoXPadding),
-//            descriptionText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            descriptionText.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.infoXPadding)
+        ])
+
+        self.view.addSubview(connectButton)
+        NSLayoutConstraint.activate([
+            connectButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            connectButton.topAnchor.constraint(equalTo: descriptionText.bottomAnchor, constant: 20)
         ])
     }
 
@@ -147,6 +164,7 @@ final class PetDetailViewController: UIViewController {
         static let infoXPadding = 30.0
         static let infoHeight = 120.0
         static let userHeight = 60.0
+        static let connectButtonTitle = "Связаться"
     }
 
 }
@@ -155,7 +173,8 @@ extension PetDetailViewController: PetDetailViewProtocol {
     public func setPetModel(pet: PetInfoModel) {
         petValue = pet
         petImage.image = pet.photo
-        descriptionText.text = pet.description ?? ""
+        descriptionText.text = pet.description
         petInfo.setPetModel(pet: pet)
+        userInfo.setPetModel(pet: pet)
     }
 }

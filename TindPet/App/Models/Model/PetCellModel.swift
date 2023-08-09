@@ -21,8 +21,10 @@ struct PetInfoModel {
     var ownerID: String
     var description: String
     var petID: String
+    var ownerPhoto: UIImage
+    var ownerName: String
 
-    init(_ info: PetInfo) {
+    init(_ info: PetInfo, owner: UserInfo? = nil) {
         photo = info.image ?? Constants.unsettedPetPhoto
         name = info.name
         location = Constants.unknownLocation
@@ -35,15 +37,19 @@ struct PetInfoModel {
         isConatactButtonEnabled = true
         ownerID = info.ownerID
         petID = info.petID
+        ownerName = owner?.name ?? Constants.unknownOwnerName
+        ownerPhoto = Constants.unsettedPersonPhoto
     }
 
     enum Constants {
         static let unsettedPetPhoto = UIImage(named: "paw")!
+        static let unsettedPersonPhoto = UIImage(named: "person")!
         static let unknownLocation = "Unknown location"
         static let femaleImage = UIImage(named: "femaleSign")!
         static let maleImage = UIImage(named: "maleSign")!
         static let femaleGender = "Девочка"
         static let maleGender = "Мальчик"
         static let statusReady = "Владелец согласен"
+        static let unknownOwnerName = "Лариса Ивановна"
     }
 }
