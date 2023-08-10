@@ -161,13 +161,12 @@ extension QuoteView {
             animator?.fractionComplete = abs(slide) / bounds.width
         case .ended:
             let edge = 100.0
-            if translation >= edge || translation <= -edge {
+            if (like && translation >= edge) || (!like && translation <= -edge) {
                 animator?.startAnimation()
             } else {
                 animator?.isReversed = true
                 animator?.startAnimation()
             }
-
         default:
             break
         }
