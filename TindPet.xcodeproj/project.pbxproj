@@ -34,7 +34,7 @@
 		75810AC02A8244B0007D0F80 /* PetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810ABF2A8244B0007D0F80 /* PetDetailViewController.swift */; };
 		75810AC22A8253C2007D0F80 /* PetDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC12A8253C2007D0F80 /* PetDetailInfo.swift */; };
 		75810AC42A82860A007D0F80 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC32A828609007D0F80 /* UserInfoView.swift */; };
-		75810AC72A838463007D0F80 /* MatchesStaticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC62A838463007D0F80 /* MatchesStaticService.swift */; };
+		75810AC72A838463007D0F80 /* FirebaseTestStaticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC62A838463007D0F80 /* FirebaseTestStaticService.swift */; };
 		758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96472A42E495005A12E1 /* AppDelegate.swift */; };
 		758D96512A42E496005A12E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 758D96502A42E496005A12E1 /* Assets.xcassets */; };
 		758D96542A42E496005A12E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758D96522A42E496005A12E1 /* LaunchScreen.storyboard */; };
@@ -118,7 +118,7 @@
 		75810ABF2A8244B0007D0F80 /* PetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewController.swift; sourceTree = "<group>"; };
 		75810AC12A8253C2007D0F80 /* PetDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailInfo.swift; sourceTree = "<group>"; };
 		75810AC32A828609007D0F80 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
-		75810AC62A838463007D0F80 /* MatchesStaticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesStaticService.swift; sourceTree = "<group>"; };
+		75810AC62A838463007D0F80 /* FirebaseTestStaticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTestStaticService.swift; sourceTree = "<group>"; };
 		758D96442A42E495005A12E1 /* TindPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TindPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D96472A42E495005A12E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		758D96502A42E496005A12E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -210,6 +210,7 @@
 				D7589A972A673F1100145760 /* RegistrationService */,
 				D74DC7292A6D8E92005439E1 /* PetService */,
 				7565C06A2A671D9F00CE3EAF /* FirebaseService.swift */,
+				75810AC62A838463007D0F80 /* FirebaseTestStaticService.swift */,
 			);
 			path = FirebaseService;
 			sourceTree = "<group>";
@@ -374,14 +375,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		75810AC52A838443007D0F80 /* MatchesStaticService */ = {
-			isa = PBXGroup;
-			children = (
-				75810AC62A838463007D0F80 /* MatchesStaticService.swift */,
-			);
-			path = MatchesStaticService;
-			sourceTree = "<group>";
-		};
 		758D963B2A42E495005A12E1 = {
 			isa = PBXGroup;
 			children = (
@@ -522,7 +515,6 @@
 		758D968A2A4385E0005A12E1 /* Matches */ = {
 			isa = PBXGroup;
 			children = (
-				75810AC52A838443007D0F80 /* MatchesStaticService */,
 				75BD54DD2A81704200827702 /* Builder */,
 				75BD54E02A8170DC00827702 /* Presenter */,
 				75BD54E12A8170E900827702 /* View */,
@@ -820,7 +812,7 @@
 				755F7BAE2A4B5B6A00D38DFC /* ProfilePresenter.swift in Sources */,
 				75810AC02A8244B0007D0F80 /* PetDetailViewController.swift in Sources */,
 				484693382A56DFD700CD016C /* LoginViewController.swift in Sources */,
-				75810AC72A838463007D0F80 /* MatchesStaticService.swift in Sources */,
+				75810AC72A838463007D0F80 /* FirebaseTestStaticService.swift in Sources */,
 				758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */,
 				755F7BAA2A4B565600D38DFC /* ProfileViewBuilder.swift in Sources */,
 				D74D10EC2A81A6E9002DDEE1 /* MatchService.swift in Sources */,
