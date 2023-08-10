@@ -23,6 +23,7 @@ struct PetInfoModel {
     var petID: String
     var ownerPhoto: UIImage
     var ownerName: String
+    var species: Species
 
     init(_ info: PetInfo, owner: UserInfo? = nil) {
         photo = info.image ?? Constants.unsettedPetPhoto
@@ -30,6 +31,7 @@ struct PetInfoModel {
         location = Constants.unknownLocation
         ageText = info.age.toLocalizedAge()
         genderImage = info.species == 0 ? Constants.femaleImage : Constants.maleImage
+        species = Species.from(info.species)
         gender = info.species == 0 ? Constants.femaleGender : Constants.maleGender
         status = Constants.statusReady
         statusColor = .systemGreen
