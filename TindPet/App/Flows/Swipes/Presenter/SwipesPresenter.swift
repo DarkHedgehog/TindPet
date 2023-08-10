@@ -56,7 +56,9 @@ extension SwipesPresenter: SwipesPresenterProtocol {
             print("no pets exist")
             return
         }
-        view?.showPet(pet: pet)
+        DispatchQueue.main.async {
+            self.view?.showPet(pet: pet)
+        }
         currentPetID = pet.petID
     }
     func likeButtonAction() {
@@ -67,8 +69,10 @@ extension SwipesPresenter: SwipesPresenterProtocol {
             print("no pets exist")
             return
         }
-        view?.showPet(pet: pet)
         currentPetID = pet.petID
+        DispatchQueue.main.async {
+            self.view?.showPet(pet: pet)
+        }
     }
     func dislikeButtonAction() {
         print("Dislike")
@@ -78,12 +82,7 @@ extension SwipesPresenter: SwipesPresenterProtocol {
             print("no pets exist")
             return
         }
-        let species: String
-        if pet.species == 0 {
-            species = "Кошка"
-        } else {
-            species = "Собака"
-        }
+
         DispatchQueue.global().async {
             guard let photoUrl = pet.photo,
                let url = URL(string: photoUrl),
@@ -93,14 +92,18 @@ extension SwipesPresenter: SwipesPresenterProtocol {
                 self.petImage = UIImage(named: "addPhoto1") ?? UIImage()
                 //reload data
                 print("reloaded")
-                self.view?.showPet(pet: pet)
+                DispatchQueue.main.async {
+                    self.view?.showPet(pet: pet)
+                }
                 return
             }
-            self.view?.updateData(
-                pet: pet,
-                species: species,
-                image: petImage
-            )
+            DispatchQueue.main.async {
+                self.view?.updateData(
+                    pet: pet,
+                    species: Species.from(pet.species).localizedText(),
+                    image: petImage
+                )
+            }
         }
         currentPetID = pet.petID
     }

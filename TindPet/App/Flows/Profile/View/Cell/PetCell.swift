@@ -41,7 +41,7 @@ class PetCell: UITableViewCell {
         return tfAge
     }()
     lazy var segmentControl: UISegmentedControl = {
-        let segment = UISegmentedControl(items: ["Кошка", "Собака"])
+        let segment = UISegmentedControl(items: [Species.cat.localizedText(), Species.dog.localizedText()])
         let attributes = [
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),
             NSAttributedString.Key.foregroundColor: UIColor.white

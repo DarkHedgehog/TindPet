@@ -8,7 +8,7 @@
 import UIKit
 
 class SwipesView: UIView {
-    //MARK: - Properties
+    // MARK: - Properties
     var presenter: SwipesPresenterProtocol? {
         didSet {
             swipeView.presenter = presenter
@@ -20,7 +20,7 @@ class SwipesView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     lazy var dislikeButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false

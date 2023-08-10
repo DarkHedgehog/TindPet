@@ -37,7 +37,7 @@ class SwipeService: SwipeServiceProtocol {
     private let storage = Storage.storage().reference()
     var delegate: SwipeServiceDelegate?
     let uid = Auth.auth().currentUser?.uid
-    
+
     func getUserPreference(completion: @escaping (Bool, Int?) -> Void) {
         guard let uid = uid else { return }
         print(uid)
@@ -65,7 +65,7 @@ class SwipeService: SwipeServiceProtocol {
             }
         }
     }
-    
+
     func petLiked(petID: String) {
         guard let uid = uid else { return }
         let ref = firestore.collection("users").document(uid).collection("petsLiked").document()
@@ -112,11 +112,11 @@ class SwipeService: SwipeServiceProtocol {
                 for doc in docs {
                     var pet = PetInfo()
                     guard let name = doc["name"] as? String,
-                          let petID = doc["petID"] as? String,
-                          let age = doc["age"] as? Int,
-                          let photo = doc["photo"] as? String,
-                          let species = doc["species"] as? Int,
-                          let ownerID = doc["ownerID"] as? String else {
+                        let petID = doc["petID"] as? String,
+                        let age = doc["age"] as? Int,
+                        let photo = doc["photo"] as? String,
+                        let species = doc["species"] as? Int,
+                        let ownerID = doc["ownerID"] as? String else {
                         print("guard doc parameters failed")
                         completion(false, nil)
                         return
@@ -131,7 +131,7 @@ class SwipeService: SwipeServiceProtocol {
                     print(pet.name)
                 }
                 completion(true, pets)
-        }
+            }
         } else {
             let species = preference - 1
             firestore.collectionGroup("pets").whereField("species", isEqualTo: species).getDocuments { [weak self] snapshot, error in
@@ -154,11 +154,11 @@ class SwipeService: SwipeServiceProtocol {
                 for doc in docs {
                     var pet = PetInfo()
                     guard let name = doc["name"] as? String,
-                          let petID = doc["petID"] as? String,
-                          let age = doc["age"] as? Int,
-                          let photo = doc["photo"] as? String,
-                          let species = doc["species"] as? Int,
-                          let ownerID = doc["ownerID"] as? String else {
+                        let petID = doc["petID"] as? String,
+                        let age = doc["age"] as? Int,
+                        let photo = doc["photo"] as? String,
+                        let species = doc["species"] as? Int,
+                        let ownerID = doc["ownerID"] as? String else {
                         print("guard doc parameters failed")
                         completion(false, nil)
                         return
@@ -175,7 +175,7 @@ class SwipeService: SwipeServiceProtocol {
             }
         }
     }
-    
+
     func showNextPet(pets: [PetInfo], index: Int) -> PetInfo? {
         guard let uid = uid else { return nil }
         var pet = PetInfo()
@@ -188,7 +188,7 @@ class SwipeService: SwipeServiceProtocol {
         }
         return pet
     }
-    
+
     // MARK: - Private methods
     private func processError(errorID: Int) {
         switch errorID {

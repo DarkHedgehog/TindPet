@@ -11,6 +11,7 @@ import FirebaseStorage
 
 protocol MatchServiceProtocol {
     func getLikedPets(completion: @escaping (Bool, [PetInfo]?) -> Void)
+    func getPetByID(petID: String, completion: @escaping (Bool, PetInfo?) -> Void)
     var delegate: MatchServiceDelegate? { get set }
 }
 
@@ -95,7 +96,8 @@ class MatchService: MatchServiceProtocol {
         }
     }
     // MARK: - Private methods
-    private func getPetByID(petID: String, completion: @escaping (Bool, PetInfo?) -> Void) {
+    func getPetByID(petID: String, completion: @escaping (Bool, PetInfo?) -> Void) {
+
         firestore.collectionGroup("pets").whereField("petID", isEqualTo: petID).getDocuments { [weak self] querySnapshot, error in
             guard let strongSelf = self else {
                 completion(false, nil)

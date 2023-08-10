@@ -16,7 +16,7 @@ class SwipesViewController: UIViewController {
     private var swipeView: SwipesView {
         return self.view as! SwipesView
     }
-    //MARK: - Init
+    // MARK: - Init
     override func loadView() {
         super.loadView()
         self.view = SwipesView()
@@ -29,28 +29,19 @@ class SwipesViewController: UIViewController {
 
 extension SwipesViewController: SwipesViewProtocol {
     func updateData(pet: PetInfo, species: String, image: UIImage) {
-        swipeView.swipeView.thumbImageView.image = image ?? UIImage()
-        swipeView.swipeView.label.text =
-        """
-    \(pet.name), \(pet.age)
-    \(species)
-    """
+        showPet(pet: pet)
+        swipeView.swipeView.petImageView.image = image
     }
     func showInfo(title: String, message: String) {
         showAlert(title: title, message: message)
     }
     func showPet(pet: PetInfo) {
-        let species: String
-        if pet.species == 0 {
-            species = "Кошка"
-        } else {
-            species = "Собака"
-        }
-//        swipeView.swipeView.thumbImageView.image = presenter?.petImage ?? UIImage()
+        let speciesText = Species.from(pet.species).localizedText()
+        swipeView.swipeView.petImageView.image = pet.image
         swipeView.swipeView.label.text =
         """
-    \(pet.name), \(pet.age)
-    \(species)
+    \t\(pet.name), \(pet.age.toLocalizedAge())
+    \t\(speciesText)
     """
     }
 }

@@ -12,14 +12,17 @@ protocol AppCoordinatorProtocol {
     func goToLoginVC(didTapLogout: Bool)
     func goToRegistrationVC()
     func goToMainScene()
+    func goToPetDetail(_ pet: PetInfo)
     func goToBack()
 }
 
 final class AppCoordinator: AppCoordinatorProtocol {
     var navigatinController: UINavigationController
+
     init(navigetinController: UINavigationController) {
         self.navigatinController = navigetinController
     }
+
     func start() {
         if UserDefaults.standard.bool(forKey: Key.isLogin) {
             goToMainScene()
@@ -27,6 +30,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
             goToLoginVC()
         }
     }
+
     func goToLoginVC(didTapLogout: Bool = false) {
         let logVC = LoginViewBuilder.build(coordinator: self)
         if didTapLogout {
@@ -38,10 +42,17 @@ final class AppCoordinator: AppCoordinatorProtocol {
             navigatinController.pushViewController(logVC, animated: true)
         }
     }
+
     func goToRegistrationVC() {
         let regVC = RegistrationViewBuilder.build(coordinator: self)
         navigatinController.pushViewController(regVC, animated: true)
     }
+
+    func goToPetDetail(_ pet: PetInfo) {
+        let controller = PetDetailViewBuilder.build(petInfo: pet, coordinator: self)
+        navigatinController.pushViewController(controller, animated: true)
+    }
+
     func goToMainScene() {
         let swipesVC = configureSwipesController()
         let matchesVC = configureMatchesController()
@@ -52,9 +63,11 @@ final class AppCoordinator: AppCoordinatorProtocol {
         navigatinController.pushViewController(tabsVC, animated: true)
         navigatinController.navigationBar.isHidden = true
     }
+
     func goToBack() {
         navigatinController.popViewController(animated: true)
     }
+
     private func configureSwipesController() -> UIViewController {
         let controller = SwipesViewBuilder.build()
         let navVC = UINavigationController()
@@ -66,8 +79,9 @@ final class AppCoordinator: AppCoordinatorProtocol {
         navVC.title = "Swipes"
         return navVC
     }
+
     private func configureMatchesController() -> UIViewController {
-        let controller = MatchesViewController()
+        let controller = MatchesViewBuilder.build(coordinator: self)
         let navVC = UINavigationController()
         navVC.navigationBar.barTintColor = UIColor.blue
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -77,6 +91,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
         navVC.title = "Matches"
         return navVC
     }
+
     private func configureProfileController() -> UIViewController {
         let controller = ProfileViewBuilder.build(coordinator: self)
         let navVC = UINavigationController()
