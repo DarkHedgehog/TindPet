@@ -47,6 +47,7 @@ extension SwipesViewController: SwipesViewProtocol {
             species = "Собака"
         }
 //        swipeView.swipeView.thumbImageView.image = presenter?.petImage ?? UIImage()
+        swipeView.swipeView.thumbImageView.image = pet.image ?? UIImage()
         swipeView.swipeView.label.text =
         """
     \(pet.name), \(pet.age)

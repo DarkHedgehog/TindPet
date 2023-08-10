@@ -9,7 +9,7 @@ import UIKit
 
 enum SwipesViewBuilder {
     static func build() -> UIViewController {
-        let swipeService = SwipeService()
+        let swipeService = SwipeStaticService() // SwipeService()
         let presenter = SwipesPresenter(swipeService: swipeService)
         let view = SwipesViewController()
         view.presenter = presenter
