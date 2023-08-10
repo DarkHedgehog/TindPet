@@ -97,7 +97,9 @@ extension SwipesPresenter: SwipesPresenterProtocol {
                 self.petImage = UIImage(named: "addPhoto1") ?? UIImage()
                 //reload data
                 print("reloaded")
-                self.view?.showPet(pet: pet)
+                DispatchQueue.main.async {
+                    self.view?.showPet(pet: pet)
+                }
                 return
             }
             DispatchQueue.main.async {

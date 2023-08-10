@@ -46,12 +46,11 @@ extension SwipesViewController: SwipesViewProtocol {
         } else {
             species = "Собака"
         }
-//        swipeView.swipeView.thumbImageView.image = presenter?.petImage ?? UIImage()
-        swipeView.swipeView.thumbImageView.image = pet.image ?? UIImage()
+        swipeView.swipeView.petImageView.image = pet.image
         swipeView.swipeView.label.text =
         """
-    \(pet.name), \(pet.age)
-    \(species)
+    \t\(pet.name), \(pet.age.toLocalizedAge())
+    \t\(species)
     """
     }
 }

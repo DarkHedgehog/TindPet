@@ -15,9 +15,12 @@ class QuoteView: UIView {
         label.font = UIFont.systemFont(ofSize: 20)
         label.numberOfLines = 3
         label.isUserInteractionEnabled = true
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = UIColor.systemGray6
+//        label.backgroundColor = .clear
         label.textAlignment = .justified
-        label.layer.cornerRadius = 0
+        label.layer.cornerRadius = 10
+        label.layer.masksToBounds = true
         return label
     }()
     let thumbImageView: UIImageView = {
@@ -29,6 +32,20 @@ class QuoteView: UIView {
         imageView.tintColor = UIColor.green
         return imageView
     }()
+
+    lazy var petImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = false
+        imageView.alpha = 1
+        imageView.layer.cornerRadius = 20
+//        imageView.image = UIImage(systemName: "hand.thumbsup.fill")
+        imageView.tintColor = UIColor.green
+        imageView.layer.borderWidth = 1
+        return imageView
+    }()
+
     private var animator: UIViewPropertyAnimator?
     private var like = true
     // MARK: - Override
@@ -43,16 +60,25 @@ class QuoteView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         if animator == nil {
-            label.frame = bounds.insetBy(dx: 20, dy: 10)
+//            label.frame = bounds.insetBy(dx: 20, dy: 10)
             thumbImageView.frame = bounds.insetBy(dx: 20, dy: 10)
+            petImageView.frame = bounds.insetBy(dx: 20, dy: 10)
         }
     }
     private func setup() {
+        addSubview(petImageView)
         addSubview(label)
         addSubview(thumbImageView)
-                
-        label.layer.borderWidth = 1
-        label.layer.cornerRadius = 10
+
+        NSLayoutConstraint.activate([
+            label.bottomAnchor.constraint(equalTo: petImageView.bottomAnchor, constant: -10),
+            label.leftAnchor.constraint(equalTo: petImageView.leftAnchor, constant: 10),
+            label.rightAnchor.constraint(equalTo: petImageView.rightAnchor, constant: -10)
+//            nameLabel.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
+
+//        label.layer.borderWidth = 1
+//        label.layer.cornerRadius = 10
        
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
         self.addGestureRecognizer(panRecognizer)
@@ -69,12 +95,19 @@ extension QuoteView {
             thumbImageView.tintColor = UIColor.systemRed
             thumbImageView.image = UIImage(systemName: "hand.thumbsdown.fill")
             thumbImageView.alpha = 1
+
+            petImageView.frame.origin.x -= 100
+            petImageView.alpha = 0
+
         case .right:
             label.frame.origin.x += 100
             thumbImageView.frame.origin.x += 100
             thumbImageView.tintColor = UIColor.systemGreen
             thumbImageView.image = UIImage(systemName: "hand.thumbsup.fill")
             thumbImageView.alpha = 1
+
+            petImageView.frame.origin.x -= 100
+            petImageView.alpha = 0
         default:
             break
         }
@@ -100,20 +133,22 @@ extension QuoteView {
             thumbImageView.tintColor = like ? UIColor.green : UIColor.red
 
             animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeIn) {
-                [self.label, self.thumbImageView].forEach {
+                [ self.thumbImageView, self.petImageView].forEach {
                     $0.center = CGPoint(x: endX, y: self.bounds.height / 2)
                     $0.transform = CGAffineTransform(rotationAngle: angle)
                 }
                 self.thumbImageView.alpha = 1
+                self.petImageView.alpha = 0
             }
             animator?.addCompletion { [weak self] some in
                 guard let self = self else { return }
 
-                [self.label, self.thumbImageView].forEach {
+                [self.label, self.thumbImageView, self.petImageView].forEach {
                     $0.center = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
                     $0.transform = .identity
                 }
                 self.thumbImageView.alpha = 0
+                self.petImageView.alpha = 1
 
                 self.alpha = 0
                 self.didRate?()
@@ -121,17 +156,17 @@ extension QuoteView {
                 UIView.animate(withDuration: 0.5) {
                     self.alpha = 1
                 }
+                if like {
+                    self.presenter?.likeButtonAction()
+                } else {
+                    self.presenter?.dislikeButtonAction()
+                }
             }
 
         case .changed:
             let slide = like ? max(translation, 0) : min(translation, 0)
             animator?.fractionComplete = abs(slide) / bounds.width
         case .ended:
-            if like {
-                self.presenter?.likeButtonAction()
-            } else {
-                self.presenter?.dislikeButtonAction()
-            }
             animator?.startAnimation()
         default:
             break
