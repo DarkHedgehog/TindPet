@@ -56,7 +56,9 @@ extension SwipesPresenter: SwipesPresenterProtocol {
             print("no pets exist")
             return
         }
-        view?.showPet(pet: pet)
+        DispatchQueue.main.async {
+            self.view?.showPet(pet: pet)
+        }
         currentPetID = pet.petID
     }
     func likeButtonAction() {
@@ -67,8 +69,10 @@ extension SwipesPresenter: SwipesPresenterProtocol {
             print("no pets exist")
             return
         }
-        view?.showPet(pet: pet)
         currentPetID = pet.petID
+        DispatchQueue.main.async {
+            self.view?.showPet(pet: pet)
+        }
     }
     func dislikeButtonAction() {
         print("Dislike")
@@ -96,11 +100,13 @@ extension SwipesPresenter: SwipesPresenterProtocol {
                 self.view?.showPet(pet: pet)
                 return
             }
-            self.view?.updateData(
-                pet: pet,
-                species: species,
-                image: petImage
-            )
+            DispatchQueue.main.async {
+                self.view?.updateData(
+                    pet: pet,
+                    species: species,
+                    image: petImage
+                )
+            }
         }
         currentPetID = pet.petID
     }

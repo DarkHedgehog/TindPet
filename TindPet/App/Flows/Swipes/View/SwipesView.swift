@@ -8,7 +8,7 @@
 import UIKit
 
 class SwipesView: UIView {
-    //MARK: - Properties
+    // MARK: - Properties
     var presenter: SwipesPresenterProtocol? {
         didSet {
             swipeView.presenter = presenter
