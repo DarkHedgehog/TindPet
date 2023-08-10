@@ -128,11 +128,13 @@ class SwipeService: SwipeServiceProtocol {
                     pet.species = species
                     pet.ownerID = ownerID
                     pets.append(pet)
+                    print(pet.name)
                 }
                 completion(true, pets)
             }
         } else {
-            firestore.collectionGroup("pets").whereField("species", isEqualTo: preference).getDocuments { [weak self] snapshot, error in
+            let species = preference - 1
+            firestore.collectionGroup("pets").whereField("species", isEqualTo: species).getDocuments { [weak self] snapshot, error in
                 guard let strongSelf = self else {
                     completion(false, nil)
                     return
