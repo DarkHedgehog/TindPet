@@ -82,12 +82,7 @@ extension SwipesPresenter: SwipesPresenterProtocol {
             print("no pets exist")
             return
         }
-        let species: String
-        if pet.species == 0 {
-            species = "Кошка"
-        } else {
-            species = "Собака"
-        }
+
         DispatchQueue.global().async {
             guard let photoUrl = pet.photo,
                let url = URL(string: photoUrl),
@@ -105,7 +100,7 @@ extension SwipesPresenter: SwipesPresenterProtocol {
             DispatchQueue.main.async {
                 self.view?.updateData(
                     pet: pet,
-                    species: species,
+                    species: Species.from(pet.species).localizedText(),
                     image: petImage
                 )
             }

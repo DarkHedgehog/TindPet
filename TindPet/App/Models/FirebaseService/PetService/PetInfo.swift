@@ -18,7 +18,3 @@ struct PetInfo {
     var image: UIImage?
     var description: String?
 }
-
-enum Species {
-    case cat, dog
-}

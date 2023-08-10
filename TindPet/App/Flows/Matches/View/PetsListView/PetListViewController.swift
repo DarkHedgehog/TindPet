@@ -57,7 +57,6 @@ final class PetListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("select at \(indexPath.row)")
         delegate?.onPetSelected(value: values[indexPath.row])
     }
 

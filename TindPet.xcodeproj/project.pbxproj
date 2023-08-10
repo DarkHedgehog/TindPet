@@ -35,6 +35,7 @@
 		75810AC22A8253C2007D0F80 /* PetDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC12A8253C2007D0F80 /* PetDetailInfo.swift */; };
 		75810AC42A82860A007D0F80 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC32A828609007D0F80 /* UserInfoView.swift */; };
 		75810AC72A838463007D0F80 /* FirebaseTestStaticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC62A838463007D0F80 /* FirebaseTestStaticService.swift */; };
+		75810AC92A8500D6007D0F80 /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75810AC82A8500D6007D0F80 /* Species.swift */; };
 		758D96482A42E495005A12E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D96472A42E495005A12E1 /* AppDelegate.swift */; };
 		758D96512A42E496005A12E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 758D96502A42E496005A12E1 /* Assets.xcassets */; };
 		758D96542A42E496005A12E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758D96522A42E496005A12E1 /* LaunchScreen.storyboard */; };
@@ -119,6 +120,7 @@
 		75810AC12A8253C2007D0F80 /* PetDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailInfo.swift; sourceTree = "<group>"; };
 		75810AC32A828609007D0F80 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		75810AC62A838463007D0F80 /* FirebaseTestStaticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTestStaticService.swift; sourceTree = "<group>"; };
+		75810AC82A8500D6007D0F80 /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
 		758D96442A42E495005A12E1 /* TindPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TindPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D96472A42E495005A12E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		758D96502A42E496005A12E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			children = (
 				75BD54F52A81ADC100827702 /* PetCellModel.swift */,
 				48AC9B952A6BCD0A0055E6A4 /* PetModel.swift */,
+				75810AC82A8500D6007D0F80 /* Species.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				1FCE77352A5C2FCB0010E427 /* SwipesViewBuilder.swift in Sources */,
 				484693462A56FB1200CD016C /* RegistrationPresenter.swift in Sources */,
 				D7589A9B2A673FB700145760 /* Credentials.swift in Sources */,
+				75810AC92A8500D6007D0F80 /* Species.swift in Sources */,
 				75BD54DF2A81708100827702 /* MatchesViewBuilder.swift in Sources */,
 				484693412A56EE9800CD016C /* LoginPresenter.swift in Sources */,
 				75810ABD2A8242CD007D0F80 /* PetDetailPresenter.swift in Sources */,

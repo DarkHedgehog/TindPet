@@ -76,6 +76,13 @@ class QuoteView: UIView {
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
         self.addGestureRecognizer(panRecognizer)
     }
+
+    enum Constants {
+        static let likeHandImage = UIImage(systemName: "hand.thumbsup.fill")
+        static let dislikeHandImage = UIImage(systemName: "hand.thumbsdown.fill")
+        static let likeHandColor = UIColor.systemGreen
+        static let dislikeHandColor = UIColor.systemRed
+    }
 }
 
 
@@ -84,8 +91,8 @@ extension QuoteView {
         switch sender.direction {
         case .left:
             thumbImageView.frame.origin.x -= 100
-            thumbImageView.tintColor = UIColor.systemRed
-            thumbImageView.image = UIImage(systemName: "hand.thumbsdown.fill")
+            thumbImageView.tintColor = Constants.dislikeHandColor
+            thumbImageView.image = Constants.dislikeHandImage
             thumbImageView.alpha = 1
 
             petImageView.frame.origin.x -= 100
@@ -93,8 +100,8 @@ extension QuoteView {
 
         case .right:
             thumbImageView.frame.origin.x += 100
-            thumbImageView.tintColor = UIColor.systemGreen
-            thumbImageView.image = UIImage(systemName: "hand.thumbsup.fill")
+            thumbImageView.tintColor = Constants.likeHandColor
+            thumbImageView.image = Constants.likeHandImage
             thumbImageView.alpha = 1
 
             petImageView.frame.origin.x -= 100
@@ -118,9 +125,9 @@ extension QuoteView {
 
             let endX = like ? 3 * bounds.width / 2 + 50: -bounds.width / 2 - 50
             let angle = like ? CGFloat.pi / 4 : -CGFloat.pi / 4
-            let thumbImage = like ? "hand.thumbsup.fill" : "hand.thumbsdown.fill"
-            thumbImageView.image = UIImage(systemName: thumbImage)
-            thumbImageView.tintColor = like ? UIColor.green : UIColor.red
+
+            thumbImageView.image = like ? Constants.likeHandImage : Constants.dislikeHandImage
+            thumbImageView.tintColor = like ? Constants.likeHandColor : Constants.dislikeHandColor
 
             animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeIn) {
                 [self.thumbImageView, self.petImageView].forEach {
