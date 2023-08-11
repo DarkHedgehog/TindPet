@@ -12,10 +12,11 @@ TindPet - это приложение, которое поможет найти 
   
 ## Скриншоты
 <p align="center">
-<img src="Login.png" alt="Login" width="600" height="1200">
-<img src="Registration.png" alt="Registration" width="600" height="1200">
-<img src="Profile.png" alt="Profile" width="600" height="1200">
-<img src="Swipes.png" alt="Swipes" width="600" height="1200">
+<img src="Login.png" alt="Login" width="500" height="1000">
+<img src="Registration.png" alt="Registration" width="500" height="1000">
+<img src="Swipes.png" alt="Swipes" width="500" height="1000">
+<img src="Matches.png" alt="Matches" width="500" height="1000">
+<img src="Profile.png" alt="Profile" width="500" height="1000">
     </p>
 
 ## Функции
@@ -26,7 +27,6 @@ TindPet - это приложение, которое поможет найти 
 ## В разработке
 
 * возможность ставить `Like` и `Dislike` животным
-* экран Мэтчей
 * создание профиля животного
     
 ## Стек и архитектура
