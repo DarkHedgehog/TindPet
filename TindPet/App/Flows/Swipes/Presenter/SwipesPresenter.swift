@@ -23,7 +23,7 @@ protocol SwipesPresenterProtocol {
 class SwipesPresenter {
     var view: SwipesViewProtocol?
     var swipeService: SwipeServiceProtocol
-    var pets: [PetInfo] = [PetInfo]()
+    var pets: [PetInfo] = []
     var preference = 0
     var petIndex = 0
     var currentPetID = ""
@@ -36,6 +36,7 @@ class SwipesPresenter {
 
 extension SwipesPresenter: SwipesPresenterProtocol {
     func viewDidLoad() {
+//        swipeService.loadPetPhotoToPetID(petID: "V216VM2G7xMlyE00U2WN")
         swipeService.getUserPreference { isLoaded, preference in
             if isLoaded {
                 guard let preference = preference else { return }
@@ -48,7 +49,21 @@ extension SwipesPresenter: SwipesPresenterProtocol {
                     return
                 }
                 self.pets = petDocs
-                //turn urls into images
+                for i in self.pets.indices {
+                    if let photoUrl = self.pets[i].photo,
+                       let url = URL(string: photoUrl) {
+                        DispatchQueue.global().async {
+                            guard let data = try? Data(contentsOf: url) else { return }
+                            self.pets[i].image = UIImage(data: data)!
+                        }
+                    } else {
+                        if self.pets[i].species == 0 {
+                            self.pets[i].image  = UIImage(named: "NoPhotoCat") ?? UIImage()
+                        } else {
+                            self.pets[i].image  = UIImage(named: "NoPhotoDog") ?? UIImage()
+                        }
+                    }
+                }
                 //reload data
             }
         }

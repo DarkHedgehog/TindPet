@@ -15,6 +15,7 @@ protocol SwipeServiceProtocol {
     func petDisliked(petID: String)
     func getPets(preference: Int, completion: @escaping (Bool, [PetInfo]?) -> Void)
     func showNextPet(pets: [PetInfo], index: Int) -> PetInfo?
+    func loadPetPhotoToPetID(petID: String)
     var delegate: SwipeServiceDelegate? { get set }
 }
 
@@ -114,17 +115,18 @@ class SwipeService: SwipeServiceProtocol {
                     guard let name = doc["name"] as? String,
                         let petID = doc["petID"] as? String,
                         let age = doc["age"] as? Int,
-                        let photo = doc["photo"] as? String,
                         let species = doc["species"] as? Int,
                         let ownerID = doc["ownerID"] as? String else {
                         print("guard doc parameters failed")
                         completion(false, nil)
                         return
                     }
+                    if let photo = doc["photo"] as? String {
+                        pet.photo = photo
+                    }
                     pet.petID = petID
                     pet.name = name
                     pet.age = age
-                    pet.photo = photo
                     pet.species = species
                     pet.ownerID = ownerID
                     pets.append(pet)
@@ -156,17 +158,18 @@ class SwipeService: SwipeServiceProtocol {
                     guard let name = doc["name"] as? String,
                         let petID = doc["petID"] as? String,
                         let age = doc["age"] as? Int,
-                        let photo = doc["photo"] as? String,
                         let species = doc["species"] as? Int,
                         let ownerID = doc["ownerID"] as? String else {
                         print("guard doc parameters failed")
                         completion(false, nil)
                         return
                     }
+                    if let photo = doc["photo"] as? String {
+                        pet.photo = photo
+                    }
                     pet.petID = petID
                     pet.name = name
                     pet.age = age
-                    pet.photo = photo
                     pet.species = species
                     pet.ownerID = ownerID
                     pets.append(pet)
@@ -187,6 +190,23 @@ class SwipeService: SwipeServiceProtocol {
             pet = PetInfo(name: pets[index].name, age: pets[index].age, species: pets[index].species, ownerID: pets[index].ownerID, photo: pets[index].photo)
         }
         return pet
+    }
+    func loadPetPhotoToPetID(petID: String) {
+        guard let uid = uid else { return }
+        let petRef = storage.child("images/pets/\(petID).jpg")
+        petRef.downloadURL { [weak self] url, error in
+            guard let strongSelf = self else {
+                //completion(false, nil)
+                return
+            }
+            if let error = error as? NSError {
+                print(error)
+                strongSelf.processError(errorID: error.code)
+                //completion(false, nil)
+                return
+            }
+            print("petID: \(petID), url: \(url)")
+        }
     }
 
     // MARK: - Private methods

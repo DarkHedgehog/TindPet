@@ -50,6 +50,9 @@ final class MatchesStaticService: MatchServiceProtocol {
 }
 
 final class  SwipeStaticService: SwipeServiceProtocol {
+    func loadPetPhotoToPetID(petID: String) {
+    }
+    
     var delegate: SwipeServiceDelegate?
     func getUserPreference(completion: @escaping (Bool, Int?) -> Void) {
         completion(true, 0)

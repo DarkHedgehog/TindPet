@@ -89,6 +89,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         }
     }
     func viewDidLoad() {
+//        editService.loadPetPhotoToPetID(petID: "352K3AUh9Q1Yi6IwNNfg")
         editService.getCurrentUserInfo(completion: { isReceived, userInfo in
             guard isReceived, let userInfo = userInfo else {
                 return

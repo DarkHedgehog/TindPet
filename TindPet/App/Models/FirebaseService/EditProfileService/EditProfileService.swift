@@ -19,6 +19,7 @@ protocol EditServiceProtocol {
     func updateCurrentUserData(image: UIImage, completion: @escaping (Bool) -> Void)
     func updateCurrentUserData(preference: Int, completion: @escaping (Bool) -> Void)
     func getCurrentUserInfo(completion: @escaping (Bool, UserInfo?) -> Void)
+    func loadPetPhotoToPetID(petID: String)
     func signOut(completion: @escaping (Bool) -> Void)
     var delegate: EditServiceDelegate? { get set }
 }
@@ -221,6 +222,23 @@ class EditService: EditServiceProtocol {
                                     preference: preference))
             }
             print("\(email), \(name)")
+        }
+    }
+    func loadPetPhotoToPetID(petID: String) {
+        guard let uid = uid else { return }
+        let petRef = storage.child("images/pets/\(petID)")
+        petRef.downloadURL { [weak self] url, error in
+            guard let strongSelf = self else {
+                //completion(false, nil)
+                return
+            }
+            if let error = error as? NSError {
+                print(error)
+                strongSelf.processError(errorID: error.code)
+                //completion(false, nil)
+                return
+            }
+            print("petID: \(petID), url: \(url)")
         }
     }
     // MARK: - Private methods

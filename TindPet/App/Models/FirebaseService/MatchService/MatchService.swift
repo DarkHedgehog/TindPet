@@ -97,7 +97,6 @@ class MatchService: MatchServiceProtocol {
     }
     // MARK: - Private methods
     func getPetByID(petID: String, completion: @escaping (Bool, PetInfo?) -> Void) {
-
         firestore.collectionGroup("pets").whereField("petID", isEqualTo: petID).getDocuments { [weak self] querySnapshot, error in
             guard let strongSelf = self else {
                 completion(false, nil)
