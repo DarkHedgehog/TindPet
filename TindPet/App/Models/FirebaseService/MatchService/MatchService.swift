@@ -119,17 +119,18 @@ class MatchService: MatchServiceProtocol {
                 guard let name = doc["name"] as? String,
                       let petID = doc["petID"] as? String,
                       let age = doc["age"] as? Int,
-                      let photo = doc["photo"] as? String,
                       let species = doc["species"] as? Int,
                       let ownerID = doc["ownerID"] as? String else {
                     print("guard doc parameters failed")
                     completion(false, nil)
                     return
                 }
+            if let photo = doc["photo"] as? String {
+                pet.photo = photo
+            }
                 pet.petID = petID
                 pet.name = name
                 pet.age = age
-                pet.photo = photo
                 pet.species = species
                 pet.ownerID = ownerID
                 completion(true, pet)

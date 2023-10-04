@@ -57,6 +57,7 @@
 		D74DC7282A6D7CC6005439E1 /* EditProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC7272A6D7CC6005439E1 /* EditProfileService.swift */; };
 		D74DC72B2A6D8EAF005439E1 /* PetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72A2A6D8EAF005439E1 /* PetService.swift */; };
 		D74DC72F2A6D9067005439E1 /* PetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72E2A6D9067005439E1 /* PetInfo.swift */; };
+		D74E9D552ACC97790095A5E4 /* PetModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74E9D542ACC97790095A5E4 /* PetModelLoader.swift */; };
 		D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */; };
 		D7571BE52A785D2A008D9EB7 /* SwipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571BE42A785D2A008D9EB7 /* SwipeService.swift */; };
 		D75832B52A59AB7800E434FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B42A59AB7800E434FD /* FirebaseAnalytics */; };
@@ -149,6 +150,7 @@
 		D74DC7272A6D7CC6005439E1 /* EditProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileService.swift; sourceTree = "<group>"; };
 		D74DC72A2A6D8EAF005439E1 /* PetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetService.swift; sourceTree = "<group>"; };
 		D74DC72E2A6D9067005439E1 /* PetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfo.swift; sourceTree = "<group>"; };
+		D74E9D542ACC97790095A5E4 /* PetModelLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetModelLoader.swift; sourceTree = "<group>"; };
 		D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
 		D7571BE42A785D2A008D9EB7 /* SwipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeService.swift; sourceTree = "<group>"; };
 		D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				D74DC7292A6D8E92005439E1 /* PetService */,
 				7565C06A2A671D9F00CE3EAF /* FirebaseService.swift */,
 				75810AC62A838463007D0F80 /* FirebaseTestStaticService.swift */,
+				D74E9D542ACC97790095A5E4 /* PetModelLoader.swift */,
 			);
 			path = FirebaseService;
 			sourceTree = "<group>";
@@ -857,6 +860,7 @@
 				D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */,
 				D74DC7282A6D7CC6005439E1 /* EditProfileService.swift in Sources */,
 				758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */,
+				D74E9D552ACC97790095A5E4 /* PetModelLoader.swift in Sources */,
 				481116E32A66C08500FFEE1C /* Key.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
