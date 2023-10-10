@@ -43,6 +43,16 @@ class QuoteView: UIView {
         imageView.layer.borderWidth = 1
         return imageView
     }()
+    
+    lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        return spinner
+    }()
+    
+    lazy var loadingView: UIView = {
+        let loadingView = UIView()
+        return loadingView
+    }()
 
     private var animator: UIViewPropertyAnimator?
     private var like = true
@@ -75,6 +85,28 @@ class QuoteView: UIView {
 
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
         self.addGestureRecognizer(panRecognizer)
+    }
+    func showActivityIndicator() {
+        self.loadingView = UIView()
+        self.loadingView.frame = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+        self.loadingView.center = self.center
+        self.loadingView.backgroundColor = UIColor.blue
+        self.loadingView.alpha = 0.7
+        self.loadingView.clipsToBounds = true
+        self.loadingView.layer.cornerRadius = 10
+
+        self.spinner = UIActivityIndicatorView(style: .large)
+        self.spinner.frame = CGRect(x: 0.0, y: 0.0, width: 80.0, height: 80.0)
+        self.spinner.center = CGPoint(x:self.loadingView.bounds.size.width / 2, y: self.loadingView.bounds.size.height / 2)
+
+        self.loadingView.addSubview(self.spinner)
+        self.addSubview(self.loadingView)
+        self.spinner.startAnimating()
+    }
+
+    func hideActivityIndicator() {
+            self.spinner.stopAnimating()
+            self.loadingView.removeFromSuperview()
     }
 
     enum Constants {

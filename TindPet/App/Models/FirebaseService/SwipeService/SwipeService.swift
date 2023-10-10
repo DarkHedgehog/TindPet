@@ -121,9 +121,6 @@ class SwipeService: SwipeServiceProtocol {
             }
         }
     }
-    
-    
-
     func showNextPet(pets: [PetInfo], index: Int) -> PetInfo? {
         guard let uid = uid else { return nil }
         var pet = PetInfo()
@@ -132,7 +129,13 @@ class SwipeService: SwipeServiceProtocol {
         } else if index < 0 {
             print("wrong index")
         } else {
-            pet = PetInfo(name: pets[index].name, age: pets[index].age, species: pets[index].species, ownerID: pets[index].ownerID, photo: pets[index].photo)
+            pet = PetInfo(
+                name: pets[index].name,
+                age: pets[index].age,
+                species: pets[index].species,
+                ownerID: pets[index].ownerID,
+                photo: pets[index].photo
+            )
         }
         return pet
     }

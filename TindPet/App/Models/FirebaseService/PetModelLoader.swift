@@ -14,7 +14,6 @@ protocol PetModelLoaderDelegate {
 
 class PetModelLoaderService {
     var delegate: PetModelLoaderDelegate?
-    
     private func getDefaultImage(species: Int) -> UIImage {
         let name = species == 0 ? "NoPhotoCat" : "NoPhotoDog"
         let image = UIImage(named: name) ?? UIImage()

@@ -12,6 +12,8 @@ protocol SwipesViewProtocol {
     func showInfo(title: String, message: String)
     func showPet(pet: PetInfo)
     func updateData(pet: PetInfo, species: String, image: UIImage)
+    func showActivityIndicator()
+    func hideActivityIndicator()
 }
 
 
@@ -48,6 +50,7 @@ extension SwipesPresenter: SwipesPresenterProtocol {
                 self.preference = preference
             }
         }
+        view?.showActivityIndicator()
         swipeService.getPets(preference: preference) { [weak self] isLoaded, petsDocs in
             guard isLoaded, let petDocs = petsDocs, let strongSelf = self else { return }
             strongSelf.petModelLoader.processPetDocs(petDocs)
@@ -146,9 +149,10 @@ extension SwipesPresenter: SwipeServiceDelegate {
 
 extension SwipesPresenter: PetModelLoaderDelegate {
     func didGetPetModels(pets: [PetInfo]) {
-        self.pets = pets
+//        view?.hideActivityIndicator()
         //turn off loader method to view
         //load pets to view method to view
+        self.pets = pets
         guard let pet = swipeService.showNextPet(pets: self.pets, index: 0) else {
             print("no pets exist")
             return

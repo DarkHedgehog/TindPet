@@ -44,4 +44,17 @@ extension SwipesViewController: SwipesViewProtocol {
     \t\(speciesText)
     """
     }
+    func showActivityIndicator() {
+        print("swipesVC")
+        DispatchQueue.main.async {
+            self.swipeView.swipeView.showActivityIndicator()
+        }
+    }
+    
+    func hideActivityIndicator() {
+        print("swipesVC hide")
+        DispatchQueue.main.async {
+            self.swipeView.swipeView.hideActivityIndicator()
+        }
+    }
 }
