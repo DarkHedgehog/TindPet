@@ -44,4 +44,3 @@ class PetModelLoaderService {
         delegate?.didGetPetModels(pets: resultPets)
     }
 }
-

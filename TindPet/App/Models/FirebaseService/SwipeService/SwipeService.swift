@@ -134,7 +134,8 @@ class SwipeService: SwipeServiceProtocol {
                 age: pets[index].age,
                 species: pets[index].species,
                 ownerID: pets[index].ownerID,
-                photo: pets[index].photo
+                photo: pets[index].photo,
+                image: pets[index].image
             )
         }
         return pet
