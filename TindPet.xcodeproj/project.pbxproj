@@ -57,7 +57,11 @@
 		D74DC7282A6D7CC6005439E1 /* EditProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC7272A6D7CC6005439E1 /* EditProfileService.swift */; };
 		D74DC72B2A6D8EAF005439E1 /* PetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72A2A6D8EAF005439E1 /* PetService.swift */; };
 		D74DC72F2A6D9067005439E1 /* PetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74DC72E2A6D9067005439E1 /* PetInfo.swift */; };
+		D74E9D552ACC97790095A5E4 /* PetModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74E9D542ACC97790095A5E4 /* PetModelLoader.swift */; };
 		D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */; };
+		D7540AB12AD5B7A800EBAEF1 /* PetPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7540AB02AD5B7A800EBAEF1 /* PetPopupViewController.swift */; };
+		D7540AB32AD5B80C00EBAEF1 /* PetPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7540AB22AD5B80C00EBAEF1 /* PetPopupView.swift */; };
+		D7540AB52AD5BDD600EBAEF1 /* PetPopupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7540AB42AD5BDD600EBAEF1 /* PetPopupPresenter.swift */; };
 		D7571BE52A785D2A008D9EB7 /* SwipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571BE42A785D2A008D9EB7 /* SwipeService.swift */; };
 		D75832B52A59AB7800E434FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B42A59AB7800E434FD /* FirebaseAnalytics */; };
 		D75832B72A59AB7800E434FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D75832B62A59AB7800E434FD /* FirebaseAuth */; };
@@ -149,7 +153,11 @@
 		D74DC7272A6D7CC6005439E1 /* EditProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileService.swift; sourceTree = "<group>"; };
 		D74DC72A2A6D8EAF005439E1 /* PetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetService.swift; sourceTree = "<group>"; };
 		D74DC72E2A6D9067005439E1 /* PetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfo.swift; sourceTree = "<group>"; };
+		D74E9D542ACC97790095A5E4 /* PetModelLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetModelLoader.swift; sourceTree = "<group>"; };
 		D752B8122A5CA833005820D0 /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
+		D7540AB02AD5B7A800EBAEF1 /* PetPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetPopupViewController.swift; sourceTree = "<group>"; };
+		D7540AB22AD5B80C00EBAEF1 /* PetPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetPopupView.swift; sourceTree = "<group>"; };
+		D7540AB42AD5BDD600EBAEF1 /* PetPopupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetPopupPresenter.swift; sourceTree = "<group>"; };
 		D7571BE42A785D2A008D9EB7 /* SwipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeService.swift; sourceTree = "<group>"; };
 		D75832C02A59ACCA00E434FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D7589A982A673F6300145760 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
@@ -213,6 +221,7 @@
 				D74DC7292A6D8E92005439E1 /* PetService */,
 				7565C06A2A671D9F00CE3EAF /* FirebaseService.swift */,
 				75810AC62A838463007D0F80 /* FirebaseTestStaticService.swift */,
+				D74E9D542ACC97790095A5E4 /* PetModelLoader.swift */,
 			);
 			path = FirebaseService;
 			sourceTree = "<group>";
@@ -320,6 +329,8 @@
 			isa = PBXGroup;
 			children = (
 				755F7BAB2A4B572000D38DFC /* ProfileViewController.swift */,
+				D7540AB22AD5B80C00EBAEF1 /* PetPopupView.swift */,
+				D7540AB02AD5B7A800EBAEF1 /* PetPopupViewController.swift */,
 				481DD1CE2A683CFD00BA5C6B /* ProfileView.swift */,
 				481DD1D02A683DCE00BA5C6B /* Cell */,
 			);
@@ -330,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				755F7BAD2A4B5B6A00D38DFC /* ProfilePresenter.swift */,
+				D7540AB42AD5BDD600EBAEF1 /* PetPopupPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -836,6 +848,7 @@
 				48BBD8602A52F1790053738A /* GradientView.swift in Sources */,
 				758D96822A437358005A12E1 /* RegistrationViewController.swift in Sources */,
 				1FCE77352A5C2FCB0010E427 /* SwipesViewBuilder.swift in Sources */,
+				D7540AB32AD5B80C00EBAEF1 /* PetPopupView.swift in Sources */,
 				484693462A56FB1200CD016C /* RegistrationPresenter.swift in Sources */,
 				D7589A9B2A673FB700145760 /* Credentials.swift in Sources */,
 				75810AC92A8500D6007D0F80 /* Species.swift in Sources */,
@@ -843,10 +856,12 @@
 				484693412A56EE9800CD016C /* LoginPresenter.swift in Sources */,
 				75810ABD2A8242CD007D0F80 /* PetDetailPresenter.swift in Sources */,
 				D74DC72F2A6D9067005439E1 /* PetInfo.swift in Sources */,
+				D7540AB12AD5B7A800EBAEF1 /* PetPopupViewController.swift in Sources */,
 				75810ABA2A823DED007D0F80 /* PetDetailViewBuilder.swift in Sources */,
 				48AC9B962A6BCD0A0055E6A4 /* PetModel.swift in Sources */,
 				7565C06B2A671D9F00CE3EAF /* FirebaseService.swift in Sources */,
 				75BD54EC2A8189A800827702 /* FilterPetType.swift in Sources */,
+				D7540AB52AD5BDD600EBAEF1 /* PetPopupPresenter.swift in Sources */,
 				75810AC22A8253C2007D0F80 /* PetDetailInfo.swift in Sources */,
 				75BD54F12A81924A00827702 /* PetListViewController.swift in Sources */,
 				75810AC42A82860A007D0F80 /* UserInfoView.swift in Sources */,
@@ -857,6 +872,7 @@
 				D752B8132A5CA833005820D0 /* UIViewController+showAlert.swift in Sources */,
 				D74DC7282A6D7CC6005439E1 /* EditProfileService.swift in Sources */,
 				758D96882A438588005A12E1 /* SwipesViewController.swift in Sources */,
+				D74E9D552ACC97790095A5E4 /* PetModelLoader.swift in Sources */,
 				481116E32A66C08500FFEE1C /* Key.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

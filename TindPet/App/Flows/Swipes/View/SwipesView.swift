@@ -56,6 +56,16 @@ class SwipesView: UIView {
         button.addTarget(self, action: #selector(didTabLikeButton), for: .touchUpInside)
         return button
     }()
+    
+    lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        return spinner
+    }()
+    
+    lazy var loadingView: UIView = {
+        let loadingView = UIView()
+        return loadingView
+    }()
     // MARK: - Functions
     @objc func didTabLikeButton() {
         presenter?.likeButtonAction()
@@ -63,6 +73,15 @@ class SwipesView: UIView {
     
     @objc func didTabDislikeButton() {
         presenter?.dislikeButtonAction()
+    }
+    
+    func showActivityIndicator() {
+        self.spinner.startAnimating()
+    }
+
+    func hideActivityIndicator() {
+            self.spinner.stopAnimating()
+//            self.loadingView.removeFromSuperview()
     }
     // MARK: - Init
     override init(frame: CGRect) {
@@ -94,7 +113,7 @@ class SwipesView: UIView {
             likeButton.topAnchor.constraint(equalTo: swipeView.bottomAnchor, constant: 20),
             likeButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -60),
             likeButton.heightAnchor.constraint(equalToConstant: 70),
-            likeButton.widthAnchor.constraint(equalToConstant: 70),
+            likeButton.widthAnchor.constraint(equalToConstant: 70)
         ])
     }
 }

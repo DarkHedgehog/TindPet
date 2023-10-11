@@ -93,92 +93,34 @@ class SwipeService: SwipeServiceProtocol {
         guard let uid = uid else { return }
         var pets: [PetInfo] = [PetInfo]()
         if preference == 0 {
-            firestore.collectionGroup("pets").getDocuments { [weak self] snapshot, error in
+            getPetsWithNoPreference { [weak self] isReceived, petInfos in
                 guard let strongSelf = self else {
                     completion(false, nil)
                     return
                 }
-                if let error = error as? NSError {
-                    print(error)
-                    strongSelf.processError(errorID: error.code)
+                guard isReceived, let petsReceived = petInfos else {
                     completion(false, nil)
                     return
                 }
-                guard let docs = snapshot?.documents else {
-                    print("guard docs failed")
-                    strongSelf.delegate?.didNotReceiveResult()
-                    completion(false, nil)
-                    return
-                }
-                for doc in docs {
-                    var pet = PetInfo()
-                    guard let name = doc["name"] as? String,
-                        let petID = doc["petID"] as? String,
-                        let age = doc["age"] as? Int,
-                        let species = doc["species"] as? Int,
-                        let ownerID = doc["ownerID"] as? String else {
-                        print("guard doc parameters failed")
-                        completion(false, nil)
-                        return
-                    }
-                    if let photo = doc["photo"] as? String {
-                        pet.photo = photo
-                    }
-                    pet.petID = petID
-                    pet.name = name
-                    pet.age = age
-                    pet.species = species
-                    pet.ownerID = ownerID
-                    pets.append(pet)
-                    print(pet.name)
-                }
+                pets = petsReceived
                 completion(true, pets)
             }
         } else {
             let species = preference - 1
-            firestore.collectionGroup("pets").whereField("species", isEqualTo: species).getDocuments { [weak self] snapshot, error in
+            getPetsWithPreference(species: species) { [weak self] isReceived, petInfos in
                 guard let strongSelf = self else {
                     completion(false, nil)
                     return
                 }
-                if let error = error as? NSError {
-                    print(error)
-                    strongSelf.processError(errorID: error.code)
+                guard isReceived, let petsReceived = petInfos else {
                     completion(false, nil)
                     return
                 }
-                guard let docs = snapshot?.documents else {
-                    print("guard docs failed")
-                    strongSelf.delegate?.didNotReceiveResult()
-                    completion(false, nil)
-                    return
-                }
-                for doc in docs {
-                    var pet = PetInfo()
-                    guard let name = doc["name"] as? String,
-                        let petID = doc["petID"] as? String,
-                        let age = doc["age"] as? Int,
-                        let species = doc["species"] as? Int,
-                        let ownerID = doc["ownerID"] as? String else {
-                        print("guard doc parameters failed")
-                        completion(false, nil)
-                        return
-                    }
-                    if let photo = doc["photo"] as? String {
-                        pet.photo = photo
-                    }
-                    pet.petID = petID
-                    pet.name = name
-                    pet.age = age
-                    pet.species = species
-                    pet.ownerID = ownerID
-                    pets.append(pet)
-                }
+                pets = petsReceived
                 completion(true, pets)
             }
         }
     }
-
     func showNextPet(pets: [PetInfo], index: Int) -> PetInfo? {
         guard let uid = uid else { return nil }
         var pet = PetInfo()
@@ -187,7 +129,14 @@ class SwipeService: SwipeServiceProtocol {
         } else if index < 0 {
             print("wrong index")
         } else {
-            pet = PetInfo(name: pets[index].name, age: pets[index].age, species: pets[index].species, ownerID: pets[index].ownerID, photo: pets[index].photo)
+            pet = PetInfo(
+                name: pets[index].name,
+                age: pets[index].age,
+                species: pets[index].species,
+                ownerID: pets[index].ownerID,
+                photo: pets[index].photo,
+                image: pets[index].image
+            )
         }
         return pet
     }
@@ -234,6 +183,93 @@ class SwipeService: SwipeServiceProtocol {
             delegate?.didReceiveUnavailableError()
         default:
             delegate?.didReceiveUnknownError()
+        }
+    }
+    private func getPetsWithNoPreference(completion: @escaping (Bool, [PetInfo]?) -> Void) {
+        var pets: [PetInfo] = [PetInfo]()
+        firestore.collectionGroup("pets").getDocuments { [weak self] snapshot, error in
+            guard let strongSelf = self else {
+                completion(false, nil)
+                return
+            }
+            if let error = error as? NSError {
+                print(error)
+                strongSelf.processError(errorID: error.code)
+                completion(false, nil)
+                return
+            }
+            guard let docs = snapshot?.documents else {
+                print("guard docs failed")
+                strongSelf.delegate?.didNotReceiveResult()
+                completion(false, nil)
+                return
+            }
+            for doc in docs {
+                var pet = PetInfo()
+                guard let name = doc["name"] as? String,
+                    let petID = doc["petID"] as? String,
+                    let age = doc["age"] as? Int,
+                    let species = doc["species"] as? Int,
+                    let ownerID = doc["ownerID"] as? String else {
+                    print("guard doc parameters failed")
+                    completion(false, nil)
+                    return
+                }
+                if let photo = doc["photo"] as? String {
+                    pet.photo = photo
+                }
+                pet.petID = petID
+                pet.name = name
+                pet.age = age
+                pet.species = species
+                pet.ownerID = ownerID
+                pets.append(pet)
+                print(pet.name)
+            }
+            completion(true, pets)
+        }
+    }
+    private func getPetsWithPreference(species: Int, completion: @escaping (Bool, [PetInfo]?) -> Void) {
+        var pets: [PetInfo] = [PetInfo]()
+        firestore.collectionGroup("pets").whereField("species", isEqualTo: species).getDocuments { [weak self] snapshot, error in
+            guard let strongSelf = self else {
+                completion(false, nil)
+                return
+            }
+            if let error = error as? NSError {
+                print(error)
+                strongSelf.processError(errorID: error.code)
+                completion(false, nil)
+                return
+            }
+            guard let docs = snapshot?.documents else {
+                print("guard docs failed")
+                strongSelf.delegate?.didNotReceiveResult()
+                completion(false, nil)
+                return
+            }
+            for doc in docs {
+                var pet = PetInfo()
+                guard let name = doc["name"] as? String,
+                    let petID = doc["petID"] as? String,
+                    let age = doc["age"] as? Int,
+                    let species = doc["species"] as? Int,
+                    let ownerID = doc["ownerID"] as? String else {
+                    print("guard doc parameters failed")
+                    completion(false, nil)
+                    return
+                }
+                if let photo = doc["photo"] as? String {
+                    pet.photo = photo
+                }
+                pet.petID = petID
+                pet.name = name
+                pet.age = age
+                pet.species = species
+                pet.ownerID = ownerID
+                pets.append(pet)
+            }
+            completion(true, pets)
         }
     }
 }
