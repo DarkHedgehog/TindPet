@@ -149,9 +149,7 @@ extension SwipesPresenter: SwipeServiceDelegate {
 
 extension SwipesPresenter: PetModelLoaderDelegate {
     func didGetPetModels(pets: [PetInfo]) {
-//        view?.hideActivityIndicator()
-        //turn off loader method to view
-        //load pets to view method to view
+        view?.hideActivityIndicator()
         self.pets = pets
         guard let pet = swipeService.showNextPet(pets: pets, index: 0) else {
             print("no pets exist")
