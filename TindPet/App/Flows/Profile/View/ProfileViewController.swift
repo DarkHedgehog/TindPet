@@ -239,6 +239,11 @@ extension ProfileViewController: AccountInfoCellDelegate, PetCellDelegate {
     func addPetButtonAction() {
         presenter?.addPetButtonAction()
     }
+    func presentPopup(controller: PetPopupViewController) {
+        controller.modalTransitionStyle = .coverVertical
+        controller.modalPresentationStyle = .formSheet
+        self.present(controller, animated: true)
+    }
     func tapPetPhoto(from cell: UITableViewCell) {
         guard let indexPath = profileView.tableView.indexPath(for: cell) else { return }
         presenter?.selectedPetImage(index: indexPath)

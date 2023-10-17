@@ -14,6 +14,7 @@ protocol AppCoordinatorProtocol {
     func goToMainScene()
     func goToPetDetail(_ pet: PetInfo)
     func goToBack()
+    func openPetPopupVC(viewController: ProfileViewController)
 }
 
 final class AppCoordinator: AppCoordinatorProtocol {
@@ -46,6 +47,14 @@ final class AppCoordinator: AppCoordinatorProtocol {
     func goToRegistrationVC() {
         let regVC = RegistrationViewBuilder.build(coordinator: self)
         navigatinController.pushViewController(regVC, animated: true)
+    }
+    
+    func openPetPopupVC(viewController: ProfileViewController) {
+        let popupVC = PetPopupViewBuilder.build(coordinator: self)
+        popupVC.modalTransitionStyle = .crossDissolve
+        popupVC.modalPresentationStyle = .overCurrentContext
+        viewController.present(popupVC, animated: true)
+//        navigatinController.pushViewController(popupVC, animated: true)
     }
 
     func goToPetDetail(_ pet: PetInfo) {
