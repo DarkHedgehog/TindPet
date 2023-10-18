@@ -76,7 +76,6 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         presenter.view = controller
         presenter.coordinator = coordinator
         controller.presenter = presenter
-        
         view?.presentPopup(controller: controller)
     }
     func pickedImage(image: UIImage) {

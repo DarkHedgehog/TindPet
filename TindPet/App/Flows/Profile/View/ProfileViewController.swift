@@ -36,6 +36,7 @@ final class ProfileViewController: UIViewController {
         self.view = ProfileView()
         profileView.tableView.dataSource = self
         profileView.tableView.delegate = self
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -242,7 +243,9 @@ extension ProfileViewController: AccountInfoCellDelegate, PetCellDelegate {
     func presentPopup(controller: PetPopupViewController) {
         controller.modalTransitionStyle = .coverVertical
         controller.modalPresentationStyle = .formSheet
-        self.present(controller, animated: true)
+        self.present(controller, animated: true) {
+            self.showPets(pets: self.myPets)
+        }
     }
     func tapPetPhoto(from cell: UITableViewCell) {
         guard let indexPath = profileView.tableView.indexPath(for: cell) else { return }

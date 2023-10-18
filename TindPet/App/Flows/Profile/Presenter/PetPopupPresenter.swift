@@ -11,6 +11,8 @@ import UIKit
 protocol PetPopupViewProtocol {
     func showImagePicker()
     func showInfo(title: String, message: String)
+    func showChosenImage(image: UIImage)
+    func dismissPetPopup()
 }
 
 class PetPopupPresenter {
@@ -32,6 +34,7 @@ extension PetPopupPresenter: PetPopupPresenterProtocol {
         petService.addPet(petInfo: petInfo, photo: petInfo.image!) { didLoad in
             if didLoad {
                 print("loaded pet")
+                self.view?.dismissPetPopup()
             }
         }
     }
@@ -40,6 +43,7 @@ extension PetPopupPresenter: PetPopupPresenterProtocol {
     }
     func pickedImage(image: UIImage) {
         pet?.image = image
+        view?.showChosenImage(image: image)
     }
 }
 

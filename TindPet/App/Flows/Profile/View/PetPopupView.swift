@@ -192,8 +192,8 @@ class PetPopupView: UIView {
 //                discardPetButton.rightAnchor.constraint(equalTo: petAgeTextField.rightAnchor, constant: -90),
 //                discardPetButton.heightAnchor.constraint(equalToConstant: 30),
 //                discardPetButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
-                savePetButton.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 8),
-                savePetButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 4),
+                savePetButton.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 16),
+                savePetButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
                 savePetButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
                 savePetButton.heightAnchor.constraint(equalToConstant: 40)
         ])

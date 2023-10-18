@@ -35,6 +35,7 @@ class PetPopupViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         removeObserver()
         endEditing()
     }
@@ -63,7 +64,12 @@ class PetPopupViewController: UIViewController {
             object: nil)
     }
     @objc private func keyBoardWasShow(notification: Notification) {
-        
+        guard let userInfo = notification.userInfo else { return }
+        guard let screen = notification.object as? UIScreen,
+              let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        let fromCoordinateSpace = screen.coordinateSpace
+        let toCoordinateSpace: UICoordinateSpace = view
+        let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
     }
     @objc private func keyBoardWillBeHidden(notification: Notification) {
         
@@ -73,11 +79,18 @@ class PetPopupViewController: UIViewController {
     }
 }
 extension PetPopupViewController: PetPopupViewProtocol {
+    func dismissPetPopup() {
+        dismiss(animated: true)
+    }
+    
     func showImagePicker() {
         selectImage()
     }
     func showInfo(title: String, message: String) {
         showAlert(title: title, message: message)
+    }
+    func showChosenImage(image: UIImage) {
+        petPopupView.petPhotoImageView.image = image
     }
 }
 
@@ -122,7 +135,7 @@ extension PetPopupViewController: UIImagePickerControllerDelegate & UINavigation
         dismiss(animated: true)
     }
 }
-
+// MARK: - View Delegate
 extension PetPopupViewController: PetPopupViewDelegate {
     func tapPetPhoto() {
         presenter?.selectedPetImage()
