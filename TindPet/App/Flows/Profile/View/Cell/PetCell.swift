@@ -40,6 +40,33 @@ class PetCell: UITableViewCell {
         tfAge.keyboardType = .numberPad
         return tfAge
     }()
+    lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.text = "Name"
+        return label
+    }()
+    lazy var ageLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.text = "Age"
+        return label
+    }()
+    lazy var speciesLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = .systemGray
+        label.numberOfLines = 0
+        label.text = "Species"
+        return label
+    }()
     lazy var segmentControl: UISegmentedControl = {
         let segment = UISegmentedControl(items: [Species.cat.localizedText(), Species.dog.localizedText()])
         let attributes = [
@@ -58,21 +85,21 @@ class PetCell: UITableViewCell {
         view.backgroundColor = .systemGray5
         return view
     }()
-    lazy var savePetButton: UIButton = {
-        var config = UIButton.Configuration.filled()
-//        config.title = "Сохранить"
-        config.baseBackgroundColor = .systemGray2
-        config.imagePlacement = .all
-        config.imagePadding = 8.0
-        config.cornerStyle = .medium
-        let button = UIButton(type: .roundedRect)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.configuration = config
-        button.setTitle("Save", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 10)
-        button.addTarget(self, action: #selector(tapSavePetButton), for: .touchUpInside)
-        return button
-    }()
+//    lazy var savePetButton: UIButton = {
+//        var config = UIButton.Configuration.filled()
+////        config.title = "Сохранить"
+//        config.baseBackgroundColor = .systemGray2
+//        config.imagePlacement = .all
+//        config.imagePadding = 8.0
+//        config.cornerStyle = .medium
+//        let button = UIButton(type: .roundedRect)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.configuration = config
+//        button.setTitle("Save", for: .normal)
+//        button.titleLabel?.font = .systemFont(ofSize: 10)
+//        button.addTarget(self, action: #selector(tapSavePetButton), for: .touchUpInside)
+//        return button
+//    }()
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -89,8 +116,14 @@ class PetCell: UITableViewCell {
     }
     // MARK: - Configure
     func configure(model: PetInfo) {
-            tfName.text = model.name
-        tfAge.text = model.age.description
+            nameLabel.text = model.name
+        ageLabel.text = model.age.description
+        if model.species == 0 {
+            speciesLabel.text = "Кошка"
+        } else {
+            speciesLabel.text = "Собака"
+        }
+        
         petPhotoImageView.image = model.image
     }
     @objc private func tapPhotoImage() {
@@ -102,38 +135,63 @@ class PetCell: UITableViewCell {
     // MARK: - UI
     private func setUI() {
         contentView.addSubview(petPhotoImageView)
-        contentView.addSubview(tfName)
-        contentView.addSubview(tfAge)
-        contentView.addSubview(segmentControl)
-        contentView.addSubview(savePetButton)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(ageLabel)
+        contentView.addSubview(speciesLabel)
+//        contentView.addSubview(tfName)
+//        contentView.addSubview(tfAge)
+//        contentView.addSubview(segmentControl)
+//        contentView.addSubview(savePetButton)
         contentView.addSubview(lineView)
         NSLayoutConstraint.activate([
             petPhotoImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             petPhotoImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
             petPhotoImageView.widthAnchor.constraint(equalToConstant: 100),
             petPhotoImageView.heightAnchor.constraint(equalToConstant: 100),
-            tfName.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            tfName.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
-            tfName.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            tfName.heightAnchor.constraint(equalToConstant: 20),
-            tfAge.topAnchor.constraint(equalTo: tfName.bottomAnchor, constant: 16),
-//            tfAge.centerYAnchor.constraint(equalTo: petPhotoImageView.centerYAnchor),
-            tfAge.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
-            tfAge.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            tfAge.heightAnchor.constraint(equalToConstant: 20),
-            segmentControl.topAnchor.constraint(equalTo: tfAge.bottomAnchor, constant: 8),
-            segmentControl.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
-            segmentControl.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            segmentControl.heightAnchor.constraint(equalToConstant: 28),
-            savePetButton.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 8),
-            savePetButton.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
-            savePetButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            savePetButton.heightAnchor.constraint(equalToConstant: 30),
-            savePetButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            nameLabel.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
+            nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            nameLabel.heightAnchor.constraint(equalToConstant: 20),
+            ageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
+            ageLabel.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
+            ageLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            ageLabel.heightAnchor.constraint(equalToConstant: 20),
+            speciesLabel.topAnchor.constraint(equalTo: ageLabel.bottomAnchor, constant: 16),
+            speciesLabel.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
+            speciesLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            speciesLabel.heightAnchor.constraint(equalToConstant: 20),
+            speciesLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             lineView.bottomAnchor.constraint(equalTo: bottomAnchor),
             lineView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             lineView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             lineView.heightAnchor.constraint(equalToConstant: 2)
-        ])
+            ])
+//        NSLayoutConstraint.activate([
+//            petPhotoImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            petPhotoImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+//            petPhotoImageView.widthAnchor.constraint(equalToConstant: 100),
+//            petPhotoImageView.heightAnchor.constraint(equalToConstant: 100),
+//            tfName.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+//            tfName.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
+//            tfName.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+//            tfName.heightAnchor.constraint(equalToConstant: 20),
+//            tfAge.topAnchor.constraint(equalTo: tfName.bottomAnchor, constant: 16),
+//            tfAge.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
+//            tfAge.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+//            tfAge.heightAnchor.constraint(equalToConstant: 20),
+//            segmentControl.topAnchor.constraint(equalTo: tfAge.bottomAnchor, constant: 8),
+//            segmentControl.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
+//            segmentControl.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+//            segmentControl.heightAnchor.constraint(equalToConstant: 28),
+//            savePetButton.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 8),
+//            savePetButton.leftAnchor.constraint(equalTo: petPhotoImageView.rightAnchor, constant: 16),
+//            savePetButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+//            savePetButton.heightAnchor.constraint(equalToConstant: 30),
+//            savePetButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+//            lineView.bottomAnchor.constraint(equalTo: bottomAnchor),
+//            lineView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+//            lineView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+//            lineView.heightAnchor.constraint(equalToConstant: 2)
+//        ])
     }
 }
