@@ -130,6 +130,7 @@ class SwipeService: SwipeServiceProtocol {
             print("wrong index")
         } else {
             pet = PetInfo(
+                petID: pets[index].petID,
                 name: pets[index].name,
                 age: pets[index].age,
                 species: pets[index].species,
@@ -218,6 +219,9 @@ class SwipeService: SwipeServiceProtocol {
                 if let photo = doc["photo"] as? String {
                     pet.photo = photo
                 }
+                if let gender = doc["gender"] as? Int {
+                    pet.gender = gender
+                }
                 pet.petID = petID
                 pet.name = name
                 pet.age = age
@@ -261,6 +265,9 @@ class SwipeService: SwipeServiceProtocol {
                 }
                 if let photo = doc["photo"] as? String {
                     pet.photo = photo
+                }
+                if let gender = doc["gender"] as? Int {
+                    pet.gender = gender
                 }
                 pet.petID = petID
                 pet.name = name

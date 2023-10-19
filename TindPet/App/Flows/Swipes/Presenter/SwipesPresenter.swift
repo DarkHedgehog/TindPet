@@ -54,22 +54,22 @@ extension SwipesPresenter: SwipesPresenterProtocol {
         swipeService.getPets(preference: preference) { [weak self] isLoaded, petsDocs in
             guard isLoaded, let petDocs = petsDocs, let strongSelf = self else { return }
             strongSelf.petModelLoader.processPetDocs(petDocs)
-            
-                //reload data
+            guard let pet = strongSelf.swipeService.showNextPet(pets: strongSelf.pets, index: 0) else {
+                print("no pets exist")
+                return
+            }
+            DispatchQueue.main.async {
+                strongSelf.view?.showPet(pet: pet)
+            }
+            strongSelf.currentPetID = pet.petID
         }
-        guard let pet = swipeService.showNextPet(pets: pets, index: 0) else {
-            print("no pets exist")
-            return
-        }
-        DispatchQueue.main.async {
-            self.view?.showPet(pet: pet)
-        }
-        currentPetID = pet.petID
+        
     }
     func likeButtonAction() {
         print("Like")
         petIndex += 1
         swipeService.petLiked(petID: currentPetID)
+        print("liked petID: \(currentPetID)")
         guard let pet = swipeService.showNextPet(pets: pets, index: petIndex) else {
             print("no pets exist")
             return

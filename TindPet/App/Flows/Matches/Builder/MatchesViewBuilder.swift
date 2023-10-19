@@ -10,7 +10,8 @@ import UIKit
 
 enum MatchesViewBuilder {
     static func build(coordinator: AppCoordinatorProtocol) -> UIViewController {
-        let presenter = MatchesPresenter()
+        let matchService = MatchService()
+        let presenter = MatchesPresenter(matchService: matchService)
         let view = MatchesViewController()
         presenter.view = view
         presenter.coordinator = coordinator

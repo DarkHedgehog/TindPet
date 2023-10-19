@@ -17,4 +17,5 @@ struct PetInfo {
     var photo: String?
     var image: UIImage?
     var description: String?
+    var gender: Int = 0
 }

@@ -15,6 +15,7 @@ final class PetListViewController: UICollectionViewController {
     var delegate: PetListDelegate?
     private let layout = UICollectionViewFlowLayout()
     private var values: [PetInfoModel] = []
+    var pets: [PetInfo] = []
 
     init() {
         super.init(collectionViewLayout: layout)

@@ -128,6 +128,9 @@ class MatchService: MatchServiceProtocol {
             if let photo = doc["photo"] as? String {
                 pet.photo = photo
             }
+            if let gender = doc["gender"] as? Int {
+                pet.gender = gender
+            }
                 pet.petID = petID
                 pet.name = name
                 pet.age = age

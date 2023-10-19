@@ -98,6 +98,10 @@ final class MatchesViewController: UIViewController {
 }
 
 extension MatchesViewController: MatchesViewProtocol {
+    func showInfo(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
+    
     func setPetList(pets: [PetInfoModel]) {
         self.pets = pets
         self.petList.reloadData(pets)
