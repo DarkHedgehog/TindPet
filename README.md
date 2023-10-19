@@ -7,17 +7,34 @@
         
 ## ОПИСАНИЕ
 
-TindPet - это приложение, которое поможет найти для вашего питомца новый дом или же наоборот, Вам найти нового питомца.
+TindPet - приложение, которое поможет найти для вашего питомца новый дом или же наоборот, Вам найти нового питомца.
   </p>
   
 ## Скриншоты
-<p align="center">
-<img src="Login.png" alt="Login" width="500" height="1000">
-<img src="Registration.png" alt="Registration" width="500" height="1000">
-<img src="Swipes.png" alt="Swipes" width="500" height="1000">
-<img src="Matches.png" alt="Matches" width="500" height="1000">
-<img src="Profile.png" alt="Profile" width="500" height="1000">
-    </p>
+### Регистрация
+<h1 align="center">
+    <img src="Login.png" width="250"> <img src="Registration.png" width="250">
+</h1>
+
+### Swipes
+<h1 align="center">
+    <img src="Swipes.png" width="250"> 
+</h1>
+
+### Matches
+<h1 align="center">
+    <img src="Matches.png" width="250"> 
+</h1>
+
+### Profile
+<h1 align="center">
+    <img src="Profile.png" width="250"> 
+</h1>
+
+### Добавление питомца
+<h1 align="center">
+    <img src="AddPet.png" width="250"> 
+</h1>
 
 ## Функции
 
