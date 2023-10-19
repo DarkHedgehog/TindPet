@@ -13,6 +13,7 @@ protocol ProfileViewProtocol: UIViewController {
     func setAvatarImage(avatar: UIImage)
     func showInfo(title: String, message: String)
     func reloadTableView()
+    func presentPopup(controller: PetPopupViewController)
 }
 
 final class ProfilePresenter {
@@ -69,9 +70,13 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         view?.showPets(pets: pets)
     }
     func addPetButtonAction() {
-        let pet = PetInfo(name: "", image: UIImage(named: "addPhoto1") ?? UIImage())
-        pets.insert(pet, at: 0)
-        view?.showPets(pets: pets)
+        let petService = PetService()
+        let presenter = PetPopupPresenter(petService: petService)
+        let controller = PetPopupViewController()
+        presenter.view = controller
+        presenter.coordinator = coordinator
+        controller.presenter = presenter
+        view?.presentPopup(controller: controller)
     }
     func pickedImage(image: UIImage) {
         switch selectedIndex {
@@ -89,6 +94,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         }
     }
     func viewDidLoad() {
+//        editService.loadPetPhotoToPetID(petID: "352K3AUh9Q1Yi6IwNNfg")
         editService.getCurrentUserInfo(completion: { isReceived, userInfo in
             guard isReceived, let userInfo = userInfo else {
                 return

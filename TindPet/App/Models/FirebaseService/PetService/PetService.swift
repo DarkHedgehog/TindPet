@@ -115,7 +115,7 @@ class PetService: PetServiceProtocol {
                 completion(false, nil)
                 return
             }
-            self.storage.child("images/pets/\(petID).png").downloadURL() { url, error in
+            self.storage.child("images/pets/\(petID).png").downloadURL { url, error in
                 guard let url = url, error == nil else {
                     completion(false, nil)
                     return

@@ -23,6 +23,7 @@ class SwipesViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        showActivityIndicator()
         presenter?.viewDidLoad()
     }
 }
@@ -43,5 +44,31 @@ extension SwipesViewController: SwipesViewProtocol {
     \t\(pet.name), \(pet.age.toLocalizedAge())
     \t\(speciesText)
     """
+    }
+    func showActivityIndicator() {
+        DispatchQueue.main.async {
+            self.swipeView.loadingView = UIView()
+            self.swipeView.loadingView.frame = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+            self.swipeView.loadingView.center = self.swipeView.center
+            self.swipeView.loadingView.backgroundColor = UIColor.clear
+            self.swipeView.loadingView.alpha = 0.7
+            self.swipeView.loadingView.clipsToBounds = true
+            self.swipeView.loadingView.layer.cornerRadius = 1
+           
+            self.swipeView.spinner = UIActivityIndicatorView(style: .large)
+            self.swipeView.spinner.frame = CGRect(x: 0.0, y: 0.0, width: 80.0, height: 80.0)
+            self.swipeView.spinner.center = CGPoint(x:self.swipeView.loadingView.bounds.size.width / 2, y: self.swipeView.loadingView.bounds.size.height / 2)
+           
+            self.swipeView.loadingView.addSubview(self.swipeView.spinner)
+            self.swipeView.addSubview(self.swipeView.loadingView)
+            self.swipeView.showActivityIndicator()
+        }
+    }
+    
+    func hideActivityIndicator() {
+        DispatchQueue.main.async {
+            self.swipeView.loadingView.removeFromSuperview()
+            self.swipeView.swipeView.hideActivityIndicator()
+        }
     }
 }

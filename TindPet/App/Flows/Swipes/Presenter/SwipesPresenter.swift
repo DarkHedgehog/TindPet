@@ -12,7 +12,11 @@ protocol SwipesViewProtocol {
     func showInfo(title: String, message: String)
     func showPet(pet: PetInfo)
     func updateData(pet: PetInfo, species: String, image: UIImage)
+    func showActivityIndicator()
+    func hideActivityIndicator()
 }
+
+
 
 protocol SwipesPresenterProtocol {
     func viewDidLoad()
@@ -23,34 +27,35 @@ protocol SwipesPresenterProtocol {
 class SwipesPresenter {
     var view: SwipesViewProtocol?
     var swipeService: SwipeServiceProtocol
-    var pets: [PetInfo] = [PetInfo]()
+    var petModelLoader: PetModelLoaderService
+    var pets: [PetInfo] = []
     var preference = 0
     var petIndex = 0
     var currentPetID = ""
     var petImage = UIImage()
-    init(swipeService: SwipeServiceProtocol) {
+    init(swipeService: SwipeServiceProtocol, petModelLoader: PetModelLoaderService) {
         self.swipeService = swipeService
+        self.petModelLoader = petModelLoader
         self.swipeService.delegate = self
+        self.petModelLoader.delegate = self
     }
 }
 
 extension SwipesPresenter: SwipesPresenterProtocol {
     func viewDidLoad() {
+//        swipeService.loadPetPhotoToPetID(petID: "V216VM2G7xMlyE00U2WN")
         swipeService.getUserPreference { isLoaded, preference in
             if isLoaded {
                 guard let preference = preference else { return }
                 self.preference = preference
             }
         }
-        swipeService.getPets(preference: preference) { isLoaded, petsDocs in
-            if isLoaded {
-                guard let petDocs = petsDocs else {
-                    return
-                }
-                self.pets = petDocs
-                //turn urls into images
+        view?.showActivityIndicator()
+        swipeService.getPets(preference: preference) { [weak self] isLoaded, petsDocs in
+            guard isLoaded, let petDocs = petsDocs, let strongSelf = self else { return }
+            strongSelf.petModelLoader.processPetDocs(petDocs)
+            
                 //reload data
-            }
         }
         guard let pet = swipeService.showNextPet(pets: pets, index: 0) else {
             print("no pets exist")
@@ -139,5 +144,20 @@ extension SwipesPresenter: SwipeServiceDelegate {
     }
     func didReceiveUnknownError() {
         view?.showInfo(title: "Ошибка", message: "Неизвестная ошибка")
+    }
+}
+
+extension SwipesPresenter: PetModelLoaderDelegate {
+    func didGetPetModels(pets: [PetInfo]) {
+        view?.hideActivityIndicator()
+        self.pets = pets
+        guard let pet = swipeService.showNextPet(pets: pets, index: 0) else {
+            print("no pets exist")
+            return
+        }
+        DispatchQueue.main.async {
+            self.view?.showPet(pet: pet)
+        }
+        currentPetID = pet.petID
     }
 }
