@@ -19,3 +19,12 @@ struct PetInfo {
     var description: String?
     var gender: Int = 0
 }
+
+struct PetInfoViewModel {
+    var name: String = ""
+    var age: Int = 0
+    var species: Int = 0
+    var image: UIImage?
+    var description: String?
+    var gender: Int = 0
+}

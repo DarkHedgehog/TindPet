@@ -16,7 +16,7 @@ protocol ProfilePresenterProtocol {
     func deletePet(index: IndexPath)
     func tapEditButton()
     func tapSaveButton(name: String?, surname: String?)
-    func savePetButtonAction(petInfo: PetInfo?)
+    func editPetButtonAction(petInfo: PetInfo?)
     var user: UserInfo { get set }
     var avatar: UIImage { get set }
     var pets: [PetInfo] { get set }
@@ -211,19 +211,20 @@ extension ProfileViewController: ProfileViewProtocol {
 }
 // MARK: - AccountInfoCellDelegate, PetCellDelegate
 extension ProfileViewController: AccountInfoCellDelegate, PetCellDelegate {
-    func savePetButtonAction() {
+    func editPetButtonAction() {
         let index = IndexPath(row: 2, section: 0)
         let cell: PetCell = profileView.tableView.cellForRow(at: index) as! PetCell
         var petInfo = PetInfo()
-        guard let name = cell.tfName.text,
-              let age = Int(cell.tfAge.text ?? "0"),
-        let image = cell.petPhotoImageView.image  else { return }
-        let species = cell.segmentControl.selectedSegmentIndex
+        guard let name = cell.nameLabel.text,
+              let age = Int(cell.ageLabel.text ?? "0"),
+        let image = cell.petPhotoImageView.image,
+        let species = Int(cell.speciesLabel.text ?? "0") else { return }
         petInfo.name = name
         petInfo.age = age
         petInfo.species = species
         petInfo.image = image
-        presenter?.savePetButtonAction(petInfo: petInfo)
+        
+        presenter?.editPetButtonAction(petInfo: petInfo)
     }
     func tapEditButton() {
         presenter?.tapEditButton()
@@ -241,6 +242,13 @@ extension ProfileViewController: AccountInfoCellDelegate, PetCellDelegate {
         presenter?.addPetButtonAction()
     }
     func presentPopup(controller: PetPopupViewController) {
+        controller.modalTransitionStyle = .coverVertical
+        controller.modalPresentationStyle = .formSheet
+        self.present(controller, animated: true) {
+            self.showPets(pets: self.myPets)
+        }
+    }
+    func presentPopup(controller: PetPopupViewController, pet: PetInfo) {
         controller.modalTransitionStyle = .coverVertical
         controller.modalPresentationStyle = .formSheet
         self.present(controller, animated: true) {

@@ -9,7 +9,7 @@ import UIKit
 
 protocol PetCellDelegate: AnyObject {
     func tapPetPhoto(from cell: UITableViewCell)
-    func savePetButtonAction()
+    func editPetButtonAction()
 }
 
 class PetCell: UITableViewCell {
@@ -85,21 +85,20 @@ class PetCell: UITableViewCell {
         view.backgroundColor = .systemGray5
         return view
     }()
-//    lazy var savePetButton: UIButton = {
-//        var config = UIButton.Configuration.filled()
-////        config.title = "Сохранить"
-//        config.baseBackgroundColor = .systemGray2
-//        config.imagePlacement = .all
-//        config.imagePadding = 8.0
-//        config.cornerStyle = .medium
-//        let button = UIButton(type: .roundedRect)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.configuration = config
-//        button.setTitle("Save", for: .normal)
-//        button.titleLabel?.font = .systemFont(ofSize: 10)
-//        button.addTarget(self, action: #selector(tapSavePetButton), for: .touchUpInside)
-//        return button
-//    }()
+    lazy var editPetButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.baseBackgroundColor = .systemGray2
+        config.imagePlacement = .all
+        config.imagePadding = 8.0
+        config.cornerStyle = .medium
+        let button = UIButton(type: .roundedRect)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = config
+        button.setTitle("Save", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 10)
+        button.addTarget(self, action: #selector(tapEditPetButton), for: .touchUpInside)
+        return button
+    }()
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -129,8 +128,8 @@ class PetCell: UITableViewCell {
     @objc private func tapPhotoImage() {
         delegate?.tapPetPhoto(from: self)
     }
-    @objc private func tapSavePetButton() {
-        delegate?.savePetButtonAction()
+    @objc private func tapEditPetButton() {
+        delegate?.editPetButtonAction()
     }
     // MARK: - UI
     private func setUI() {

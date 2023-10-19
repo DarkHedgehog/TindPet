@@ -10,6 +10,7 @@ import Foundation
 protocol MatchesViewProtocol: AnyObject {
     func setPetList(pets: [PetInfoModel])
     func showInfo(title: String, message: String)
+    func didReceiveViewModel(pet: PetInfo)
 }
 
 protocol MatchesPresenterProtocol {
@@ -22,16 +23,31 @@ final class MatchesPresenter {
     var coordinator: AppCoordinatorProtocol?
     let service = MatchesStaticService()
     var matchService: MatchServiceProtocol
+    var petModelLoader: PetModelLoaderService
     
-    init(view: MatchesViewProtocol? = nil, coordinator: AppCoordinatorProtocol? = nil, matchService: MatchServiceProtocol) {
+    init(view: MatchesViewProtocol? = nil, coordinator: AppCoordinatorProtocol? = nil, matchService: MatchServiceProtocol, petModelLoader: PetModelLoaderService) {
         self.view = view
         self.coordinator = coordinator
         self.matchService = matchService
+        self.petModelLoader = petModelLoader
         self.matchService.delegate = self
+        self.petModelLoader.delegate = self
     }
     
     func petInfoToModels(_ list: [PetInfo]) -> [PetInfoModel] {
         return list.map { PetInfoModel($0) }
+    }
+    func petInfoToModel(pet: PetInfo) -> PetInfoModel {
+        return PetInfoModel(pet)
+    }
+    func petInfoToPetInfoViewModel(_ pet: PetInfo) -> PetInfoViewModel {
+        return PetInfoViewModel(
+            name: pet.name,
+            age: pet.age,
+            species: pet.species,
+            image: pet.image,
+            description: pet.description,
+            gender: pet.gender)
     }
 }
 
@@ -41,20 +57,19 @@ extension MatchesPresenter: MatchesPresenterProtocol {
             guard didLoad, let pet = pet else { return }
             self.coordinator?.goToPetDetail(pet)
         }
-        service.getPetByID(petID: value.petID) { success, petInfo in
-            if let petInfo = petInfo {
-                self.coordinator?.goToPetDetail(petInfo)
-            }
-        }
+//        service.getPetByID(petID: value.petID) { success, petInfo in
+//            if let petInfo = petInfo {
+//                self.coordinator?.goToPetDetail(petInfo)
+//            }
+//        }
     }
 
     func setFilter(text: String, type: FilterPetType) {
-        matchService.getLikedPets { didLoad, pets in
-            guard didLoad, let pets = pets else { return }
-            DispatchQueue.main.async {
-                let petModels = self.petInfoToModels(pets)
-                self.view?.setPetList(pets: petModels)
-            }
+        matchService.getLikedPets { [weak self] didLoad, pets in
+            guard didLoad, let pets = pets, let strongSelf = self else { return }
+            strongSelf.petModelLoader.processPetDocs(pets)
+            let petModels = strongSelf.petInfoToModels(pets)
+            strongSelf.view?.setPetList(pets: petModels)
         }
 //        service.getLikedPets { _, list in
 //            DispatchQueue.main.async {
@@ -66,6 +81,10 @@ extension MatchesPresenter: MatchesPresenterProtocol {
 }
 
 extension MatchesPresenter: MatchServiceDelegate {
+    func updateView(pet: PetInfo) {
+//        let viewModel = petInfoToModel(pet: pet)
+        view?.didReceiveViewModel(pet: pet)
+    }
     func didReceiveObjectNotFoundError() {
         view?.showInfo(title: "Ошибка", message: "Объект не найден")
     }
@@ -95,7 +114,11 @@ extension MatchesPresenter: MatchServiceDelegate {
     }
     func didReceiveUnknownError() {
         view?.showInfo(title: "Ошибка", message: "Неизвестная ошибка")
+    }  
+}
+
+extension MatchesPresenter: PetModelLoaderDelegate {
+    func didGetPetModels(pets: [PetInfo]) {
+        print("should be good")
     }
-    
-    
 }

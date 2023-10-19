@@ -11,7 +11,8 @@ import UIKit
 enum MatchesViewBuilder {
     static func build(coordinator: AppCoordinatorProtocol) -> UIViewController {
         let matchService = MatchService()
-        let presenter = MatchesPresenter(matchService: matchService)
+        let petModelLoader = PetModelLoaderService()
+        let presenter = MatchesPresenter(matchService: matchService, petModelLoader: petModelLoader)
         let view = MatchesViewController()
         presenter.view = view
         presenter.coordinator = coordinator

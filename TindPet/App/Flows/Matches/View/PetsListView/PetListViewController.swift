@@ -15,7 +15,7 @@ final class PetListViewController: UICollectionViewController {
     var delegate: PetListDelegate?
     private let layout = UICollectionViewFlowLayout()
     private var values: [PetInfoModel] = []
-    var pets: [PetInfo] = []
+//    var pets: [PetInfo] = []
 
     init() {
         super.init(collectionViewLayout: layout)
@@ -31,8 +31,8 @@ final class PetListViewController: UICollectionViewController {
     }
 
     public func reloadData(_ values: [PetInfoModel]) {
-        self.values = values
-        collectionView.reloadData()
+//        self.values = values
+//        collectionView.reloadData()
     }
 
     // MARK: UICollectionViewDataSource

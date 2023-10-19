@@ -147,6 +147,14 @@ class PetPopupView: UIView {
         discardPetButton.addTarget(self, action: #selector(tapDiscardPetButton), for: .touchUpInside)
         savePetButton.addTarget(self, action: #selector(tapSavePetButton), for: .touchUpInside)
     }
+    func configureText(pet: PetInfo) {
+        petNameTextField.text = pet.name
+        petAgeTextField.text = String(pet.age)
+        if pet.species == 1 {
+            segmentControl.selectedSegmentIndex = 1
+        }
+        petPhotoImageView.image = pet.image
+    }
 
     func configureUI() {
         self.backgroundColor = .systemBackground

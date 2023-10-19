@@ -24,13 +24,13 @@ final class MatchesViewController: UIViewController {
         return searchBar
     }()
 
-    let filterButtons: FilterViewController = {
+    let filterViewController: FilterViewController = {
         let controller = FilterViewController(values: Constants.filterLabels)
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         return controller
     }()
 
-    let petList: PetListViewController = {
+    let petListViewController: PetListViewController = {
         let controller = PetListViewController()
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         return controller
@@ -38,9 +38,9 @@ final class MatchesViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        filterButtons.delegate = self
+        filterViewController.delegate = self
         searchString.delegate = self
-        petList.delegate = self
+        petListViewController.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -80,14 +80,14 @@ final class MatchesViewController: UIViewController {
 //            filterButtons.view.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
 //        ])
 
-        self.addChild(petList)
-        self.view.addSubview(petList.view)
+        self.addChild(petListViewController)
+        self.view.addSubview(petListViewController.view)
 
         NSLayoutConstraint.activate([
-            petList.collectionView.topAnchor.constraint(equalTo: searchString.safeAreaLayoutGuide.bottomAnchor, constant: 10),
-            petList.collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            petList.collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            petList.collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            petListViewController.collectionView.topAnchor.constraint(equalTo: searchString.safeAreaLayoutGuide.bottomAnchor, constant: 10),
+            petListViewController.collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            petListViewController.collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            petListViewController.collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 
@@ -98,13 +98,20 @@ final class MatchesViewController: UIViewController {
 }
 
 extension MatchesViewController: MatchesViewProtocol {
+    func didReceiveViewModel(pet: PetInfo) {
+        let model = PetInfoModel(pet)
+        pets.append(model)
+        setPetList(pets: pets)
+    }
     func showInfo(title: String, message: String) {
         showAlert(title: title, message: message)
     }
     
     func setPetList(pets: [PetInfoModel]) {
-        self.pets = pets
-        self.petList.reloadData(pets)
+//        DispatchQueue.main.async {
+            self.pets = pets
+            self.petListViewController.reloadData(self.pets)
+//        }
     }
 }
 
@@ -125,7 +132,7 @@ extension MatchesViewController: FilterViewControllerDelegate {
 
 extension MatchesViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        onFilterChanged(value: filterButtons.selectedFilterIndex())
+        onFilterChanged(value: filterViewController.selectedFilterIndex())
     }
 }
 

@@ -35,14 +35,21 @@ final class ProfilePresenter {
 }
 
 extension ProfilePresenter: ProfilePresenterProtocol {
-    func savePetButtonAction(petInfo: PetInfo?) {
+    func editPetButtonAction(petInfo: PetInfo?) {
+        let petService = PetService()
+        let presenter = PetPopupPresenter(petService: petService)
+        let controller = PetPopupViewController()
+        presenter.view = controller
+        presenter.coordinator = coordinator
+        controller.presenter = presenter
+        view?.presentPopup(controller: controller)
+        
         guard let petInfo = petInfo else { return }
         petService.addPet(petInfo: petInfo, photo: petInfo.image!) { didLoad in
             if didLoad {
                 print("loaded pet")
             }
         }
-        //        self.view?.reloadTableView()
     }
     func tapEditButton() {
     }

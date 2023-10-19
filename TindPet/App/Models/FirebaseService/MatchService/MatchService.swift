@@ -26,6 +26,7 @@ protocol MatchServiceDelegate {
     func didReceiveUnavailableError()
     func didNotReceiveResult()
     func didReceiveUnknownError()
+    func updateView(pet: PetInfo)
 }
 
 class MatchService: MatchServiceProtocol {
@@ -34,29 +35,36 @@ class MatchService: MatchServiceProtocol {
     private let storage = Storage.storage().reference()
     var delegate: MatchServiceDelegate?
     let uid = Auth.auth().currentUser?.uid
+    var pets: [PetInfo] = []
+    
     func getLikedPets(completion: @escaping (Bool, [PetInfo]?) -> Void) {
         guard let uid = uid else { return }
-        var pets: [PetInfo] = []
         let ref = firestore.collection("users").document(uid).collection("petsLiked")
-        ref.getDocuments { snapshot, error in
-            if error == nil, let snapshot = snapshot {
-                for document in snapshot.documents {
-                    if let petID = document["petID"] as? String {
-                        self.getPetByID(petID: petID) { didLoad, pet in
-                            guard didLoad, let pet = pet else { return }
-                                pets.append(pet)
-                        }
-                    }
-                }
-                completion(true, pets)
-            } else {
-                if let error = error as? NSError {
-                    self.processError(errorID: error.code)
-                    print(error)
-                    completion(false, nil)
-                }
+        ref.getDocuments { [weak self] snapshot, error in
+            guard let strongSelf = self else { return }
+            strongSelf.checkData(snapshot: snapshot, error: error)
+        }
+    }
+    private func checkData(snapshot: QuerySnapshot?, error: Error?) {
+        guard let snapshot = snapshot, error == nil else {
+            self.processCheckDataError(error: error)
+            return
+        }
+        for document in snapshot.documents {
+            guard let petID = document["petID"] as? String else { continue }
+            getPetByID(petID: petID) { didLoad, pet in
+                guard didLoad, let pet = pet else { return }
+                self.pets.append(pet)
+                self.delegate?.updateView(pet: pet)
             }
         }
+    }
+    private func processCheckDataError(error: Error?) {
+        guard let error = error as? NSError else {
+            delegate?.didReceiveUnknownError()
+            return
+        }
+        self.processError(errorID: error.code)
     }
     func getOwner(ownerID: String, completion: @escaping (Bool, UserInfo?) -> Void) {
         guard let uid = uid else { return }
